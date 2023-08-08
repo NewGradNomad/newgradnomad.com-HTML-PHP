@@ -26,13 +26,13 @@
             <a class="nav-links nav-link" href="./index.php">
               <button type="button" class="button-hide btn btn-primary"><strong>Home</strong></button>
             </a>
-            <div class="button-hide nav-links mt-auto mb-auto show dropdown">
+<!--             <div class="button-hide nav-links mt-auto mb-auto show dropdown">
               <button data-bs-toggle="dropdown" type="button" aria-expanded="false" class="dropdown-toggle btn btn-button-hide"><strong>Community</strong></button>
               <div aria-labelledby="dropdown" data-bs-popper="static" class="dropdown-menu">
                 <a target="_blank" href="https://discord.gg/khfQcbtHw8" class="nav-links dropdown-item"><button type="button" class="button-hide btn btn-primary"><strong>Discord</strong></button></a>
                 <a data-bs-toggle="modal" data-bs-target="#newsletterModal" class="nav-links dropdown-item"><button type="button" class="button-hide btn btn-primary"><strong>Newsletter</strong></button></a>
               </div>
-            </div>
+            </div> -->
             <a class="nav-links nav-link" href="./about.php">
               <button type="button" class="button-hide btn btn-primary"><strong>About</strong></button>
             </a>
@@ -46,7 +46,7 @@
     <h1 class="fs-1 text-center">Find Remote New Grad Jobs</h1>
     <p class="fs-4 lead text-center">The best place for new graduates &amp; entry-level talent to find remote work.</p>
     <a role="button" href="./PostAJob.php" class=" btn btn-lg mx-1 mb-3 btn btn-light">Post a Job</a>
-    <a role="button" href="./NewGradPrograms.php" class=" btn btn-lg mx-1 mb-3 btn btn-light">New Grad Programs</a>
+<!--     <a role="button" href="./NewGradPrograms.php" class=" btn btn-lg mx-1 mb-3 btn btn-light">New Grad Programs</a>     -->
   </div>
 
   <div class="modal fade" id="newsletterModal" tabindex="-1" aria-hidden="true">
