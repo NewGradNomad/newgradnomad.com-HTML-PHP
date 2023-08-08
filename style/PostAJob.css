@@ -1,0 +1,23 @@
+.gray-form {
+  background-color: lightgray !important;
+  border-radius: 10px;
+  font-size: larger;
+}
+.checkout-Button {
+  background-color: #ed6f26 !important;
+  border: 0;
+  font-size: larger;
+}
+
+.form-text {
+  color: black;
+  font-size: 14px;
+}
+
+.section-title{
+  font-size: x-large;
+}
+
+.textarea-style{
+  font-size: medium;
+}

@@ -1,0 +1,10 @@
+@media screen and (min-width: 500px) {
+  .p-font {
+    font-size: x-large !important;
+  }
+}
+@media screen and (max-width: 500px) {
+  .p-font {
+    font-size: large !important;
+  }
+}

@@ -1,0 +1,20 @@
+.button {
+  background-color: #ed6f26 !important;
+  border-color: #ed6f26 !important;
+}
+@media screen and (max-device-width: 500px) {
+  table {
+    font-size: small;
+  }
+  button {
+    font-size: medium !important;
+  }
+}
+@media screen and (max-device-width: 370px) {
+    table {
+      font-size: xx-small;
+    }
+    button {
+      font-size: x-small !important;
+    }
+  }
