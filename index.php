@@ -4,6 +4,7 @@
 <head>
   <title>NewGradNomad</title>
   <meta charset="utf-8">
+  <link rel="icon" href="./icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="./style/NavBar.css" rel="stylesheet">
   <link href="./style/HeroSection.css" rel="stylesheet">
