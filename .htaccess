@@ -8,10 +8,10 @@ ErrorDocument 403 https://ngn.000.pe/error/403.php
 Header set Connection keep-alive
 AddType text/cache-manifest .manifest
 
-RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
-RewriteRule ^ /%1 [NC,L,R]
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^ %{REQUEST_URI}.php [NC,L]
+#RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
+#RewriteRule ^ /%1 [NC,L,R]
+#RewriteCond %{REQUEST_FILENAME}.php -f
+#RewriteRule ^ %{REQUEST_URI}.php [NC,L]
 
 RewriteCond %{REQUEST_URI} !^/(wp-login.php|wp-admin/|wp-content/plugins/|wp-includes/).* [NC]
 RewriteCond %{THE_REQUEST} !^[A-Z]{3,9}\ [a-zA-Z0-9\.\+_/\-\?\=\&]+\ HTTP/ [NC]
