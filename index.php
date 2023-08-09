@@ -10,6 +10,12 @@
   <link href="./style/HeroSection.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script>
+    $(function() {
+      $("#footer").load("./pages/footer.html");
+    });
+  </script>
 </head>
 
 <body>
@@ -27,14 +33,14 @@
             <a class="nav-links nav-link" href="./index.php">
               <button type="button" class="button-hide btn btn-primary"><strong>Home</strong></button>
             </a>
-<!--             <div class="button-hide nav-links mt-auto mb-auto show dropdown">
+            <!--             <div class="button-hide nav-links mt-auto mb-auto show dropdown">
               <button data-bs-toggle="dropdown" type="button" aria-expanded="false" class="dropdown-toggle btn btn-button-hide"><strong>Community</strong></button>
               <div aria-labelledby="dropdown" data-bs-popper="static" class="dropdown-menu">
                 <a target="_blank" href="https://discord.gg/khfQcbtHw8" class="nav-links dropdown-item"><button type="button" class="button-hide btn btn-primary"><strong>Discord</strong></button></a>
                 <a data-bs-toggle="modal" data-bs-target="#newsletterModal" class="nav-links dropdown-item"><button type="button" class="button-hide btn btn-primary"><strong>Newsletter</strong></button></a>
               </div>
             </div> -->
-            <a class="nav-links nav-link" href="./about.php">
+            <a class="nav-links nav-link" href="./pages/about.php">
               <button type="button" class="button-hide btn btn-primary"><strong>About</strong></button>
             </a>
           </div>
@@ -47,7 +53,7 @@
     <h1 class="fs-1 text-center">Find Remote New Grad Jobs</h1>
     <p class="fs-4 lead text-center">The best place for new graduates &amp; entry-level talent to find remote work.</p>
     <a role="button" href="./pages/PostAJob.php" class=" btn btn-lg mx-1 mb-3 btn btn-light">Post a Job</a>
-<!--     <a role="button" href="./NewGradPrograms.php" class=" btn btn-lg mx-1 mb-3 btn btn-light">New Grad Programs</a>     -->
+    <!--     <a role="button" href="./NewGradPrograms.php" class=" btn btn-lg mx-1 mb-3 btn btn-light">New Grad Programs</a>     -->
   </div>
 
   <div class="modal fade" id="newsletterModal" tabindex="-1" aria-hidden="true">
@@ -76,5 +82,7 @@
   </div>
 
 </body>
+
+<footer id="footer"></footer>
 
 </html>
