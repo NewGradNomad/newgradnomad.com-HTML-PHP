@@ -21,7 +21,7 @@
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <div class="ms-auto navbar-nav">
-            <a class="nav-links nav-link" href="./PostAJob.php">
+            <a class="nav-links nav-link" href="./pages/PostAJob.php">
               <button type="button" class="button btn btn-primary"><strong>Post a Job</strong></button>
             </a>
             <a class="nav-links nav-link" href="./index.php">
@@ -46,7 +46,7 @@
   <div class="text-center hero-container container-fluid">
     <h1 class="fs-1 text-center">Find Remote New Grad Jobs</h1>
     <p class="fs-4 lead text-center">The best place for new graduates &amp; entry-level talent to find remote work.</p>
-    <a role="button" href="./PostAJob.php" class=" btn btn-lg mx-1 mb-3 btn btn-light">Post a Job</a>
+    <a role="button" href="./pages/PostAJob.php" class=" btn btn-lg mx-1 mb-3 btn btn-light">Post a Job</a>
 <!--     <a role="button" href="./NewGradPrograms.php" class=" btn btn-lg mx-1 mb-3 btn btn-light">New Grad Programs</a>     -->
   </div>
 
