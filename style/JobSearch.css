@@ -1,8 +1,8 @@
 .search{
-    display:flex;
-    justify-content: center;
+    display:flex !important;
+    justify-content: center !important;
 }
 
 .button{
-    background-color: #449175;
+    background-color: #449175 !important;
 }

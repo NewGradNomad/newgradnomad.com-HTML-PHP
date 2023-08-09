@@ -4,7 +4,7 @@
 }
 @media screen and (max-device-width: 500px) {
   table {
-    font-size: small;
+    font-size: small !important;
   }
   button {
     font-size: medium !important;
@@ -12,7 +12,7 @@
 }
 @media screen and (max-device-width: 370px) {
     table {
-      font-size: xx-small;
+      font-size: xx-small !important;
     }
     button {
       font-size: x-small !important;

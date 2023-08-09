@@ -1,23 +1,23 @@
 .gray-form {
   background-color: lightgray !important;
-  border-radius: 10px;
-  font-size: larger;
+  border-radius: 10px !important;
+  font-size: larger !important;
 }
 .checkout-Button {
   background-color: #ed6f26 !important;
-  border: 0;
-  font-size: larger;
+  border: 0 !important;
+  font-size: larger !important;
 }
 
 .form-text {
-  color: black;
-  font-size: 14px;
+  color: black !important;
+  font-size: 14px !important;
 }
 
 .section-title{
-  font-size: x-large;
+  font-size: x-large !important;
 }
 
 .textarea-style{
-  font-size: medium;
+  font-size: medium !important;
 }

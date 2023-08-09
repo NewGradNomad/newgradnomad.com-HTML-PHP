@@ -1,22 +1,22 @@
 .green-nav {
-  background-color: #449175;
-  font-size: large;
-  font-weight: bold;
+  background-color: #449175 !important;
+  font-size: large !important;
+  font-weight: bold !important;
 }
 
 .post-job {
   background-color: #ed6f26 !important;
   border-color: #ed6f26 !important;
-  background: 103px;
-  border-radius: 10px;
-  text-align: center;
-  max-width: 110px;
-  max-height: 45px;
+  background: 103px !important;
+  border-radius: 10px !important;
+  text-align: center !important;
+  max-width: 110px !important;
+  max-height: 45px !important;
 }
 .nav-links {
   background-color: transparent !important;
   border-color: #ed6f2600 !important;
-  border-radius: 10px;
+  border-radius: 10px !important;
   
 }
 .button{

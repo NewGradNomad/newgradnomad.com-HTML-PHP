@@ -1,5 +1,5 @@
 .hero-container {
-  background-color: gray;
-  color: aliceblue;
-  padding: 2rem;
+  background-color: gray !important;
+  color: aliceblue !important;
+  padding: 2rem !important;
 }
