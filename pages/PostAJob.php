@@ -32,19 +32,19 @@
 
       <div class="mb-3">
         <label class="form-label" for="companyName"><b>Company Name</b></label>
-        <input required="" placeholder="Enter Company Name" name="companyName" type="text" id="companyName" class="form-control" value="">
+        <input required placeholder="Enter Company Name" name="companyName" type="text" id="companyName" class="form-control" value="">
       </div>
 
       <div class="mb-3">
         <label class="form-label" for="positionName"><b>Position</b></label>
-        <input required="" placeholder="Enter Position Name" name="positionName" type="text" id="positionName" class="form-control" value="">
+        <input required placeholder="Enter Position Name" name="positionName" type="text" id="positionName" class="form-control" value="">
       </div>
 
       <label class="section-title form-label"><b>Job Post Perks</b></label>
 
       <div class="mb-3">
         <div class="form-check">
-          <input required="" readonly name="basicPosting" type="checkbox" id="basicPosting" class="form-check-input" checked="">
+          <input required readonly name="basicPosting" type="checkbox" id="basicPosting" class="form-check-input" checked onclick="return false;">
           <label title="" for="basicPosting" class="form-check-label">Basic Job Posting ($150)</label>
         </div>
       </div>
@@ -57,19 +57,19 @@
       </div>
 
       <div class="mb-3">
-        <div class="form-check"><input name="pinPost24hr" type="checkbox" id="pinPost24hr" class="form-check-input" value="off">
+        <div class="form-check"><input name="pinPost24hr" type="checkbox" id="pinPost24hr" class="form-check-input">
           <label title="" for="pinPost24hr" class="form-check-label">Pin post on front page for 24 hours (+$99)</label>
         </div>
       </div>
 
       <div class="mb-3">
-        <div class="form-check"><input name="pinPost1wk" type="checkbox" id="pinPost1wk" class="form-check-input" value="off">
+        <div class="form-check"><input name="pinPost1wk" type="checkbox" id="pinPost1wk" class="form-check-input">
           <label title="" for="pinPost1wk" class="form-check-label">Pin post on front page for 1 week (+$199)</label>
         </div>
       </div>
 
       <div class="mb-3">
-        <div class="form-check"><input name="pinPost1mth" type="checkbox" id="pinPost1mth" class="form-check-input" value="off">
+        <div class="form-check"><input name="pinPost1mth" type="checkbox" id="pinPost1mth" class="form-check-input">
           <label title="" for="pinPost1mth" class="form-check-label">Pin post on front page for 1 month (+$349)</label>
         </div>
       </div>
@@ -77,12 +77,12 @@
       <label class="section-title form-label"><b>Job Details</b></label>
       <div class="mb-3">
         <label class="form-label" for="appURL"><b>Application URL</b></label>
-        <input required="" placeholder="https://" name="appURL" type="text" id="appURL" class="form-control" value="">
+        <input required placeholder="https://" name="appURL" type="text" id="appURL" class="form-control" value="">
       </div>
 
       <div class="mb-3">
         <label class="form-label" for="appEmail"><b>Gateway Email Address</b></label>
-        <input required="" placeholder="name@example.com" name="appEmail" type="email" id="appEmail" class="form-control" value="">
+        <input required placeholder="name@example.com" name="appEmail" type="email" id="appEmail" class="form-control" value="">
       </div>
 
       <label class="form-label"><b>Job Description</b></label>
@@ -92,7 +92,7 @@
 
       <div class="mb-3">
         <div class="">
-          <input required="" hidden="" readonly="" name="totalCost" type="checkbox" id="totalCost" class="form-check-input" value="150" checked="">
+          <input required hidden="" readonly="" name="totalCost" type="checkbox" id="totalCost" class="form-check-input" value="150" checked="">
         </div>
       </div>
       <button type="submit" class="checkout-Button mt-4 mb-4 form-control btn btn-primary"><b>Checkout Job Posting $150</b></button>
