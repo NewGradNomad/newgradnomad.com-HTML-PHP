@@ -27,7 +27,7 @@
   </div>
 
   <div class="gray-form mt-4 px-3 container">
-    <form novalidate="" class="">
+    <form>
       <label class="section-title mt-3 form-label"><b>Getting Started</b></label>
 
       <div class="mb-3">
