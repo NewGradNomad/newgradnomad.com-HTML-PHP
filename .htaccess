@@ -17,5 +17,3 @@ RewriteCond %{THE_REQUEST} !^[A-Z]{3,9}\ [a-zA-Z0-9\.\+_/\-\?\=\&]+\ HTTP/ [NC]
 RewriteRule .? - [F,NS,L]
 
 IndexIgnore * 
-
-Options - Indexes
