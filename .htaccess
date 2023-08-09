@@ -19,4 +19,4 @@ RewriteRule .? - [F,NS,L]
 
 IndexIgnore * 
 
-Options -Indexes
+Options All -Indexes
