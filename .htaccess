@@ -19,4 +19,4 @@ RewriteRule .? - [F,NS,L]
 
 IndexIgnore * 
 
-RewriteRule ^htdocs.* /pages/$0 [L]
+Options -Indexes
