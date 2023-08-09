@@ -130,7 +130,7 @@
 
       <div class="mb-3">
         <div class="">
-          <input value="150" required hidden="" readonly="" name="totalCost" type="checkbox" id="totalCost" class="form-check-input" checked="">
+          <input value="150" required hidden="" onclick="return false;" name="totalCost" type="checkbox" id="totalCost" class="form-check-input" checked="">
         </div>
       </div>
       <button type="submit" class="checkout-Button mt-4 mb-4 form-control btn btn-primary"><b>
