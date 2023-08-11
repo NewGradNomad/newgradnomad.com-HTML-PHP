@@ -28,7 +28,7 @@
         theme: "bootstrap-5",
         maximumSelectionLength: 2,
         placeholder: 'Select...',
-        closeOnSelect: false,
+        closeOnSelect: true,
         tags: true,
         allowClear: true,
         width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
