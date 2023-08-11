@@ -3,10 +3,8 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    types:
-    - closed
 jobs:
+if: github.event_name != 'pull_request'
   web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
