@@ -4,14 +4,13 @@ on:
     branches:
       - main
 jobs:
-if: github.event_name != 'pull_request'
   web-deploy:
+    if: github.event_name != 'pull_request'
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
-    
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
