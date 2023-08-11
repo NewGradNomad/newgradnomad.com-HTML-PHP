@@ -27,7 +27,7 @@
   </div>
 
   <div class="gray-form mt-4 px-3 container">
-    <form>
+    <form name="jobForm">
       <label class="section-title mt-3 form-label"><b>Getting Started</b></label>
 
       <div class="mb-3">
@@ -87,7 +87,17 @@
           }
           document.getElementById("total").textContent = "Checkout Job Posting $" + newTotal;
           document.getElementById("totalCost").setAttribute("value", newTotal);
+        }
 
+        function checkEmailOrURL() {
+          if (document.forms["jobForm"]["appURL"].value != null && document.forms["jobForm"]["appURL"].value != "") {
+            appEmail.disabled = true;
+          } else if (document.forms["jobForm"]["appEmail"].value != null && document.forms["jobForm"]["appEmail"].value != "") {
+            appURL.disabled = true;
+          } else {
+            appEmail.disabled = false;
+            appURL.disabled = false;
+          }
         }
       </script>
 
@@ -115,12 +125,12 @@
       <label class="section-title form-label"><b>Job Details</b></label>
       <div class="mb-3">
         <label class="form-label" for="appURL"><b>Application URL</b></label>
-        <input required placeholder="https://" name="appURL" type="text" id="appURL" class="form-control" value="">
+        <input required placeholder="https://" name="appURL" type="text" id="appURL" class="form-control" onchange="checkEmailOrURL()">
       </div>
 
       <div class="mb-3">
         <label class="form-label" for="appEmail"><b>Gateway Email Address</b></label>
-        <input required placeholder="name@example.com" name="appEmail" type="email" id="appEmail" class="form-control" value="">
+        <input required placeholder="name@example.com" name="appEmail" type="email" id="appEmail" class="form-control" onchange="checkEmailOrURL()">
       </div>
 
       <label class="form-label"><b>Job Description</b></label>
