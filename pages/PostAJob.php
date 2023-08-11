@@ -100,10 +100,10 @@
       } else if (document.forms["jobForm"]["appEmail"].value != null && document.forms["jobForm"]["appEmail"].value != "") {
         appURL.disabled = true;
         document.getElementById("EmailURLRequiredMessage").setAttribute("hidden", "");
-        if (!RegExp(/^\w+([\.-]?(?=(\w+))\1)*@\w+([\.-]?(?=(\w+))\1)*(\.\w{2,3})+$/).test(document.forms["jobForm"]["appEmail"].value)) {
-          document.getElementById("EmailFormatMessage").removeAttribute("hidden");
-        } else {
+        if (RegExp(/^\w+([\.-]?(?=(\w+))\1)*@\w+([\.-]?(?=(\w+))\1)*(\.\w{2,3})+$/).test(document.forms["jobForm"]["appEmail"].value)) {
           document.getElementById("EmailFormatMessage").setAttribute("hidden", "");
+        } else {
+          document.getElementById("EmailFormatMessage").removeAttribute("hidden");
         }
       } else {
         appEmail.disabled = false;
@@ -111,7 +111,7 @@
         document.getElementById("EmailURLRequiredMessage").removeAttribute("hidden");
         document.getElementById("EmailFormatMessage").setAttribute("hidden", "");
       }
-
+      checkEnableCheckoutButton()
     }
 
     function checkInputField(currentField) {
@@ -121,6 +121,22 @@
       } else {
         document.getElementById(currentFieldMessage).removeAttribute("hidden");
       }
+      checkEnableCheckoutButton()
+    }
+
+    function checkEnableCheckoutButton() {
+      if (companyName.checkValidity() && positionName.checkValidity() && positionType.checkValidity() && primaryTag.checkValidity() && keywords.checkValidity() && jobDesc.checkValidity() && (appEmail.checkValidity() || appURL.checkValidity())) {
+        if (appURL.disabled == true && RegExp(/^\w+([\.-]?(?=(\w+))\1)*@\w+([\.-]?(?=(\w+))\1)*(\.\w{2,3})+$/).test(document.forms["jobForm"]["appEmail"].value)) {
+          checkoutButton.disabled = false;
+        } else if (appEmail.disabled == true) {
+          checkoutButton.disabled = false;
+        } else {
+          checkoutButton.disabled = true;
+        }
+      } else {
+        checkoutButton.disabled = true
+      }
+
     }
   </script>
 </head>
@@ -181,7 +197,7 @@
       <div class="mb-3">
         <label class="form-label" for="keywords"><b>Keywords</b></label>
         <small class="form-text" id="keywordsRequiredMessage" style="color: red !important;">* Required: Max of 2.</small>
-        <select class="form-select" multiple="multiple" id="keywords" onchange="checkInputField(this)">
+        <select required class="form-select" multiple="multiple" id="keywords" onchange="checkInputField(this)">
           <option value="Developer">Developer</option>
           <option value="Engineer">Engineer</option>
           <option value="Full Stack">Full Stack</option>
@@ -260,7 +276,7 @@
           <input value="150" required hidden="" onclick="return false;" name="totalCost" type="checkbox" id="totalCost" class="form-check-input" checked="" />
         </div>
       </div>
-      <button type="submit" class="checkout-Button mt-4 mb-4 form-control btn btn-primary"><b>
+      <button id="checkoutButton" type="submit" class="checkout-Button mt-4 mb-4 form-control btn btn-primary" disabled><b>
           <div value="150" id="total">Checkout Job Posting $150</div>
         </b></button>
     </form>
