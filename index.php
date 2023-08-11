@@ -34,7 +34,7 @@
             <a class="nav-links nav-link" href="./index.php">
               <button type="button" class="button-hide btn btn-primary"><strong>Home</strong></button>
             </a>
-            <!--             <div class="button-hide nav-links mt-auto mb-auto show dropdown">
+            <!-- <div class="button-hide nav-links mt-auto mb-auto show dropdown">
               <button data-bs-toggle="dropdown" type="button" aria-expanded="false" class="dropdown-toggle btn btn-button-hide"><strong>Community</strong></button>
               <div aria-labelledby="dropdown" data-bs-popper="static" class="dropdown-menu">
                 <a target="_blank" href="https://discord.gg/khfQcbtHw8" class="nav-links dropdown-item"><button type="button" class="button-hide btn btn-primary"><strong>Discord</strong></button></a>
