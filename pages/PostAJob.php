@@ -11,11 +11,96 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
   <script>
     $(function() {
       $("#navbar").load("./navbar.html");
       $("#footer").load("./footer.html");
     });
+    $(document).ready(function() {
+      $('#keywords').select2({
+        theme: "bootstrap-5",
+        maximumSelectionLength: 2,
+        placeholder: 'Select...',
+        closeOnSelect: false,
+        tags: true,
+        allowClear: true,
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+
+
+      });
+    });
+
+    $(document).ready(function() {
+      $('#positionType').select2({
+        theme: "bootstrap-5",
+        placeholder: "Position Type...",
+        allowClear: true,
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+
+
+      });
+    });
+
+    $(document).ready(function() {
+      $('#primaryTag').select2({
+        theme: "bootstrap-5",
+        placeholder: "Select...",
+        allowClear: true,
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+
+
+      });
+    });
+
+    function checkCheckboxStatus(chk) {
+      var chkName = document.getElementsByName(chk.name);
+      var chkID = document.getElementById(chk.id);
+      if (chkID.checked) {
+        for (var i = 0; i < chkName.length; i++) {
+          if (!chkName[i].checked) {
+            chkName[i].disabled = true;
+          } else {
+            chkName[i].disabled = false;
+          }
+        }
+      } else {
+        for (var i = 0; i < chkName.length; i++) {
+          chkName[i].disabled = false;
+        }
+      }
+      updateTotal(chk)
+    }
+
+    function updateTotal(chk) {
+      var chkID = document.getElementById(chk.id);
+      if (chkID.checked) {
+        var newTotal = parseFloat(total.getAttribute("value")) + parseFloat(chkID.getAttribute("value"));
+        document.getElementById("total").setAttribute("value", newTotal);
+      } else {
+        var newTotal = parseFloat(total.getAttribute("value")) - parseFloat(chkID.getAttribute("value"));
+        document.getElementById("total").setAttribute("value", newTotal);
+      }
+      document.getElementById("total").textContent = "Checkout Job Posting $" + newTotal;
+      document.getElementById("totalCost").setAttribute("value", newTotal);
+    }
+
+    function checkEmailOrURL() {
+      if (document.forms["jobForm"]["appURL"].value != null && document.forms["jobForm"]["appURL"].value != "") {
+        appEmail.disabled = true;
+      } else if (document.forms["jobForm"]["appEmail"].value != null && document.forms["jobForm"]["appEmail"].value != "") {
+        appURL.disabled = true;
+      } else {
+        appEmail.disabled = false;
+        appURL.disabled = false;
+      }
+    }
   </script>
 </head>
 
@@ -32,92 +117,93 @@
 
       <div class="mb-3">
         <label class="form-label" for="companyName"><b>Company Name</b></label>
-        <input required placeholder="Enter Company Name" name="companyName" type="text" id="companyName" class="form-control" value="">
+        <input required placeholder="Enter Company Name" name="companyName" type="text" id="companyName" class="form-control" />
+        <div class="container"><small class="form-text form-text">- Your company's brand name without business entities</small></div>
       </div>
 
       <div class="mb-3">
         <label class="form-label" for="positionName"><b>Position</b></label>
-        <input required placeholder="Enter Position Name" name="positionName" type="text" id="positionName" class="form-control" value="">
+        <input required placeholder="Enter Position Name" name="positionName" type="text" id="positionName" class="form-control" />
+        <div class="container"><small class="form-text form-text">- Write terms like "Associate Software Engineer" or "Social Media Manager" or "Business Analyst"</small></div>
       </div>
 
-      <label class="section-title form-label"><b>Job Post Perks</b></label>
+      <div class="mb-3">
+        <select class="form-select" id="positionType">
+          <option value=""></option>
+          <option value="Full Time">Full Time</option>
+          <option value="Part Time">Part Time</option>
+          <option value="Contract">Contract</option>
+        </select>
+        <div class="container"><small class="form-text form-text">- Specify full-time, part-time, etc...</small></div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="primaryTag"><b>Primary Tag</b></label>
+        <select class="form-select" id="primaryTag">
+          <option value=""></option>
+          <option value="Software Development">Software Development</option>
+          <option value="Customer Support">Customer Support</option>
+          <option value="Sales">Sales</option>
+          <option value="IT">IT</option>
+          <option value="Writing">Writing</option>
+          <option value="Human Resource">Human Resource</option>
+          <option value="Design">Design</option>
+          <option value="Recruiter">Recruiter</option>
+        </select>
+        <div class="container"><small class="form-text form-text">- Main function of specified job</small></div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="keywords"><b>Keywords</b></label>
+        <select class="form-select" multiple="multiple" id="keywords">
+          <option value="Developer">Developer</option>
+          <option value="Engineer">Engineer</option>
+          <option value="Full Stack">Full Stack</option>
+          <option value="Finance">Finance</option>
+          <option value="Accounting">Accounting</option>
+          <option value="UX/UI">UX/UI</option>
+          <option value="Technical">Technical</option>
+          <option value="Non Technical">Non Technical</option>
+          <option value="Manager">Manager</option>
+          <option value="Crypto">Crypto</option>
+          <option value="Testing">Testing</option>
+        </select>
+        <div class="container"><small class="form-text form-text">- Add keywords that pertain to the jobs purpose</small></div>
+      </div>
+
+      <label class="mt-3 section-title form-label"><b>Job Post Perks</b></label>
 
       <div class="mb-3">
         <div class="form-check">
-          <input value="150" required name="basicPosting" type="checkbox" id="basicPosting" class="form-check-input" checked onclick="return false;">
+          <input value="150" required name="basicPosting" type="checkbox" id="basicPosting" class="form-check-input" checked onclick="return false;" />
           <label title="" for="basicPosting" class="form-check-label">Basic Job Posting ($150)</label>
         </div>
       </div>
 
       <div class="mb-3">
         <div class="form-check">
-          <input value="79" name="support" type="checkbox" id="support" class="form-check-input" onclick="updateTotal(this)">
+          <input value="79" name="support" type="checkbox" id="support" class="form-check-input" onclick="updateTotal(this)" />
           <label title="" for="support" class="form-check-label">Receive 24-hour support for your job posting (+$79)</label>
         </div>
       </div>
 
-      <script>
-        function checkCheckboxStatus(chk) {
-          var chkName = document.getElementsByName(chk.name);
-          var chkID = document.getElementById(chk.id);
-          if (chkID.checked) {
-            for (var i = 0; i < chkName.length; i++) {
-              if (!chkName[i].checked) {
-                chkName[i].disabled = true;
-              } else {
-                chkName[i].disabled = false;
-              }
-            }
-          } else {
-            for (var i = 0; i < chkName.length; i++) {
-              chkName[i].disabled = false;
-            }
-          }
-          updateTotal(chk)
-        }
-
-        function updateTotal(chk) {
-          var chkID = document.getElementById(chk.id);
-          if (chkID.checked) {
-            var newTotal = parseFloat(total.getAttribute("value")) + parseFloat(chkID.getAttribute("value"));
-            document.getElementById("total").setAttribute("value", newTotal);
-          } else {
-            var newTotal = parseFloat(total.getAttribute("value")) - parseFloat(chkID.getAttribute("value"));
-            document.getElementById("total").setAttribute("value", newTotal);
-          }
-          document.getElementById("total").textContent = "Checkout Job Posting $" + newTotal;
-          document.getElementById("totalCost").setAttribute("value", newTotal);
-        }
-
-        function checkEmailOrURL() {
-          if (document.forms["jobForm"]["appURL"].value != null && document.forms["jobForm"]["appURL"].value != "") {
-            appEmail.disabled = true;
-          } else if (document.forms["jobForm"]["appEmail"].value != null && document.forms["jobForm"]["appEmail"].value != "") {
-            appURL.disabled = true;
-          } else {
-            appEmail.disabled = false;
-            appURL.disabled = false;
-          }
-        }
-      </script>
-
       <div class="mb-3">
         <div class="form-check">
-          <input value="99" name="pinAddons" type="checkbox" id="pinPost24hr" class="form-check-input" onclick="checkCheckboxStatus(this)">
+          <input value="99" name="pinAddons" type="checkbox" id="pinPost24hr" class="form-check-input" onclick="checkCheckboxStatus(this)" />
           <label title="" for="pinPost24hr" class="form-check-label">Pin post on front page for 24 hours (+$99)</label>
         </div>
       </div>
 
       <div class="mb-3">
         <div class="form-check">
-          <input value="199" name="pinAddons" type="checkbox" id="pinPost1wk" class="form-check-input" onclick="checkCheckboxStatus(this)">
+          <input value="199" name="pinAddons" type="checkbox" id="pinPost1wk" class="form-check-input" onclick="checkCheckboxStatus(this)" />
           <label title="" for="pinPost1wk" class="form-check-label">Pin post on front page for 1 week (+$199)</label>
         </div>
       </div>
 
       <div class="mb-3">
         <div class="form-check">
-          <input value="349" name="pinAddons" type="checkbox" id="pinPost1mth" class="form-check-input" onclick="checkCheckboxStatus(this)">
+          <input value="349" name="pinAddons" type="checkbox" id="pinPost1mth" class="form-check-input" onclick="checkCheckboxStatus(this)" />
           <label title="" for="pinPost1mth" class="form-check-label">Pin post on front page for 1 month (+$349)</label>
         </div>
       </div>
@@ -125,12 +211,14 @@
       <label class="section-title form-label"><b>Job Details</b></label>
       <div class="mb-3">
         <label class="form-label" for="appURL"><b>Application URL</b></label>
-        <input required placeholder="https://" name="appURL" type="text" id="appURL" class="form-control" onchange="checkEmailOrURL()">
+        <input required placeholder="https://" name="appURL" type="text" id="appURL" class="form-control" onchange="checkEmailOrURL()" />
+        <div class="container"><small class="form-text form-text">- This is the job link applicants will be forwarded to in order to apply top your job</small></div>
       </div>
 
       <div class="mb-3">
         <label class="form-label" for="appEmail"><b>Gateway Email Address</b></label>
-        <input required placeholder="name@example.com" name="appEmail" type="email" id="appEmail" class="form-control" onchange="checkEmailOrURL()">
+        <input required placeholder="name@example.com" name="appEmail" type="email" id="appEmail" class="form-control" onchange="checkEmailOrURL()" />
+        <div class="container"><small class="form-text form-text">- Applicant is routed to this email if no application url is provided!</small></div>
       </div>
 
       <label class="form-label"><b>Job Description</b></label>
@@ -140,7 +228,7 @@
 
       <div class="mb-3">
         <div class="">
-          <input value="150" required hidden="" onclick="return false;" name="totalCost" type="checkbox" id="totalCost" class="form-check-input" checked="">
+          <input value="150" required hidden="" onclick="return false;" name="totalCost" type="checkbox" id="totalCost" class="form-check-input" checked="" />
         </div>
       </div>
       <button type="submit" class="checkout-Button mt-4 mb-4 form-control btn btn-primary"><b>
