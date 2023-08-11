@@ -100,11 +100,18 @@
       } else if (document.forms["jobForm"]["appEmail"].value != null && document.forms["jobForm"]["appEmail"].value != "") {
         appURL.disabled = true;
         document.getElementById("EmailURLRequiredMessage").setAttribute("hidden", "");
+        if (!RegExp(/^\w+([\.-]?(?=(\w+))\1)*@\w+([\.-]?(?=(\w+))\1)*(\.\w{2,3})+$/).test(document.forms["jobForm"]["appEmail"].value)) {
+          document.getElementById("EmailFormatMessage").removeAttribute("hidden");
+        } else {
+          document.getElementById("EmailFormatMessage").setAttribute("hidden", "");
+        }
       } else {
         appEmail.disabled = false;
         appURL.disabled = false;
         document.getElementById("EmailURLRequiredMessage").removeAttribute("hidden");
+        document.getElementById("EmailFormatMessage").setAttribute("hidden", "");
       }
+
     }
 
     function checkInputField(currentField) {
@@ -132,14 +139,14 @@
       <div class="mb-3">
         <label class="form-label" for="companyName"><b>Company Name</b></label>
         <small class="form-text form-text" id="companyNameRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
-        <input required placeholder="Enter Company Name" name="companyName" type="text" id="companyName" class="form-control" onchange="checkInputField(this)" />
+        <input required placeholder="Enter Company Name" name="companyName" type="text" id="companyName" class="form-control" onkeyup="checkInputField(this)" />
         <div class="container"><small class="form-text form-text">- Your company's brand name without business entities</small></div>
       </div>
 
       <div class="mb-3">
         <label class="form-label" for="positionName"><b>Position</b></label>
         <small class="form-text form-text" id="positionNameRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
-        <input required placeholder="Enter Position Name" name="positionName" type="text" id="positionName" class="form-control" onchange="checkInputField(this)" />
+        <input required placeholder="Enter Position Name" name="positionName" type="text" id="positionName" class="form-control" onkeyup="checkInputField(this)" />
         <div class="container"><small class="form-text form-text">- Write terms like "Associate Software Engineer" or "Social Media Manager" or "Business Analyst"</small></div>
       </div>
 
@@ -231,20 +238,21 @@
       <small class="form-text form-text" id="EmailURLRequiredMessage" style="color: red !important;">* Required: Please choose either email or URL.</small>
       <div class="mb-3">
         <label class="form-label" for="appURL"><b>Application URL</b></label>
-        <input required placeholder="https://" name="appURL" type="text" id="appURL" class="form-control" onchange="checkEmailOrURL()" />
+        <input required placeholder="https://" name="appURL" type="text" id="appURL" class="form-control" onkeyup="checkEmailOrURL()" />
         <div class="container"><small class="form-text form-text">- This is the job link applicants will be forwarded to in order to apply top your job</small></div>
       </div>
 
       <div class="mb-3">
         <label class="form-label" for="appEmail"><b>Gateway Email Address</b></label>
-        <input required placeholder="name@example.com" name="appEmail" type="email" id="appEmail" class="form-control" onchange="checkEmailOrURL()" />
+        <small class="form-text form-text" id="EmailFormatMessage" style="color: red !important;" hidden>* This email is invalid.</small>
+        <input required placeholder="name@example.com" name="appEmail" type="email" id="appEmail" class="form-control" onkeyup="checkEmailOrURL()" />
         <div class="container"><small class="form-text form-text">- Applicant is routed to this email if no application url is provided!</small></div>
       </div>
 
       <label class="form-label"><b>Job Description</b></label>
       <small class="form-text form-text" id="jobDescRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
       <div>
-        <textarea required placeholder="" name="jobDesc" id="jobDesc" class="form-control" style="height: 150px;" onchange="checkInputField(this)"></textarea>
+        <textarea required placeholder="" name="jobDesc" id="jobDesc" class="form-control" style="height: 150px;" onkeyup="checkInputField(this)"></textarea>
       </div>
 
       <div class="mb-3">
