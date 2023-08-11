@@ -41,6 +41,7 @@
       $('#positionType').select2({
         theme: "bootstrap-5",
         placeholder: "Position Type...",
+        closeOnSelect: true,
         allowClear: true,
         width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
 
@@ -52,6 +53,7 @@
       $('#primaryTag').select2({
         theme: "bootstrap-5",
         placeholder: "Select...",
+        closeOnSelect: true,
         allowClear: true,
         width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
 
@@ -94,11 +96,23 @@
     function checkEmailOrURL() {
       if (document.forms["jobForm"]["appURL"].value != null && document.forms["jobForm"]["appURL"].value != "") {
         appEmail.disabled = true;
+        document.getElementById("EmailURLRequiredMessage").setAttribute("hidden", "");
       } else if (document.forms["jobForm"]["appEmail"].value != null && document.forms["jobForm"]["appEmail"].value != "") {
         appURL.disabled = true;
+        document.getElementById("EmailURLRequiredMessage").setAttribute("hidden", "");
       } else {
         appEmail.disabled = false;
         appURL.disabled = false;
+        document.getElementById("EmailURLRequiredMessage").removeAttribute("hidden");
+      }
+    }
+
+    function checkInputField(currentField) {
+      var currentFieldMessage = currentField.id + "RequiredMessage";
+      if (document.forms["jobForm"][currentField.id].value != null && document.forms["jobForm"][currentField.id].value != "") {
+        document.getElementById(currentFieldMessage).setAttribute("hidden", "");
+      } else {
+        document.getElementById(currentFieldMessage).removeAttribute("hidden");
       }
     }
   </script>
@@ -117,18 +131,21 @@
 
       <div class="mb-3">
         <label class="form-label" for="companyName"><b>Company Name</b></label>
-        <input required placeholder="Enter Company Name" name="companyName" type="text" id="companyName" class="form-control" />
+        <small class="form-text form-text" id="companyNameRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
+        <input required placeholder="Enter Company Name" name="companyName" type="text" id="companyName" class="form-control" onchange="checkInputField(this)" />
         <div class="container"><small class="form-text form-text">- Your company's brand name without business entities</small></div>
       </div>
 
       <div class="mb-3">
         <label class="form-label" for="positionName"><b>Position</b></label>
-        <input required placeholder="Enter Position Name" name="positionName" type="text" id="positionName" class="form-control" />
+        <small class="form-text form-text" id="positionNameRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
+        <input required placeholder="Enter Position Name" name="positionName" type="text" id="positionName" class="form-control" onchange="checkInputField(this)" />
         <div class="container"><small class="form-text form-text">- Write terms like "Associate Software Engineer" or "Social Media Manager" or "Business Analyst"</small></div>
       </div>
 
       <div class="mb-3">
-        <select class="form-select" id="positionType">
+        <small class="form-text form-text" id="positionTypeRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
+        <select required class="form-select" id="positionType" onchange="checkInputField(this)">
           <option value=""></option>
           <option value="Full Time">Full Time</option>
           <option value="Part Time">Part Time</option>
@@ -139,7 +156,8 @@
 
       <div class="mb-3">
         <label class="form-label" for="primaryTag"><b>Primary Tag</b></label>
-        <select class="form-select" id="primaryTag">
+        <small class="form-text form-text" id="primaryTagRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
+        <select required class="form-select" id="primaryTag" onchange="checkInputField(this)">
           <option value=""></option>
           <option value="Software Development">Software Development</option>
           <option value="Customer Support">Customer Support</option>
@@ -155,7 +173,8 @@
 
       <div class="mb-3">
         <label class="form-label" for="keywords"><b>Keywords</b></label>
-        <select class="form-select" multiple="multiple" id="keywords">
+        <small class="form-text form-text" id="keywordsRequiredMessage" style="color: red !important;">* Required: Max of 2.</small>
+        <select class="form-select" multiple="multiple" id="keywords" onchange="checkInputField(this)">
           <option value="Developer">Developer</option>
           <option value="Engineer">Engineer</option>
           <option value="Full Stack">Full Stack</option>
@@ -209,6 +228,7 @@
       </div>
 
       <label class="section-title form-label"><b>Job Details</b></label>
+      <small class="form-text form-text" id="EmailURLRequiredMessage" style="color: red !important;">* Required: Please choose either email or URL.</small>
       <div class="mb-3">
         <label class="form-label" for="appURL"><b>Application URL</b></label>
         <input required placeholder="https://" name="appURL" type="text" id="appURL" class="form-control" onchange="checkEmailOrURL()" />
@@ -222,8 +242,9 @@
       </div>
 
       <label class="form-label"><b>Job Description</b></label>
+      <small class="form-text form-text" id="jobDescRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
       <div>
-        <textarea placeholder="" name="jobDesc" id="jobDesc" class="form-control" style="height: 150px;"></textarea>
+        <textarea required placeholder="" name="jobDesc" id="jobDesc" class="form-control" style="height: 150px;" onchange="checkInputField(this)"></textarea>
       </div>
 
       <div class="mb-3">
