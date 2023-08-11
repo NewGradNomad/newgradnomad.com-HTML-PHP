@@ -1,8 +1,11 @@
 name: 🚀 Deploy website on push
-"on":
+on:
   push:
     branches:
       - main
+  pull_request:
+    types:
+    - closed
 jobs:
   web-deploy:
     name: 🎉 Deploy
