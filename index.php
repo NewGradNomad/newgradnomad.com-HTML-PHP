@@ -56,7 +56,7 @@
     <a role="button" href="./pages/PostAJob.php" class=" btn btn-lg mx-1 mb-3 btn btn-light">Post a Job</a>
     <!--     <a role="button" href="./NewGradPrograms.php" class=" btn btn-lg mx-1 mb-3 btn btn-light">New Grad Programs</a>     -->
   </div>
-  <form class="">
+  <form class="container">
     <label class="text-center mt-4 form-label" style="width: 100%;">
       <h4>Search Remote Jobs</h4>
     </label>
@@ -103,11 +103,11 @@
               Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
             </div>
           </div>
-          <div class="tag-wrap mt-3">
-            <a class="card-link"><button type="button" class="button btn btn-primary"><strong>Category</strong></button></a>
-            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 1</button></a>
-            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 2</button></a>
-            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 3</button></a>
+          <div class="tag-wrap">
+            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button btn btn-primary"><strong>Category</strong></button></a>
+            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 1</button></a>
+            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 2</button></a>
+            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 3</button></a>
           </div>
         </div>
       </div>
@@ -140,11 +140,11 @@
               Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
             </div>
           </div>
-          <div class="tag-wrap mt-3">
-            <a class="card-link"><button type="button" class="button btn btn-primary"><strong>Category</strong></button></a>
-            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 1</button></a>
-            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 2</button></a>
-            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 3</button></a>
+          <div class="tag-wrap">
+            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button btn btn-primary"><strong>Category</strong></button></a>
+            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 1</button></a>
+            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 2</button></a>
+            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 3</button></a>
           </div>
         </div>
       </div>
@@ -176,11 +176,11 @@
               Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
             </div>
           </div>
-          <div class="tag-wrap mt-3">
-            <a class="card-link"><button type="button" class="btn btn-dark"><strong>Category</strong></button></a>
-            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 1</button></a>
-            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 2</button></a>
-            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 3</button></a>
+          <div class="tag-wrap">
+            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link btn btn-dark"><strong>Category</strong></button></a>
+            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 1</button></a>
+            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 2</button></a>
+            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 3</button></a>
           </div>
         </div>
       </div>
