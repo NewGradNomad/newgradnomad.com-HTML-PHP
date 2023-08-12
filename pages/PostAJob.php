@@ -112,7 +112,7 @@
         <div class="mb-3">
           <div class="form-check">
             <input value="39" name="highlightPost" type="checkbox" id="highlightPost" class="form-check-input" onclick="updateTotal(this)" />
-            <label title="" for="support" class="form-check-label">Highlight your job post in orange 🍊 to gain more views (+$39)</label>
+            <label title="" for="highlightPost" class="form-check-label">Highlight your job post in orange 🍊 to gain more views (+$39)</label>
           </div>
         </div>
 
