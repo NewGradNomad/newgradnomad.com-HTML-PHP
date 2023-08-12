@@ -111,6 +111,13 @@
 
         <div class="mb-3">
           <div class="form-check">
+            <input value="39" name="highlightPost" type="checkbox" id="highlightPost" class="form-check-input" onclick="updateTotal(this)" />
+            <label title="" for="support" class="form-check-label">Highlight your job post in orange 🍊 to gain more views (+$39)</label>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="form-check">
             <input value="99" name="pinAddons" type="checkbox" id="pinPost24hr" class="form-check-input" onclick="checkCheckboxStatus(this)" />
             <label title="" for="pinPost24hr" class="form-check-label">Pin post on front page for 24 hours (+$99)</label>
           </div>
