@@ -27,10 +27,10 @@ USE `newgradnomad`;
 GRANT SELECT, INSERT, DELETE, UPDATE ON newgradnomad.* TO ngn@localhost IDENTIFIED BY 'password';
 
 --
--- Table structure for table `joblistings`
+-- Table structure for table `jobListings`
 --
 
-CREATE TABLE IF NOT EXISTS `joblistings` (
+CREATE TABLE IF NOT EXISTS `jobListings` (
   `listingID` char(10) NOT NULL,
   `companyName` varchar(256) NOT NULL,
   `positionName` varchar(256) NOT NULL,
