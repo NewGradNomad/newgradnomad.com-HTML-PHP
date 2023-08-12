@@ -7,6 +7,7 @@
   <link rel="icon" href="./icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="./style/NavBar.css" rel="stylesheet">
+  <link href="./style/Index.css" rel="stylesheet">
   <link href="./style/HeroSection.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
@@ -15,7 +16,6 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./pages/scripts/index.js"></script>
 </head>
 
@@ -74,6 +74,120 @@
       </select>
       <button type="submit" class="ms-4 button btn btn-primary"><strong>Submit</strong></button>
     </div>
+
+    <div class="container">
+      <div class="mt-4 card">
+        <div class="card-body">
+          <div class="container-fluid px-0">
+            <div class="row">
+              <div class="col">
+                <div class="card-title h5">Job Posting Title</div>
+              </div>
+              <div class="col-auto">
+                <a role="button" href="https://github.com/NewGradNomad" class="button btn btn-primary"><strong>Apply</strong></a>
+              </div>
+              <div class="col-auto">
+                <p class="" style="font-size: 16px;">📌</p>
+              </div>
+            </div>
+          </div>
+          <div class="text-muted card-subtitle h6">Company Name</div>
+
+          <p class="mt-3">
+            <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#c1" aria-expanded="false" aria-controls="c1" style="background-color: #449175 !important;">
+              Toggle Job Description
+            </button>
+          </p>
+          <div class="collapse" id="c1">
+            <div class="card card-body">
+              Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+            </div>
+          </div>
+          <div class="tag-wrap mt-3">
+            <a class="card-link"><button type="button" class="button btn btn-primary"><strong>Category</strong></button></a>
+            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 1</button></a>
+            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 2</button></a>
+            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 3</button></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="mt-4 card">
+        <div class="card-body">
+          <div class="container-fluid px-0">
+            <div class="row">
+              <div class="col">
+                <div class="card-title h5">Job Posting Title</div>
+              </div>
+              <div class="col-auto">
+                <a role="button" href="https://github.com/NewGradNomad" class="button btn btn-primary"><strong>Apply</strong></a>
+              </div>
+              <!-- <div class="col-auto">
+                <p class="" style="font-size: 16px;">📌</p>
+              </div> -->
+            </div>
+          </div>
+          <div class="text-muted card-subtitle h6">Company Name</div>
+
+          <p class="mt-3">
+            <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#c2" aria-expanded="false" aria-controls="c2" style="background-color: #449175 !important;">
+              Toggle Job Description
+            </button>
+          </p>
+          <div class="collapse" id="c2">
+            <div class="card card-body">
+              Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+            </div>
+          </div>
+          <div class="tag-wrap mt-3">
+            <a class="card-link"><button type="button" class="button btn btn-primary"><strong>Category</strong></button></a>
+            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 1</button></a>
+            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 2</button></a>
+            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 3</button></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 card orange-Card">
+        <div class="card-body">
+          <div class="container-fluid px-0">
+            <div class="row">
+              <div class="col">
+                <div class="card-title h5 orange-Post-Font">Job Posting Title</div>
+              </div>
+              <div class="col-auto">
+                <a role="button" href="https://github.com/NewGradNomad" class="btn btn-dark"><strong>Apply</strong></a>
+              </div>
+              <div class="col-auto">
+                <p class="" style="font-size: 16px; background-color:gray;">📌</p>
+              </div>
+            </div>
+          </div>
+          <div class="orange-Post-Font h6">Company Name</div>
+
+          <p class="mt-3">
+            <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#c3" aria-expanded="false" aria-controls="c3" style="background-color: #449175 !important;">
+              Toggle Job Description
+            </button>
+          </p>
+          <div class="collapse" id="c3">
+            <div class="card card-body">
+              Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+            </div>
+          </div>
+          <div class="tag-wrap mt-3">
+            <a class="card-link"><button type="button" class="button btn btn-primary"><strong>Category</strong></button></a>
+            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 1</button></a>
+            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 2</button></a>
+            <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 3</button></a>
+          </div>
+        </div>
+      </div>
+
+    </div name="put job cards above this">
+
+
 
   </form>
 

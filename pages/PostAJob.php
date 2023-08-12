@@ -16,7 +16,6 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./scripts/PostAJob.js"></script>
 </head>
 
@@ -25,7 +24,7 @@
   <div class="container-fluid">
     <div class="mt-4 text-center container">
       <h2>Hire New Grads Naturally.</h2>
-      <p class="lead"><b> We aggregate job listings from all around the web, but posting your job directly to our site gives top priority to your job posting.</b> </p>
+      <p class="lead"><b>We aggregate job listings from all around the web, but posting your job directly to our site gives top priority to your job posting.</b> </p>
     </div>
 
     <div class="gray-form mt-4 container">
