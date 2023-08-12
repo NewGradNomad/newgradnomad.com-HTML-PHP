@@ -75,7 +75,7 @@
 
         <div class="mb-3">
           <label class="form-label" for="keywords"><b>Keywords</b></label>
-          <small class="form-text" id="keywordsRequiredMessage" style="color: red !important;">* Required: Max of 2.</small>
+          <small class="form-text" id="keywordsRequiredMessage" style="color: red !important;">* Required: Max of 3.</small>
           <select required class="form-select" multiple="multiple" id="keywords" onchange="checkInputField(this)">
             <option value="Developer">Developer</option>
             <option value="Engineer">Engineer</option>

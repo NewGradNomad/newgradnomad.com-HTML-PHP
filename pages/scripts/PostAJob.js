@@ -5,7 +5,7 @@ $(function () {
 $(document).ready(function () {
   $("#keywords").select2({
     theme: "bootstrap-5",
-    maximumSelectionLength: 2,
+    maximumSelectionLength: 3,
     placeholder: "Select...",
     closeOnSelect: true,
     tags: true,
