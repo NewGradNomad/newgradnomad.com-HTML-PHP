@@ -177,7 +177,7 @@
             </div>
           </div>
           <div class="tag-wrap mt-3">
-            <a class="card-link"><button type="button" class="button btn btn-primary"><strong>Category</strong></button></a>
+            <a class="card-link"><button type="button" class="btn btn-dark"><strong>Category</strong></button></a>
             <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 1</button></a>
             <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 2</button></a>
             <a class="card-link"><button type="button" class="button-tag btn btn-secondary btn-sm">Tag 3</button></a>
