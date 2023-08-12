@@ -163,7 +163,7 @@
             <input value="150" required hidden="" onclick="return false;" name="totalCost" type="checkbox" id="totalCost" class="form-check-input" checked="" />
           </div>
         </div>
-        <button id="checkoutButton" type="submit" class="checkout-Button mt-4 mb-4 form-control btn btn-primary">
+        <button id="checkoutButton" type="submit" class="checkout-Button mt-4 mb-4 form-control btn btn-primary" disabled>
           <b>
             <div value="150" id="total">Checkout Job Posting $150</div>
           </b>
