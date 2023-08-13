@@ -1,13 +1,5 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Aug 12, 2023 at 08:10 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,18 +10,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `newgradnomad`
 --
+
 CREATE DATABASE IF NOT EXISTS `newgradnomad` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `newgradnomad`;
-
--- --------------------------------------------------------
 GRANT SELECT, INSERT, DELETE, UPDATE ON newgradnomad.* TO ngn@localhost IDENTIFIED BY 'password';
-
 --
 -- Table structure for table `jobListings`
 --
 
+DROP TABLE IF EXISTS `jobListings`;
 CREATE TABLE IF NOT EXISTS `jobListings` (
   `listingID` char(10) NOT NULL,
   `companyName` varchar(256) NOT NULL,
@@ -37,17 +27,25 @@ CREATE TABLE IF NOT EXISTS `jobListings` (
   `positionType` varchar(256) NOT NULL,
   `primaryTag` varchar(256) NOT NULL,
   `keywords` varchar(512) NOT NULL,
-  `24hrSupport` tinyint(1) NOT NULL,
-  `highlightOrange` tinyint(1) NOT NULL,
-  `pin24Hours` tinyint(1) NOT NULL,
-  `pin1week` tinyint(1) NOT NULL,
-  `pin1month` tinyint(1) NOT NULL,
+  `24hrSupport` int(128) NOT NULL,
+  `highlightOrange` int(128) NOT NULL,
+  `pin` int(128) NOT NULL,
   `url` varchar(256) NOT NULL,
   `email` varchar(256) NOT NULL,
   `jobDescription` varchar(1028) NOT NULL,
   `postedDate` datetime NOT NULL,
   PRIMARY KEY (`listingID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `jobListings`
+--
+
+INSERT INTO `jobListings` (`listingID`, `companyName`, `positionName`, `positionType`, `primaryTag`, `keywords`, `24hrSupport`, `highlightOrange`, `pin`, `url`, `email`, `jobDescription`, `postedDate`) VALUES
+('1107946366', 'Sporting Goods Emporium', 'Sheep Watcher', 'Full Time', 'Human Resource', 'Non Technical;Boring;', -1, 39, -1, 'https://www.google.com/search?q=Sporting%20Goods%20Emporium', '-1', 'You will watch our sheep to ensure they don\'t take over the world.', '2023-08-13 01:52:20'),
+('2449970057', 'NewGradNomad', 'Associate Software Engineer', 'Part Time', 'Software Development', 'Developer;Engineer;Full Stack;', -1, 39, 349, 'mailto:test@test.com', 'test@test.com', 'This is a job description for NewGradNomad.', '2023-08-13 01:35:18'),
+('4686589501', 'Bird Nerds', 'Bird Media Manager', 'Contract', 'Human Resource', 'Non Technical;', -1, -1, 199, 'https://birds.com', '-1', 'You will look and birds and describe them in extreme detail.', '2023-08-13 01:40:44'),
+('6725409691', 'Cloudx', 'Business Analyst', 'Part Time', 'Recruiter', 'Developer;Good Counter;', -1, -1, -1, 'mailto:counter@cloud.org', 'counter@cloud.org', 'You will count every cloud you see for 4 hours a day.', '2023-08-13 01:43:28');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
