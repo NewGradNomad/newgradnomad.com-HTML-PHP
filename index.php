@@ -4,7 +4,26 @@ require_once './db_connect.php';
 //get session data
 session_start();
 
+$searchReq = filter_input(INPUT_GET, 'searchQuery');
+
+//prepare query based on input received
+if ($searchReq != NULL || $searchReq != FALSE) {
+  $query = $db->prepare("SELECT * FROM jobListings WHERE primaryTag like :search OR keywords like :search OR positionType like :search OR positionName like :search OR companyName like :search ORDER BY `jobListings`.`pin` DESC");
+  $query->bindValue(':search', "%" . $searchReq . "%");
+} else {
+  $query = $db->prepare("SELECT * FROM jobListings ORDER BY `jobListings`.`pin` DESC");
+}
+
+//query database
+$query->execute();
+$listings = $query->fetchAll();
+$query->closeCursor();
+
+date_default_timezone_set("America/New_York");
+$date = date("Y/m/d H:i:s");
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,12 +82,12 @@ session_start();
     <a role="button" href="./pages/PostAJob.php" class=" btn btn-lg mx-1 mb-3 btn btn-light">Post a Job</a>
     <!--     <a role="button" href="./NewGradPrograms.php" class=" btn btn-lg mx-1 mb-3 btn btn-light">New Grad Programs</a>     -->
   </div>
-  <form class="container">
+  <form class="container" role="search" method="get" action="./index.php">
     <label class="text-center mt-4 form-label" style="width: 100%;">
       <h4>Search Remote Jobs</h4>
     </label>
     <div class="mt-2 d-flex align-items-center justify-content-center">
-      <Select id="positionType" name="positionType" class="form-select" style="width:300px;">
+      <Select id="searchQuery" name="searchQuery" class="form-select" style="width:300px;" multiple="single">
         <option value=""></option>
         <option value="Software Development">Software Development</option>
         <option value="Customer Support">Customer Support</option>
@@ -81,122 +100,65 @@ session_start();
       </select>
       <button type="submit" class="ms-4 button btn btn-primary"><strong>Submit</strong></button>
     </div>
-
-    <div class="container">
-      <div class="mt-4 card">
-        <div class="card-body">
-          <div class="container-fluid px-0">
-            <div class="row">
-              <div class="col">
-                <div class="card-title h5">Job Posting Title</div>
-              </div>
-              <div class="col-auto">
-                <a role="button" href="https://github.com/NewGradNomad" class="button btn btn-primary"><strong>Apply</strong></a>
-              </div>
-              <div class="col-auto">
-                <p class="" style="font-size: 16px;">📌</p>
-              </div>
-            </div>
-          </div>
-          <div class="text-muted card-subtitle h6">Company Name</div>
-
-          <p class="mt-3">
-            <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#c1" aria-expanded="false" aria-controls="c1" style="background-color: #449175 !important;">
-              Toggle Job Description
-            </button>
-          </p>
-          <div class="collapse" id="c1">
-            <div class="card card-body">
-              Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-            </div>
-          </div>
-          <div class="tag-wrap">
-            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button btn btn-primary"><strong>Category</strong></button></a>
-            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 1</button></a>
-            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 2</button></a>
-            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 3</button></a>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="mt-4 card">
-        <div class="card-body">
-          <div class="container-fluid px-0">
-            <div class="row">
-              <div class="col">
-                <div class="card-title h5">Job Posting Title</div>
-              </div>
-              <div class="col-auto">
-                <a role="button" href="https://github.com/NewGradNomad" class="button btn btn-primary"><strong>Apply</strong></a>
-              </div>
-              <!-- <div class="col-auto">
-                <p class="" style="font-size: 16px;">📌</p>
-              </div> -->
-            </div>
-          </div>
-          <div class="text-muted card-subtitle h6">Company Name</div>
-
-          <p class="mt-3">
-            <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#c2" aria-expanded="false" aria-controls="c2" style="background-color: #449175 !important;">
-              Toggle Job Description
-            </button>
-          </p>
-          <div class="collapse" id="c2">
-            <div class="card card-body">
-              Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-            </div>
-          </div>
-          <div class="tag-wrap">
-            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button btn btn-primary"><strong>Category</strong></button></a>
-            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 1</button></a>
-            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 2</button></a>
-            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 3</button></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-4 card orange-Card">
-        <div class="card-body">
-          <div class="container-fluid px-0">
-            <div class="row">
-              <div class="col">
-                <div class="card-title h5 orange-Post-Font">Job Posting Title</div>
-              </div>
-              <div class="col-auto">
-                <a role="button" href="https://github.com/NewGradNomad" class="btn btn-dark"><strong>Apply</strong></a>
-              </div>
-              <div class="col-auto">
-                <p class="" style="font-size: 16px; background-color:gray;">📌</p>
-              </div>
-            </div>
-          </div>
-          <div class="orange-Post-Font h6">Company Name</div>
-
-          <p class="mt-3">
-            <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#c3" aria-expanded="false" aria-controls="c3" style="background-color: #449175 !important;">
-              Toggle Job Description
-            </button>
-          </p>
-          <div class="collapse" id="c3">
-            <div class="card card-body">
-              Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-            </div>
-          </div>
-          <div class="tag-wrap">
-            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link btn btn-dark"><strong>Category</strong></button></a>
-            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 1</button></a>
-            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 2</button></a>
-            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">Tag 3</button></a>
-          </div>
-        </div>
-      </div>
-
-    </div name="put job cards above this">
-
-
-
   </form>
+
+  <div class="container">
+    <?php foreach ($listings as $listing) : ?>
+      <?php
+      $timeSincePost = strtotime($listing['postedDate']) - strtotime($date);
+      $pin = false;
+      $secondsPerDay = 86400;
+      $secondsPerWeek = 604800;
+      $secondsPerMonth = 2629800;
+      if ($listing['pin'] == 99 ){
+        $pin = true;
+      } else if ($listing['pin'] == 199){
+        $pin = true;
+      } else if ($listing['pin'] == 349){
+        $pin = true;
+      }
+      echo  '<div class="mt-4 card'; if ($listing['highlightOrange'] == 39) {echo ' orange-Card';} echo'">
+              <div class="card-body">
+                <div class="container-fluid px-0">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card-title h5'; if ($listing['highlightOrange'] == 39) {echo ' orange-Post-Font';} echo'">'.$listing['positionName'].': '.$listing['positionType'].'</div>
+                    </div>
+                    <div class="col-auto">
+                      <a role="button" href="'.$listing['url'].'" class="'; if ($listing['highlightOrange'] == 39) {echo 'btn-dark ';} else{echo 'button btn-primary ';} echo'btn"><strong>Apply</strong></a>
+                    </div>
+                    <div class="col-auto">
+                    '; if ($pin) {echo '<p class="" style="font-size: 16px; '; if ($listing['highlightOrange'] == 39) {echo 'background-color:gray;';} echo'">📌</p>';} echo'
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="'; if ($listing['highlightOrange'] == 39) {echo 'orange-Post-Font';} echo' h6">'.$listing['companyName'].'</div>
+
+                <p class="mt-3">
+                  <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#'.$listing['listingID'].'" aria-expanded="false" aria-controls="'.$listing['listingID'].'" style="background-color: #449175 !important;">
+                    Toggle Job Description
+                  </button>
+                </p>
+                <div class="collapse" id="'.$listing['listingID'].'">
+                  <div class="card card-body">
+                  '.$listing['jobDescription'].'
+                  </div>
+                </div>
+                <div class="tag-wrap">';
+                    echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link btn '; if ($listing['highlightOrange'] == 39) {echo 'btn-dark ';} else{echo 'button btn-primary ';} echo'"><strong>' . $listing['primaryTag'] . '</strong></button></a>';
+                    $tags = explode(";", $listing['keywords']);
+                    for ($i = 0; $i < sizeof($tags) - 1; $i++) {
+                      echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">' . $tags[$i] . '</button></a>';
+                    }
+                echo' 
+                </div>
+              </div>
+            </div>
+        ';
+      ?>
+    <?php endforeach; ?>
+  </div name="put job cards above this">
 
   <div class="modal fade" id="newsletterModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">

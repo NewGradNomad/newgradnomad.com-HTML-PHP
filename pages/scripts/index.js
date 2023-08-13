@@ -2,9 +2,11 @@ $(function () {
   $("#footer").load("./pages/footer.html");
 });
 $(document).ready(function () {
-  $("#positionType").select2({
+  $("#searchQuery").select2({
     theme: "bootstrap-5",
+    maximumSelectionLength: 1,
     placeholder: "Categories",
+    tags: true,
     closeOnSelect: true,
     allowClear: true,
     width: $(this).data("width")

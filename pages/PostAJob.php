@@ -1,3 +1,9 @@
+<?php
+//includes database connection
+require_once '../db_connect.php';
+//get session variables
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +27,24 @@
 
 <body>
   <div id="navbar"></div>
+  <?php
+  if (!empty($_SESSION['missingInput']) && $_SESSION['missingInput']) {
+    echo '
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>An Error Occurred, Please Try Again.</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    $_SESSION['missingInput'] = '';
+  } else if (!empty($_SESSION['listingError']) && $_SESSION['listingError']) {
+    echo '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Unknown Error Occurred, Please Try Again Later.</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
+    $_SESSION['listingError'] = '';
+  }
+  ?>
+
   <div class="container-fluid">
     <div class="mt-4 text-center container">
       <h2>Hire New Grads Naturally.</h2>
@@ -28,13 +52,13 @@
     </div>
 
     <div class="gray-form mt-4 container">
-      <form name="jobForm">
+      <form name="jobForm" method="POST" action="./scripts/processPostAJob.php">
         <label class="section-title mt-3 form-label"><b>Getting Started</b></label>
 
         <div class="mb-3">
           <label class="form-label" for="companyName"><b>Company Name</b></label>
           <small class="form-text" id="companyNameRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
-          <input required placeholder="Enter Company Name" name="companyName" type="text" id="companyName" class="form-control" onkeyup="checkInputField(this)" />
+          <input autofocus required placeholder="Enter Company Name" name="companyName" type="text" id="companyName" class="form-control" onkeyup="checkInputField(this)" />
           <div class="container"><small class="form-text">- Your company's brand name without business entities</small></div>
         </div>
 
@@ -47,7 +71,7 @@
 
         <div class="mb-3">
           <small class="form-text" id="positionTypeRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
-          <select required class="form-select" id="positionType" onchange="checkInputField(this)">
+          <select required class="form-select form-control" name="positionType" id="positionType" onchange="checkInputField(this)">
             <option value=""></option>
             <option value="Full Time">Full Time</option>
             <option value="Part Time">Part Time</option>
@@ -59,7 +83,7 @@
         <div class="mb-3">
           <label class="form-label" for="primaryTag"><b>Primary Tag</b></label>
           <small class="form-text" id="primaryTagRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
-          <select required class="form-select" id="primaryTag" onchange="checkInputField(this)">
+          <select required class="form-select form-control" name="primaryTag" id="primaryTag" onchange="checkInputField(this)">
             <option value=""></option>
             <option value="Software Development">Software Development</option>
             <option value="Customer Support">Customer Support</option>
@@ -76,7 +100,7 @@
         <div class="mb-3">
           <label class="form-label" for="keywords"><b>Keywords</b></label>
           <small class="form-text" id="keywordsRequiredMessage" style="color: red !important;">* Required: Max of 3.</small>
-          <select required class="form-select" multiple="multiple" id="keywords" onchange="checkInputField(this)">
+          <select required class="form-select form-control" multiple="multiple" name="keywords[]" id="keywords" onchange="checkInputField(this)">
             <option value="Developer">Developer</option>
             <option value="Engineer">Engineer</option>
             <option value="Full Stack">Full Stack</option>
