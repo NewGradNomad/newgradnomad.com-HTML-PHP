@@ -141,7 +141,7 @@ $date = date("Y/m/d H:i:s");
                   </button>
                 </p>
                 <div class="collapse" id="'.$listing['listingID'].'">
-                  <div class="card card-body">
+                  <div class="card card-body mb-2">
                   '.$listing['jobDescription'].'
                   </div>
                 </div>
