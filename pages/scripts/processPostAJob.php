@@ -108,7 +108,7 @@ $query->bindParam(':jobDesc', $jobDesc);
 $query->bindParam(':date', $date);
 
 //checks if insert was successful
-if ($query->execute() && intval($totalCost) > 150) {
+if ($query->execute() && intval($totalCost) >= 150) {
   $_SESSION['listingSuccess'] = true;
   header("Location: ../../index.php");
 } else {
