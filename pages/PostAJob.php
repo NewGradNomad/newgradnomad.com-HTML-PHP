@@ -58,14 +58,14 @@ session_start();
         <div class="mb-3">
           <label class="form-label" for="companyName"><b>Company Name</b></label>
           <small class="form-text" id="companyNameRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
-          <input autofocus required placeholder="Enter Company Name" name="companyName" type="text" id="companyName" class="form-control" onkeyup="checkInputField(this)" />
+          <input autofocus required maxlength="200" placeholder="Enter Company Name" name="companyName" type="text" id="companyName" class="form-control" onkeyup="checkInputField(this)" />
           <div class="container"><small class="form-text">- Your company's brand name without business entities</small></div>
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="positionName"><b>Position</b></label>
           <small class="form-text" id="positionNameRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
-          <input required placeholder="Enter Position Name" name="positionName" type="text" id="positionName" class="form-control" onkeyup="checkInputField(this)" />
+          <input required maxlength="200" placeholder="Enter Position Name" name="positionName" type="text" id="positionName" class="form-control" onkeyup="checkInputField(this)" />
           <div class="container"><small class="form-text">- Write terms like "Associate Software Engineer" or "Social Media Manager" or "Business Analyst"</small></div>
         </div>
 
@@ -164,21 +164,21 @@ session_start();
         <small class="form-text" id="EmailURLRequiredMessage" style="color: red !important;">* Required: Please choose either email or URL.</small>
         <div class="mb-3">
           <label class="form-label" for="appURL"><b>Application URL</b></label>
-          <input required placeholder="https://" name="appURL" type="url" id="appURL" class="form-control" onkeyup="checkEmailOrURL()" />
+          <input required maxlength="200" placeholder="https://" name="appURL" type="url" id="appURL" class="form-control" onkeyup="checkEmailOrURL()" />
           <div class="container"><small class="form-text">- This is the job link applicants will be forwarded to in order to apply top your job</small></div>
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="appEmail"><b>Gateway Email Address</b></label>
           <small class="form-text" id="EmailFormatMessage" style="color: red !important;" hidden>* This email is invalid.</small>
-          <input required placeholder="name@example.com" name="appEmail" type="email" id="appEmail" class="form-control" onkeyup="checkEmailOrURL()" />
+          <input required maxlength="200" placeholder="name@example.com" name="appEmail" type="email" id="appEmail" class="form-control" onkeyup="checkEmailOrURL()" />
           <div class="container"><small class="form-text">- Applicant is routed to this email if no application url is provided!</small></div>
         </div>
 
         <label class="form-label"><b>Job Description</b></label>
         <small class="form-text" id="jobDescRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
         <div>
-          <textarea required placeholder="" name="jobDesc" id="jobDesc" class="form-control" style="height: 150px;" onkeyup="checkInputField(this)"></textarea>
+          <textarea required maxlength="1000" placeholder="" name="jobDesc" id="jobDesc" class="form-control" style="height: 150px;" onkeyup="checkInputField(this)"></textarea>
         </div>
 
         <div class="mb-3">
