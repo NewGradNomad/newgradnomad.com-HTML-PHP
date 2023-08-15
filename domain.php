@@ -1,2 +1,2 @@
 <?php
-$domain = 'https://ngn.000.pe/';
+$domain = 'http://localhost/newgradnomad.com-html/';
