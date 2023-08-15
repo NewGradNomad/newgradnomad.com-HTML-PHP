@@ -31,7 +31,6 @@ $jobDesc = trim($_POST['jobDesc']);
 $totalCost = trim($_POST['totalCost']);
 
 if (!isset($_POST['basicPosting'])) {
-  //redirects to registration page if all values are not input
   $_SESSION['missingInput'] = true;
   header('Location: ../PostAJob.php');
 
@@ -72,7 +71,6 @@ if (!isset($_POST['appEmail'])) {
 //checks if all required values are not empty
 if (empty($companyName) || empty($positionName) || empty($positionType) || empty($primaryTag) || empty($keywords) || empty($basicPosting) || ($appURL == "mailto:" && empty($appEmail)) || empty($jobDesc) || empty($totalCost)) {
 
-  //redirects to registration page if all values are not input
   $_SESSION['missingInput'] = true;
   header('Location: ../PostAJob.php');
 
@@ -114,7 +112,7 @@ $query->bindParam(':paymentStatus', $paymentStatus);
 
 //checks if insert was successful
 if ($query->execute()) {
-  $_SESSION['listingSuccess'] = true;
+  $_SESSION['addedToDataBase'] = true;
   \Stripe\Stripe::setApiKey($stripeSecretKey);
   header('Content-Type: application/json');
   $price = $totalCost * 100;
@@ -135,13 +133,12 @@ if ($query->execute()) {
     ]],
     'mode' => 'payment',
     'success_url' => $YOUR_DOMAIN . '/pages/scripts/success.php?' . $listingNumber,
-    'cancel_url' => $YOUR_DOMAIN . '/pages/PostAJob.php',
+    'cancel_url' => $YOUR_DOMAIN . '/pages/scripts/cancel.php?' . $listingNumber,
   ]);
 
   header("HTTP/1.1 303 See Other");
   header("Location: " . $checkout_session->url);
 } else {
-  //redirects to registration page if failed
   $_SESSION['listingError'] = true;
   header('Location: ../PostAJob.php');
 }

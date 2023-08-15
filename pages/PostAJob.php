@@ -49,6 +49,13 @@ session_start();
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>';
     $_SESSION['contactSupport'] = '';
+  } else if (!empty($_SESSION['cancelSuccess']) && $_SESSION['cancelSuccess']) {
+    echo '
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Listing was Successfully Canceled.</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
+    $_SESSION['cancelSuccess'] = '';
   }
   ?>
 
