@@ -118,7 +118,7 @@ if ($query->execute()) {
   header('Content-Type: application/json');
   $price = $totalCost * 100;
 
-  $YOUR_DOMAIN = 'http://localhost/newgradnomad.com-html/';
+  $YOUR_DOMAIN = 'https://ngn.000.pe/';
 
   $checkout_session = \Stripe\Checkout\Session::create([
     'line_items' => [[
