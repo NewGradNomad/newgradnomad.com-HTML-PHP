@@ -114,6 +114,11 @@ $date = date("Y/m/d H:i:s");
   </form>
 
   <div class="container">
+    <?php 
+      if (empty($listings)){
+        echo '<div class="alert alert-warning text-center mt-4" role="alert">No results found for '; echo strtolower($searchReq); echo '.</div>';
+      }
+    ?>
     <?php foreach ($listings as $listing) : ?>
       <?php
       $timeSincePost = strtotime($date) - strtotime($listing['postedDate']);
