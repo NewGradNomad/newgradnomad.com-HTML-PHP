@@ -3,6 +3,7 @@
 require_once '../../db_connect.php';
 require_once '../../vendor/autoload.php';
 require_once '../../secrets.php';
+require_once '../../domain.php';
 
 //includes session info
 session_start();
@@ -118,7 +119,7 @@ if ($query->execute()) {
   header('Content-Type: application/json');
   $price = $totalCost * 100;
 
-  $YOUR_DOMAIN = 'https://ngn.000.pe/';
+  $YOUR_DOMAIN = $domain;
 
   $checkout_session = \Stripe\Checkout\Session::create([
     'line_items' => [[
