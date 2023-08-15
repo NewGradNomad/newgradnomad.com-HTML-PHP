@@ -31,28 +31,28 @@ session_start();
   <?php
   if (!empty($_SESSION['missingInput']) && $_SESSION['missingInput']) {
     echo '
-    <div class="alert alert-danger alert-dismissible fade show mt-1" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show mt-1 text-center" role="alert">
     <strong>An Error Occurred, Please Try Again.</strong>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>';
     $_SESSION['missingInput'] = '';
   } else if (!empty($_SESSION['listingError']) && $_SESSION['listingError']) {
     echo '
-      <div class="alert alert-danger alert-dismissible fade show mt-1" role="alert">
+      <div class="alert alert-danger alert-dismissible fade show mt-1 text-center" role="alert">
       <strong>Unknown Error Occurred, Please Try Again Later.</strong>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>';
     $_SESSION['listingError'] = '';
   } else if (!empty($_SESSION['contactSupport']) && $_SESSION['contactSupport']) {
     echo '
-      <div class="alert alert-danger alert-dismissible fade show mt-1" role="alert">
+      <div class="alert alert-danger alert-dismissible fade show mt-1 text-center" role="alert">
       <strong>Unknown Error Occurred, Please Contact Support. Reference ID: '; echo $_SESSION['listingID']; echo'</strong>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>';
     $_SESSION['contactSupport'] = '';
   } else if (!empty($_SESSION['cancelSuccess']) && $_SESSION['cancelSuccess']) {
     echo '
-      <div class="alert alert-success alert-dismissible fade show mt-1 role="alert">
+      <div class="alert alert-success alert-dismissible fade show mt-1 text-center" role="alert">
       <strong>Listing was Successfully Canceled.</strong>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>';

@@ -46,6 +46,16 @@ $date = date("Y/m/d H:i:s");
 </head>
 
 <body>
+<?php
+  if (!empty($_SESSION['listingSuccess']) && $_SESSION['listingSuccess']) {
+    echo '
+    <div class="alert alert-success alert-dismissible fade show my-0 text-center" role="alert">
+    <strong>Listing was successfully posted!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    $_SESSION['listingSuccess'] = '';
+  }
+  ?>
   <nav class="green-nav navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid"><a href="./" class="navbar-brand">newgradnomad.com</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,17 +85,6 @@ $date = date("Y/m/d H:i:s");
       </div>
     </div>
   </nav>
-
-  <?php
-  if (!empty($_SESSION['listingSuccess']) && $_SESSION['listingSuccess']) {
-    echo '
-    <div class="alert alert-success alert-dismissible fade show mt-1" role="alert">
-    <strong>Listing was successfully posted!</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>';
-    $_SESSION['listingSuccess'] = '';
-  }
-  ?>
 
   <div class="text-center hero-container container-fluid">
     <h1 class="fs-1 text-center">Find Remote New Grad Jobs</h1>
