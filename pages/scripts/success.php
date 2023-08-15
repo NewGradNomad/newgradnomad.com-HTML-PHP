@@ -10,7 +10,7 @@ $query = $db->prepare("UPDATE jobListings SET paymentStatus = 1 WHERE listingID 
 $query->bindParam(':listingID', $listingID);
 if ($query->execute()) {
   $_SESSION['listingSuccess'] = true;
-  header('Location: ../../index');
+  header('Location: ../../');
 } else {
   $_SESSION['contactSupport'] = true;
   $_SESSION['listingID'] = $listingID;

@@ -47,7 +47,7 @@ $date = date("Y/m/d H:i:s");
 
 <body>
   <nav class="green-nav navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid"><a href="./index" class="navbar-brand">newgradnomad.com</a>
+    <div class="container-fluid"><a href="./" class="navbar-brand">newgradnomad.com</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -57,7 +57,7 @@ $date = date("Y/m/d H:i:s");
             <a class="nav-links nav-link" href="./pages/PostAJob">
               <button type="button" class="button btn btn-primary"><strong>Post a Job</strong></button>
             </a>
-            <a class="nav-links nav-link" href="./index">
+            <a class="nav-links nav-link" href="./">
               <button type="button" class="button-hide btn btn-primary"><strong>Home</strong></button>
             </a>
             <!-- <div class="button-hide nav-links mt-auto mb-auto show dropdown">
@@ -93,7 +93,7 @@ $date = date("Y/m/d H:i:s");
     <a role="button" href="./pages/PostAJob" class=" btn btn-lg mx-1 mb-3 btn btn-light">Post a Job</a>
     <!--     <a role="button" href="./NewGradPrograms" class=" btn btn-lg mx-1 mb-3 btn btn-light">New Grad Programs</a>     -->
   </div>
-  <form class="container" role="search" method="get" action="./index">
+  <form class="container" role="search" method="get" action="./">
     <label class="text-center mt-4 form-label" style="width: 100%;">
       <h4>Search Remote Jobs</h4>
     </label>
