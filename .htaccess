@@ -15,7 +15,3 @@ RewriteRule .? - [F,NS,L]
 IndexIgnore * 
 
 Options All -Indexes
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^\.]+)$ $1.php [NC,L]
-RewriteRule ^([^\.]+)$ $1.html [NC,L]
