@@ -26,7 +26,7 @@ session_start();
 </head>
 
 <body>
-  <div class="container"><h1><b>DO NOT use real cards at checkout, against stripe TOS in test mode.<br> Use stripe test card: 4242424242424242 04/24 024</b></h1></div>
+  <div class="container" style="color: red;"><h1><b>DO NOT use real cards at checkout, against stripe TOS in test mode.<br> Use stripe test card: 4242424242424242 04/24 024</b></h1></div>
   <div id="navbar"></div>
   <?php
   if (!empty($_SESSION['missingInput']) && $_SESSION['missingInput']) {
