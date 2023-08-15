@@ -105,16 +105,16 @@ $date = date("Y/m/d H:i:s");
   <div class="container">
     <?php foreach ($listings as $listing) : ?>
       <?php
-      $timeSincePost = strtotime($listing['postedDate']) - strtotime($date);
+      $timeSincePost = strtotime($date) - strtotime($listing['postedDate']);
       $pin = false;
       $secondsPerDay = 86400;
       $secondsPerWeek = 604800;
       $secondsPerMonth = 2629800;
-      if ($listing['pin'] == 99 && $timeSincePost < $secondsPerDay){
+      if ($listing['pin'] == 99 && $timeSincePost <= $secondsPerDay){
         $pin = true;
-      } else if ($listing['pin'] == 199 && $timeSincePost < $secondsPerWeek){
+      } else if ($listing['pin'] == 199 && $timeSincePost <= $secondsPerWeek){
         $pin = true;
-      } else if ($listing['pin'] == 349 && $timeSincePost < $secondsPerMonth){
+      } else if ($listing['pin'] == 349 && $timeSincePost <= $secondsPerMonth){
         $pin = true;
       }
       echo  '<div class="mt-4 card'; if ($listing['highlightOrange'] == 39) {echo ' orange-Card';} echo'">
