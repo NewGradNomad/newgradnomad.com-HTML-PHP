@@ -79,7 +79,7 @@ $date = date("Y/m/d H:i:s");
   <?php
   if (!empty($_SESSION['listingSuccess']) && $_SESSION['listingSuccess']) {
     echo '
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show mt-1" role="alert">
     <strong>Listing was successfully posted!</strong>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>';
