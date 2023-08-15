@@ -1,6 +1,8 @@
 <?php
 //includes database connection
 require_once '../../db_connect.php';
+require_once '../../vendor/autoload.php';
+require_once '../../secrets.php';
 
 //includes session info
 session_start();
@@ -92,7 +94,7 @@ for ($i = 0; $i < sizeof($keywords); $i++) {
   $allKeywords .= $keywords[$i] . ";";
 }
 //prepares insert statement
-$query = $db->prepare("INSERT INTO jobListings VALUES (:listingNumber, :companyName, :positionName, :positionType, :primaryTag, :keywords, :support, :highlightPost, :pin, :appURL, :appEmail, :jobDesc, :date)");
+$query = $db->prepare("INSERT INTO jobListings VALUES (:listingNumber, :companyName, :positionName, :positionType, :primaryTag, :keywords, :support, :highlightPost, :pin, :appURL, :appEmail, :jobDesc, :date, :paymentStatus)");
 $query->bindParam(':listingNumber', $listingNumber);
 $query->bindParam(':companyName', $companyName);
 $query->bindParam(':positionName', $positionName);
@@ -106,17 +108,42 @@ $query->bindParam(':appURL', $appURL);
 $query->bindParam(':appEmail', $appEmail);
 $query->bindParam(':jobDesc', $jobDesc);
 $query->bindParam(':date', $date);
+$paymentStatus = 0;
+$query->bindParam(':paymentStatus', $paymentStatus);
 
 //checks if insert was successful
-if ($query->execute() && intval($totalCost) >= 150) {
+if ($query->execute()) {
   $_SESSION['listingSuccess'] = true;
-  header("Location: ../../index.php");
+  \Stripe\Stripe::setApiKey($stripeSecretKey);
+  header('Content-Type: application/json');
+  $price = $totalCost * 100;
+
+  $YOUR_DOMAIN = 'http://localhost/newgradnomad.com-html/';
+
+  $checkout_session = \Stripe\Checkout\Session::create([
+    'line_items' => [[
+      'price_data' => [
+        'currency' => 'usd',
+        'product_data' => [
+          'name' => 'Job Listing',
+          'description' => 'Listing ID: ' . $listingNumber,
+        ],
+        'unit_amount' => intval($price),
+      ],
+      'quantity' => 1,
+    ]],
+    'mode' => 'payment',
+    'success_url' => $YOUR_DOMAIN . '/pages/scripts/success.php?' . $listingNumber,
+    'cancel_url' => $YOUR_DOMAIN . '/pages/PostAJob.php',
+  ]);
+
+  header("HTTP/1.1 303 See Other");
+  header("Location: " . $checkout_session->url);
 } else {
   //redirects to registration page if failed
   $_SESSION['listingError'] = true;
   header('Location: ../PostAJob.php');
 }
-
 //closes database connection
 $db = null;
 exit();
