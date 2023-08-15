@@ -25,3 +25,4 @@ jobs:
           **/node_modules/**
           db_connect.php
           secrets.php
+          domain.php
