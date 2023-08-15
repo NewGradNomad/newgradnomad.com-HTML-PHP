@@ -67,7 +67,7 @@ session_start();
     </div>
 
     <div class="gray-form mt-4 container">
-      <form name="jobForm" method="POST" action="./scripts/processPostAJob.php">
+      <form name="jobForm" method="POST" action="./scripts/processPostAJob">
         <label class="section-title mt-3 form-label"><b>Getting Started</b></label>
 
         <div class="mb-3">

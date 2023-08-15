@@ -10,11 +10,11 @@ $query = $db->prepare("UPDATE jobListings SET paymentStatus = 1 WHERE listingID 
 $query->bindParam(':listingID', $listingID);
 if ($query->execute()) {
   $_SESSION['listingSuccess'] = true;
-  header('Location: ../../index.php');
+  header('Location: ../../index');
 } else {
   $_SESSION['contactSupport'] = true;
   $_SESSION['listingID'] = $listingID;
-  header('Location: ../PostAJob.php');
+  header('Location: ../PostAJob');
 }
 //closes database connection
 $db = null;
