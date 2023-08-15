@@ -42,6 +42,13 @@ session_start();
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>';
     $_SESSION['listingError'] = '';
+  } else if (!empty($_SESSION['contactSupport']) && $_SESSION['contactSupport']) {
+    echo '
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Unknown Error Occurred, Please Contact Support. Reference ID: '; echo $_SESSION['listingID']; echo'</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
+    $_SESSION['contactSupport'] = '';
   }
   ?>
 

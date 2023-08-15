@@ -76,6 +76,17 @@ $date = date("Y/m/d H:i:s");
     </div>
   </nav>
 
+  <?php
+  if (!empty($_SESSION['listingSuccess']) && $_SESSION['listingSuccess']) {
+    echo '
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Listing was successfully posted!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    $_SESSION['listingSuccess'] = '';
+  }
+  ?>
+
   <div class="text-center hero-container container-fluid">
     <h1 class="fs-1 text-center">Find Remote New Grad Jobs</h1>
     <p class="fs-4 lead text-center">The best place for new graduates &amp; entry-level talent to find remote work.</p>
