@@ -29,3 +29,7 @@ Options All -Indexes
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# if .php is included in URL, redirect to 404
+#RewriteCond %{THE_REQUEST} "^[^ ]* .*?\.php[? ].*$" [NC]
+#RewriteRule .* - [L,R=404]
