@@ -32,7 +32,7 @@ $totalCost = trim($_POST['totalCost']);
 
 if (!isset($_POST['basicPosting'])) {
   $_SESSION['missingInput'] = true;
-  header('Location: ../PostAJob.php');
+  header('Location: ../PostAJob');
 
   //closes database connection
   $db = null;
@@ -72,7 +72,7 @@ if (!isset($_POST['appEmail'])) {
 if (empty($companyName) || empty($positionName) || empty($positionType) || empty($primaryTag) || empty($keywords) || empty($basicPosting) || ($appURL == "mailto:" && empty($appEmail)) || empty($jobDesc) || empty($totalCost)) {
 
   $_SESSION['missingInput'] = true;
-  header('Location: ../PostAJob.php');
+  header('Location: ../PostAJob');
 
   //closes database connection
   $db = null;
@@ -132,15 +132,15 @@ if ($query->execute()) {
       'quantity' => 1,
     ]],
     'mode' => 'payment',
-    'success_url' => $YOUR_DOMAIN . '/pages/scripts/success.php?' . $listingNumber,
-    'cancel_url' => $YOUR_DOMAIN . '/pages/scripts/cancel.php?' . $listingNumber,
+    'success_url' => $YOUR_DOMAIN . '/pages/scripts/success?' . $listingNumber,
+    'cancel_url' => $YOUR_DOMAIN . '/pages/scripts/cancel?' . $listingNumber,
   ]);
 
   header("HTTP/1.1 303 See Other");
   header("Location: " . $checkout_session->url);
 } else {
   $_SESSION['listingError'] = true;
-  header('Location: ../PostAJob.php');
+  header('Location: ../PostAJob');
 }
 //closes database connection
 $db = null;

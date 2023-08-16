@@ -2,8 +2,8 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-ErrorDocument 404 https://ngn.000.pe/error/404.php
-ErrorDocument 403 https://ngn.000.pe/error/403.php
+ErrorDocument 404 https://ngn.000.pe/error/404
+ErrorDocument 403 https://ngn.000.pe/error/403
 
 Header set Connection keep-alive
 AddType text/cache-manifest .manifest
@@ -15,3 +15,7 @@ RewriteRule .? - [F,NS,L]
 IndexIgnore * 
 
 Options All -Indexes
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
