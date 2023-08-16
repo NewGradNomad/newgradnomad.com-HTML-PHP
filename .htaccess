@@ -1,3 +1,7 @@
+# updating this file on github does not update the file on the server
+# the file on the server removes trailing slashes and double or more slashes from the url
+# the current implementation of that does not play well with XAMPP
+
 RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
@@ -15,3 +19,6 @@ RewriteRule .? - [F,NS,L]
 IndexIgnore * 
 
 Options All -Indexes
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
