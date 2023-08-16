@@ -26,8 +26,8 @@
     <h3 class="mt-3">You do not have access to this resource.</h3>
     <p>Here are some helpful links:</p>
     <a role="button" href="../" class="mx-2 btn btn-primary" style="background-color: rgb(237, 111, 38); border: none;">Home</a>
-    <a role="button" href="../pages/PostAJob.php" class="mx-2 btn btn-primary" style="background-color: rgb(237, 111, 38); border: none;">Post a Job</a>
-    <a role="button" href="../pages/about.php" class="mx-2 btn btn-primary" style="background-color: rgb(237, 111, 38); border: none;">About</a>
+    <a role="button" href="../pages/PostAJob" class="mx-2 btn btn-primary" style="background-color: rgb(237, 111, 38); border: none;">Post a Job</a>
+    <a role="button" href="../pages/about" class="mx-2 btn btn-primary" style="background-color: rgb(237, 111, 38); border: none;">About</a>
   </div>
 
 </body>
