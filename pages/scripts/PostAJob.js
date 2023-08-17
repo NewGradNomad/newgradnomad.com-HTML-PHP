@@ -10,7 +10,7 @@ window.addEventListener("pageshow", function (event) {
 });
 
 $(function () {
-  $("#navbar").load("./navbar.html");
+  $("#navbar").load("../navbar.html");
   $("#footer").load("./footer.html");
 });
 $(document).ready(function () {

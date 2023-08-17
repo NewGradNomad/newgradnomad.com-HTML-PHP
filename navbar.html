@@ -1,0 +1,45 @@
+<nav class="green-nav navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid"><a id="homeName" href="./" class="navbar-brand">newgradnomad.com</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="ms-auto navbar-nav">
+          <a class="nav-links nav-link" id="PostAJob" href="./pages/PostAJob">
+            <button type="button" class="button btn btn-primary"><strong>Post a Job</strong></button>
+          </a>
+          <a class="nav-links nav-link" id="home" href="./">
+            <button type="button" class="button-hide btn btn-primary"><strong>Home</strong></button>
+          </a>
+          <!-- <div class="button-hide nav-links mt-auto mb-auto show dropdown">
+            <button data-bs-toggle="dropdown" type="button" aria-expanded="false" class="dropdown-toggle btn btn-button-hide"><strong>Community</strong></button>
+            <div aria-labelledby="dropdown" data-bs-popper="static" class="dropdown-menu">
+              <a target="_blank" href="https://discord.gg/khfQcbtHw8" class="nav-links dropdown-item"><button type="button" class="button-hide btn btn-primary"><strong>Discord</strong></button></a>
+              <a data-bs-toggle="modal" data-bs-target="#newsletterModal" class="nav-links dropdown-item"><button type="button" class="button-hide btn btn-primary"><strong>Newsletter</strong></button></a>
+            </div>
+          </div> -->
+          <a class="nav-links nav-link" id="about" href="./pages/about">
+            <button type="button" class="button-hide btn btn-primary"><strong>About</strong></button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<script>
+  var loc = window.location.pathname;
+  var dir = loc.substring(0, loc.lastIndexOf("/"));
+  if (dir.includes("pages")) {
+    document.getElementById("homeName").setAttribute("href", "../");
+    document.getElementById("PostAJob").setAttribute("href", "./PostAJob");
+    document.getElementById("home").setAttribute("href", "../");
+    document.getElementById("about").setAttribute("href", "./about");
+  } else if (dir.includes("error")) {
+    document.getElementById("homeName").setAttribute("href", "../");
+    document.getElementById("PostAJob").setAttribute("href", "../pages/PostAJob");
+    document.getElementById("home").setAttribute("href", "../");
+    document.getElementById("about").setAttribute("href", "../pages/about");
+  }
+</script>

@@ -46,7 +46,7 @@ $date = date("Y/m/d H:i:s");
 </head>
 
 <body>
-<?php
+  <?php
   if (!empty($_SESSION['listingSuccess']) && $_SESSION['listingSuccess']) {
     echo '
     <div class="alert alert-success alert-dismissible fade show my-0 text-center" role="alert">
@@ -56,35 +56,8 @@ $date = date("Y/m/d H:i:s");
     $_SESSION['listingSuccess'] = '';
   }
   ?>
-  <nav class="green-nav navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid"><a href="./" class="navbar-brand">newgradnomad.com</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <div class="ms-auto navbar-nav">
-            <a class="nav-links nav-link" href="./pages/PostAJob">
-              <button type="button" class="button btn btn-primary"><strong>Post a Job</strong></button>
-            </a>
-            <a class="nav-links nav-link" href="./">
-              <button type="button" class="button-hide btn btn-primary"><strong>Home</strong></button>
-            </a>
-            <!-- <div class="button-hide nav-links mt-auto mb-auto show dropdown">
-              <button data-bs-toggle="dropdown" type="button" aria-expanded="false" class="dropdown-toggle btn btn-button-hide"><strong>Community</strong></button>
-              <div aria-labelledby="dropdown" data-bs-popper="static" class="dropdown-menu">
-                <a target="_blank" href="https://discord.gg/khfQcbtHw8" class="nav-links dropdown-item"><button type="button" class="button-hide btn btn-primary"><strong>Discord</strong></button></a>
-                <a data-bs-toggle="modal" data-bs-target="#newsletterModal" class="nav-links dropdown-item"><button type="button" class="button-hide btn btn-primary"><strong>Newsletter</strong></button></a>
-              </div>
-            </div> -->
-            <a class="nav-links nav-link" href="./pages/about">
-              <button type="button" class="button-hide btn btn-primary"><strong>About</strong></button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
+
+  <div id="navbar"></div>
 
   <div class="text-center hero-container container-fluid">
     <h1 class="fs-1 text-center">Find Remote New Grad Jobs</h1>
@@ -113,10 +86,11 @@ $date = date("Y/m/d H:i:s");
   </form>
 
   <div class="container">
-    <?php 
-      if (empty($listings)){
-        echo '<div class="alert alert-warning text-center mt-4" role="alert">No results found for '; echo strtolower($searchReq). '.</div>';
-      }
+    <?php
+    if (empty($listings)) {
+      echo '<div class="alert alert-warning text-center mt-4" role="alert">No results found for ';
+      echo strtolower($searchReq) . '.</div>';
+    }
     ?>
     <?php foreach ($listings as $listing) : ?>
       <?php
@@ -125,48 +99,80 @@ $date = date("Y/m/d H:i:s");
       $secondsPerDay = 86400;
       $secondsPerWeek = 604800;
       $secondsPerMonth = 2629800;
-      if ($listing['pin'] == 99 && $timeSincePost <= $secondsPerDay){
+      if ($listing['pin'] == 99 && $timeSincePost <= $secondsPerDay) {
         $pin = true;
-      } else if ($listing['pin'] == 199 && $timeSincePost <= $secondsPerWeek){
+      } else if ($listing['pin'] == 199 && $timeSincePost <= $secondsPerWeek) {
         $pin = true;
-      } else if ($listing['pin'] == 349 && $timeSincePost <= $secondsPerMonth){
+      } else if ($listing['pin'] == 349 && $timeSincePost <= $secondsPerMonth) {
         $pin = true;
       }
-      echo  '<div class="mt-4 card'; if ($listing['highlightOrange'] == 39) {echo ' orange-Card';} echo'">
+      echo  '<div class="mt-4 card';
+      if ($listing['highlightOrange'] == 39) {
+        echo ' orange-Card';
+      }
+      echo '">
               <div class="card-body">
                 <div class="container-fluid px-0">
                   <div class="row">
                     <div class="col">
-                      <div class="card-title h5'; if ($listing['highlightOrange'] == 39) {echo ' orange-Post-Font';} echo'">'.$listing['positionName'].': '.$listing['positionType'].'</div>
+                      <div class="card-title h5';
+      if ($listing['highlightOrange'] == 39) {
+        echo ' orange-Post-Font';
+      }
+      echo '">' . $listing['positionName'] . ': ' . $listing['positionType'] . '</div>
                     </div>
                     <div class="col-auto">
-                      <a role="button" href="'.$listing['url'].'" class="'; if ($listing['highlightOrange'] == 39) {echo 'btn-dark ';} else{echo 'button btn-primary ';} echo'btn"><strong>Apply</strong></a>
+                      <a role="button" href="' . $listing['url'] . '" class="';
+      if ($listing['highlightOrange'] == 39) {
+        echo 'btn-dark ';
+      } else {
+        echo 'button btn-primary ';
+      }
+      echo 'btn"><strong>Apply</strong></a>
                     </div>
                     <div class="col-auto">
-                    '; if ($pin) {echo '<p class="" style="font-size: 16px; '; if ($listing['highlightOrange'] == 39) {echo 'background-color:gray;';} echo'">📌</p>';} echo'
+                    ';
+      if ($pin) {
+        echo '<p class="" style="font-size: 16px; ';
+        if ($listing['highlightOrange'] == 39) {
+          echo 'background-color:gray;';
+        }
+        echo '">📌</p>';
+      }
+      echo '
                       
                     </div>
                   </div>
                 </div>
-                <div class="'; if ($listing['highlightOrange'] == 39) {echo 'orange-Post-Font';} echo' h6">'.$listing['companyName'].'</div>
+                <div class="';
+      if ($listing['highlightOrange'] == 39) {
+        echo 'orange-Post-Font';
+      }
+      echo ' h6">' . $listing['companyName'] . '</div>
 
                 <p class="mt-3">
-                  <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#'.$listing['listingID'].'" aria-expanded="false" aria-controls="'.$listing['listingID'].'" style="background-color: #449175 !important;">
+                  <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#' . $listing['listingID'] . '" aria-expanded="false" aria-controls="' . $listing['listingID'] . '" style="background-color: #449175 !important;">
                     Toggle Job Description
                   </button>
                 </p>
-                <div class="collapse" id="'.$listing['listingID'].'">
+                <div class="collapse" id="' . $listing['listingID'] . '">
                   <div class="card card-body mb-2">
-                  '.$listing['jobDescription'].'
+                  ' . $listing['jobDescription'] . '
                   </div>
                 </div>
                 <div class="tag-wrap">';
-                    echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link btn '; if ($listing['highlightOrange'] == 39) {echo 'btn-dark ';} else{echo 'button btn-primary ';} echo'"><strong>' . $listing['primaryTag'] . '</strong></button></a>';
-                    $tags = explode(";", $listing['keywords']);
-                    for ($i = 0; $i < sizeof($tags) - 1; $i++) {
-                      echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">' . $tags[$i] . '</button></a>';
-                    }
-                echo' 
+      echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link btn ';
+      if ($listing['highlightOrange'] == 39) {
+        echo 'btn-dark ';
+      } else {
+        echo 'button btn-primary ';
+      }
+      echo '"><strong>' . $listing['primaryTag'] . '</strong></button></a>';
+      $tags = explode(";", $listing['keywords']);
+      for ($i = 0; $i < sizeof($tags) - 1; $i++) {
+        echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">' . $tags[$i] . '</button></a>';
+      }
+      echo ' 
                 </div>
               </div>
             </div>
