@@ -3,6 +3,7 @@
 require_once '../../db_connect.php';
 require_once '../../vendor/autoload.php';
 require_once '../../secrets.php';
+require_once '../../prices.php';
 require_once '../../domain.php';
 
 //includes session info
@@ -29,7 +30,7 @@ $jobDesc = trim($_POST['jobDesc']);
 $totalCost = trim($_POST['totalCost']);
 
 //checks if all required values are not empty
-if (empty($companyName) || empty($positionName) || empty($positionType) || empty($primaryTag) || empty($keywords) || empty($basicPosting) || ($appURL == "mailto:-1" && $appEmail == -1) || empty($jobDesc) || empty($totalCost) || $totalCost < 150) {
+if (empty($companyName) || empty($positionName) || empty($positionType) || empty($primaryTag) || empty($keywords) || empty($basicPosting) || ($appURL == "mailto:-1" && $appEmail == -1) || empty($jobDesc) || empty($totalCost) || $totalCost < $standardListingPrice) {
 
   $_SESSION['missingInput'] = true;
   header('Location: ../PostAJob');

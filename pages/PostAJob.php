@@ -1,6 +1,7 @@
 <?php
 //includes database connection
 require_once '../db_connect.php';
+require_once '../prices.php';
 //get session variables
 session_start();
 ?>
@@ -26,7 +27,9 @@ session_start();
 </head>
 
 <body>
-  <div class="container" style="color: red;"><h1><b>DO NOT use real cards at checkout, against stripe TOS in test mode.<br> Use stripe test card: 4242424242424242 04/24 024</b></h1></div>
+  <div class="container" style="color: red;">
+    <h1><b>DO NOT use real cards at checkout, against stripe TOS in test mode.<br> Use stripe test card: 4242424242424242 04/24 024</b></h1>
+  </div>
   <div id="navbar"></div>
   <?php
   if (!empty($_SESSION['missingInput']) && $_SESSION['missingInput']) {
@@ -46,7 +49,9 @@ session_start();
   } else if (!empty($_SESSION['contactSupport']) && $_SESSION['contactSupport']) {
     echo '
       <div class="alert alert-danger alert-dismissible fade show mt-1 text-center" role="alert">
-      <strong>Unknown Error Occurred, Please Contact Support. Reference ID: '; echo $_SESSION['listingID']; echo'</strong>
+      <strong>Unknown Error Occurred, Please Contact Support. Reference ID: ';
+    echo $_SESSION['listingID'];
+    echo '</strong>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>';
     $_SESSION['contactSupport'] = '';
@@ -135,43 +140,43 @@ session_start();
 
         <div class="mb-3">
           <div class="form-check">
-            <input value="150" required name="basicPosting" type="checkbox" id="basicPosting" class="form-check-input" checked onclick="return false;" />
-            <label title="" for="basicPosting" class="form-check-label">Basic Job Posting ($150)</label>
+            <input value="<?php echo $standardListingPrice; ?>" required name="basicPosting" type="checkbox" id="basicPosting" class="form-check-input" checked onclick="return false;" />
+            <label title="" for="basicPosting" class="form-check-label">Basic Job Posting ($<?php echo $standardListingPrice; ?>)</label>
           </div>
         </div>
 
         <div class="mb-3">
           <div class="form-check">
-            <input value="79" name="support" type="checkbox" id="support" class="form-check-input" onclick="updateTotal(this)" />
-            <label title="" for="support" class="form-check-label">Receive 24-hour support for your job posting (+$79)</label>
+            <input value="<?php echo $supportPrice; ?>" name="support" type="checkbox" id="support" class="form-check-input" onclick="updateTotal(this)" />
+            <label title="" for="support" class="form-check-label">Receive 24-hour support for your job posting (+$<?php echo $supportPrice; ?>)</label>
           </div>
         </div>
 
         <div class="mb-3">
           <div class="form-check">
-            <input value="39" name="highlightPost" type="checkbox" id="highlightPost" class="form-check-input" onclick="updateTotal(this)" />
-            <label title="" for="highlightPost" class="form-check-label">Highlight your job post in orange 🍊 to gain more views (+$39)</label>
+            <input value="<?php echo $highlightPostPrice; ?>" name="highlightPost" type="checkbox" id="highlightPost" class="form-check-input" onclick="updateTotal(this)" />
+            <label title="" for="highlightPost" class="form-check-label">Highlight your job post in orange 🍊 to gain more views (+$<?php echo $highlightPostPrice; ?>)</label>
           </div>
         </div>
 
         <div class="mb-3">
           <div class="form-check">
-            <input value="99" name="pinAddons" type="checkbox" id="pinPost24hr" class="form-check-input" onclick="checkCheckboxStatus(this)" />
-            <label title="" for="pinPost24hr" class="form-check-label">Pin post on front page for 24 hours (+$99)</label>
+            <input value="<?php echo $pinPost24hrPrice; ?>" name="pinAddons" type="checkbox" id="pinPost24hr" class="form-check-input" onclick="checkCheckboxStatus(this)" />
+            <label title="" for="pinPost24hr" class="form-check-label">Pin post on front page for 24 hours (+$<?php echo $pinPost24hrPrice; ?>)</label>
           </div>
         </div>
 
         <div class="mb-3">
           <div class="form-check">
-            <input value="199" name="pinAddons" type="checkbox" id="pinPost1wk" class="form-check-input" onclick="checkCheckboxStatus(this)" />
-            <label title="" for="pinPost1wk" class="form-check-label">Pin post on front page for 1 week (+$199)</label>
+            <input value="<?php echo $pinPost1wkPrice; ?>" name="pinAddons" type="checkbox" id="pinPost1wk" class="form-check-input" onclick="checkCheckboxStatus(this)" />
+            <label title="" for="pinPost1wk" class="form-check-label">Pin post on front page for 1 week (+$<?php echo $pinPost1wkPrice; ?>)</label>
           </div>
         </div>
 
         <div class="mb-3">
           <div class="form-check">
-            <input value="349" name="pinAddons" type="checkbox" id="pinPost1mth" class="form-check-input" onclick="checkCheckboxStatus(this)" />
-            <label title="" for="pinPost1mth" class="form-check-label">Pin post on front page for 1 month (+$349)</label>
+            <input value="<?php echo $pinPost1mthPrice; ?>" name="pinAddons" type="checkbox" id="pinPost1mth" class="form-check-input" onclick="checkCheckboxStatus(this)" />
+            <label title="" for="pinPost1mth" class="form-check-label">Pin post on front page for 1 month (+$<?php echo $pinPost1mthPrice; ?>)</label>
           </div>
         </div>
 
@@ -198,12 +203,12 @@ session_start();
 
         <div class="mb-3">
           <div class="">
-            <input value="150" required hidden="" onclick="return false;" name="totalCost" type="checkbox" id="totalCost" class="form-check-input" checked="" />
+            <input value="<?php echo $standardListingPrice; ?>" required hidden="" onclick="return false;" name="totalCost" type="checkbox" id="totalCost" class="form-check-input" checked="" />
           </div>
         </div>
         <button id="checkoutButton" type="submit" class="checkout-Button mt-4 mb-4 form-control btn btn-primary" disabled>
           <b>
-            <div value="150" id="total">Checkout Job Posting $150</div>
+            <div value="<?php echo $standardListingPrice; ?>" id="total">Checkout Job Posting $<?php echo $standardListingPrice; ?></div>
           </b>
         </button>
       </form>
