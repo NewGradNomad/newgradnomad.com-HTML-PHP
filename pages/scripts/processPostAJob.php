@@ -19,57 +19,17 @@ $positionName = trim($_POST['positionName']);
 $positionType = trim($_POST['positionType']);
 $primaryTag = trim($_POST['primaryTag']);
 $keywords = $_POST['keywords'];
-// $basicPosting = trim($_POST['basicPosting']);
-// $support = trim($_POST['support']);
-// $highlightPost = trim($_POST['highlightPost']);
-// $pinPost24hr = trim($_POST['pinPost24hr']);
-// $pinPost1wk = trim($_POST['pinPost1wk']);
-// $pinPost1mth = trim($_POST['pinPost1mth']);
-// $appURL = trim($_POST['appURL']);
-// $appEmail = trim($_POST['appEmail']);
+$basicPosting = trim($_POST['basicPosting']);
+$support = trim($_POST['support']) ?? 0 ?: -1;
+$highlightPost = trim($_POST['highlightPost']) ?? 0 ?: -1;
+$pin = trim($_POST['pinAddons']) ?? 0 ?: -1;
+$appEmail = trim($_POST['appEmail']) ?? 0 ?: -1;;
+$appURL = trim($_POST['appURL']) ?? 0 ?: "mailto:" . $appEmail;
 $jobDesc = trim($_POST['jobDesc']);
 $totalCost = trim($_POST['totalCost']);
 
-if (!isset($_POST['basicPosting'])) {
-  $_SESSION['missingInput'] = true;
-  header('Location: ../PostAJob');
-
-  //closes database connection
-  $db = null;
-  exit();
-} else {
-  $basicPosting = trim($_POST['basicPosting']);
-}
-if (!isset($_POST['support'])) {
-  $support = "-1";
-} else {
-  $support = trim($_POST['support']);
-}
-if (!isset($_POST['highlightPost'])) {
-  $highlightPost = "-1";
-} else {
-  $highlightPost = trim($_POST['highlightPost']);
-}
-if (!isset($_POST['pinAddons'])) {
-  $pin = "-1";
-} else {
-  $pin = trim($_POST['pinAddons']);
-}
-
-if (!isset($_POST['appURL'])) {
-  $appURL = "-1";
-} else {
-  $appURL = trim($_POST['appURL']);
-}
-if (!isset($_POST['appEmail'])) {
-  $appEmail = "-1";
-} else {
-  $appEmail = trim($_POST['appEmail']);
-  $appURL = "mailto:" . $appEmail;
-}
-
 //checks if all required values are not empty
-if (empty($companyName) || empty($positionName) || empty($positionType) || empty($primaryTag) || empty($keywords) || empty($basicPosting) || ($appURL == "mailto:" && empty($appEmail)) || empty($jobDesc) || empty($totalCost)) {
+if (empty($companyName) || empty($positionName) || empty($positionType) || empty($primaryTag) || empty($keywords) || empty($basicPosting) || ($appURL == "mailto:-1" && $appEmail == -1) || empty($jobDesc) || empty($totalCost) || $totalCost < 150) {
 
   $_SESSION['missingInput'] = true;
   header('Location: ../PostAJob');
