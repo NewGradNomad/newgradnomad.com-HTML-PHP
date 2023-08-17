@@ -23,14 +23,41 @@ $keywords = $_POST['keywords'];
 $basicPosting = trim($_POST['basicPosting']);
 $support = trim($_POST['support']) ?? 0 ?: -1;
 $highlightPost = trim($_POST['highlightPost']) ?? 0 ?: -1;
-$pin = trim($_POST['pinAddons']) ?? 0 ?: -1;
+$pinPost24hr = trim($_POST['pinPost24hr']) ?? 0 ?: -1;
+$pinPost1wk = trim($_POST['pinPost1wk']) ?? 0 ?: -1;
+$pinPost1mth = trim($_POST['pinPost1mth']) ?? 0 ?: -1;
+$pin = -1;
 $appEmail = trim($_POST['appEmail']) ?? 0 ?: -1;;
 $appURL = trim($_POST['appURL']) ?? 0 ?: "mailto:" . $appEmail;
 $jobDesc = trim($_POST['jobDesc']);
 $totalCost = trim($_POST['totalCost']);
 
+$pinCount = 0;
+$calculatedTotal = $standardListingPrice;
+
+if ($pinPost24hr == $pinPost24hrPrice) {
+  $pin = $pinPost24hrPrice;
+  $pinCount++;
+  $calculatedTotal += $pinPost24hrPrice;
+} else if ($pinPost1wk == $pinPost1wkPrice) {
+  $pin = $pinPost1wkPrice;
+  $pinCount++;
+  $calculatedTotal += $pinPost1wkPrice;
+} else if ($pinPost1mth == $pinPost1mthPrice) {
+  $pin = $pinPost1mthPrice;
+  $pinCount++;
+  $calculatedTotal += $pinPost1mthPrice;
+}
+
+if ($highlightPost != -1) {
+  $calculatedTotal += $highlightPostPrice;
+}
+if ($support != -1) {
+  $calculatedTotal += $supportPrice;
+}
+
 //checks if all required values are not empty
-if (empty($companyName) || empty($positionName) || empty($positionType) || empty($primaryTag) || empty($keywords) || empty($basicPosting) || ($appURL == "mailto:-1" && $appEmail == -1) || empty($jobDesc) || empty($totalCost) || $totalCost < $standardListingPrice) {
+if (empty($companyName) || empty($positionName) || empty($positionType) || empty($primaryTag) || empty($keywords) || empty($basicPosting) || ($appURL == "mailto:-1" && $appEmail == -1) || empty($jobDesc) || empty($totalCost) || $totalCost < $standardListingPrice || $pinCount > 1 || $calculatedTotal != $totalCost) {
 
   $_SESSION['missingInput'] = true;
   header('Location: ../PostAJob');
@@ -76,7 +103,7 @@ if ($query->execute()) {
   $_SESSION['addedToDataBase'] = true;
   \Stripe\Stripe::setApiKey($stripeSecretKey);
   header('Content-Type: application/json');
-  $price = $totalCost * 100;
+  $price = $calculatedTotal * 100;
 
   $YOUR_DOMAIN = $domain;
 

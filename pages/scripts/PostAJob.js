@@ -58,19 +58,20 @@ $(document).ready(function () {
 });
 
 function checkCheckboxStatus(chk) {
+  var boxNames = ["pinPost24hr", "pinPost1wk", "pinPost1mth"];
   var chkName = document.getElementsByName(chk.name);
   var chkID = document.getElementById(chk.id);
   if (chkID.checked) {
-    for (var i = 0; i < chkName.length; i++) {
-      if (!chkName[i].checked) {
-        chkName[i].disabled = true;
+    for (var i = 0; i < boxNames.length; i++) {
+      if (!document.getElementById(boxNames[i]).checked) {
+        document.getElementById(boxNames[i]).setAttribute("disabled", "");
       } else {
-        chkName[i].disabled = false;
+        document.getElementById(boxNames[i]).removeAttribute("disabled");
       }
     }
   } else {
-    for (var i = 0; i < chkName.length; i++) {
-      chkName[i].disabled = false;
+    for (var i = 0; i < boxNames.length; i++) {
+      document.getElementById(boxNames[i]).removeAttribute("disabled");
     }
   }
   updateTotal(chk);

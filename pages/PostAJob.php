@@ -161,21 +161,21 @@ session_start();
 
         <div class="mb-3">
           <div class="form-check">
-            <input value="<?php echo $pinPost24hrPrice; ?>" name="pinAddons" type="checkbox" id="pinPost24hr" class="form-check-input" onclick="checkCheckboxStatus(this)" />
+            <input value="<?php echo $pinPost24hrPrice; ?>" name="pinPost24hr" type="checkbox" id="pinPost24hr" class="form-check-input" onclick="checkCheckboxStatus(this)" />
             <label title="" for="pinPost24hr" class="form-check-label">Pin post on front page for 24 hours (+$<?php echo $pinPost24hrPrice; ?>)</label>
           </div>
         </div>
 
         <div class="mb-3">
           <div class="form-check">
-            <input value="<?php echo $pinPost1wkPrice; ?>" name="pinAddons" type="checkbox" id="pinPost1wk" class="form-check-input" onclick="checkCheckboxStatus(this)" />
+            <input value="<?php echo $pinPost1wkPrice; ?>" name="pinPost1wk" type="checkbox" id="pinPost1wk" class="form-check-input" onclick="checkCheckboxStatus(this)" />
             <label title="" for="pinPost1wk" class="form-check-label">Pin post on front page for 1 week (+$<?php echo $pinPost1wkPrice; ?>)</label>
           </div>
         </div>
 
         <div class="mb-3">
           <div class="form-check">
-            <input value="<?php echo $pinPost1mthPrice; ?>" name="pinAddons" type="checkbox" id="pinPost1mth" class="form-check-input" onclick="checkCheckboxStatus(this)" />
+            <input value="<?php echo $pinPost1mthPrice; ?>" name="pinPost1mth" type="checkbox" id="pinPost1mth" class="form-check-input" onclick="checkCheckboxStatus(this)" />
             <label title="" for="pinPost1mth" class="form-check-label">Pin post on front page for 1 month (+$<?php echo $pinPost1mthPrice; ?>)</label>
           </div>
         </div>
