@@ -5,5 +5,5 @@
   padding-bottom: 3rem !important;
   background-image: linear-gradient(180deg, #449175, #ff9a60) !important;
   z-index: -1;
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 85%);
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 88%);
 }
