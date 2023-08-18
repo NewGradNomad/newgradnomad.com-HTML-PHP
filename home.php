@@ -100,25 +100,47 @@ $date = date("Y/m/d H:i:s");
       $secondsPerDay = 86400;
       $secondsPerWeek = 604800;
       $secondsPerMonth = 2629800;
-      if ($listing['pin'] == $pinPost24hrPrice && $timeSincePost <= $secondsPerDay){
+      if ($listing['pin'] == $pinPost24hrPrice && $timeSincePost <= $secondsPerDay) {
         $pin = true;
-      } else if ($listing['pin'] == $pinPost1wkPrice && $timeSincePost <= $secondsPerWeek){
+      } else if ($listing['pin'] == $pinPost1wkPrice && $timeSincePost <= $secondsPerWeek) {
         $pin = true;
-      } else if ($listing['pin'] == $pinPost1mthPrice && $timeSincePost <= $secondsPerMonth){
+      } else if ($listing['pin'] == $pinPost1mthPrice && $timeSincePost <= $secondsPerMonth) {
         $pin = true;
       }
-      echo  '<div class="mt-4 card'; if ($listing['highlightOrange'] == $highlightPostPrice) {echo ' orange-Card';} echo'">
+      echo  '<div class="mt-4 card';
+      if ($listing['highlightOrange'] == $highlightPostPrice) {
+        echo ' orange-Card';
+      }
+      echo '">
               <div class="card-body">
                 <div class="container-fluid px-0">
                   <div class="row">
                     <div class="col">
-                      <div class="card-title h5'; if ($listing['highlightOrange'] == $highlightPostPrice) {echo ' orange-Post-Font';} echo'">'.$listing['positionName'].': '.$listing['positionType'].'</div>
+                      <div class="card-title h5';
+      if ($listing['highlightOrange'] == $highlightPostPrice) {
+        echo ' orange-Post-Font';
+      }
+      echo '">' . $listing['positionName'] . ': ' . $listing['positionType'] . '</div>
                     </div>
                     <div class="col-auto">
-                      <a role="button" href="'.$listing['url'].'" class="'; if ($listing['highlightOrange'] == $highlightPostPrice) {echo 'btn-dark ';} else{echo 'button btn-primary ';} echo'btn"><strong>Apply</strong></a>
+                      <a role="button" href="' . $listing['url'] . '" class="';
+      if ($listing['highlightOrange'] == $highlightPostPrice) {
+        echo 'btn-dark ';
+      } else {
+        echo 'button btn-primary ';
+      }
+      echo 'btn"><strong>Apply</strong></a>
                     </div>
                     <div class="col-auto">
-                    '; if ($pin) {echo '<p class="" style="font-size: 16px; '; if ($listing['highlightOrange'] == $highlightPostPrice) {echo 'background-color:gray;';} echo'">📌</p>';} echo'
+                    ';
+      if ($pin) {
+        echo '<p class="" style="font-size: 16px; ';
+        if ($listing['highlightOrange'] == $highlightPostPrice) {
+          echo 'background-color:gray;';
+        }
+        echo '">📌</p>';
+      }
+      echo '
                       
                     </div>
                   </div>
