@@ -1,10 +1,10 @@
 <?php
 //includes database connection
-require_once '../../db_connect.php';
+require_once '../../components/db_connect.php';
 require_once '../../vendor/autoload.php';
-require_once '../../secrets.php';
-require_once '../../prices.php';
-require_once '../../domain.php';
+require_once '../../components/secrets.php';
+require_once '../../components/prices.php';
+require_once '../../components/domain.php';
 
 //includes session info
 session_start();

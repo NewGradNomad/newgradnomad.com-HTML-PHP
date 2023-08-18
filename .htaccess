@@ -1,4 +1,7 @@
 RewriteEngine On
+
+DirectoryIndex home.php
+
 # Remove multiple slashes anywhere in the URL-path
 RewriteCond %{HTTP_HOST} !=localhost
 RewriteCond %{THE_REQUEST} \s[^?]*//

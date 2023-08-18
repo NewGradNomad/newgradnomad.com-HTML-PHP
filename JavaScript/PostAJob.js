@@ -10,8 +10,8 @@ window.addEventListener("pageshow", function (event) {
 });
 
 $(function () {
-  $("#navbar").load("../navbar.html");
-  $("#footer").load("./footer.html");
+  $("#navbar").load("../components/navbar.html");
+  $("#footer").load("../components/footer.html");
 });
 $(document).ready(function () {
   $("#keywords").select2({
