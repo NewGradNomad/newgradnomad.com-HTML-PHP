@@ -1,5 +1,5 @@
 $(function () {
-  $("#footer").load("./pages/footer.html");
+  $("#footer").load("./pages/components/footer.html");
 });
 $(document).ready(function () {
   $("#searchQuery").select2({
@@ -18,6 +18,6 @@ $(document).ready(function () {
 });
 
 $(function () {
-  $("#navbar").load("./navbar.html");
-  $("#footer").load("./pages/footer.html");
+  $("#navbar").load("./components/navbar.html");
+  $("#footer").load("./components/footer.html");
 });

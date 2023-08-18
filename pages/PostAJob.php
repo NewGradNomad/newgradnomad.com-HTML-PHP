@@ -1,7 +1,7 @@
 <?php
 //includes database connection
-require_once '../db_connect.php';
-require_once '../prices.php';
+require_once '../components/db_connect.php';
+require_once '../components/prices.php';
 //get session variables
 session_start();
 ?>
@@ -11,7 +11,7 @@ session_start();
 <head>
   <title>NewGradNomad</title>
   <meta charset="utf-8">
-  <link rel="icon" href="../icon.png" />
+  <link rel="icon" href="../style/icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="../style/NavBar.css" rel="stylesheet">
   <link href="../style/PostAJob.css" rel="stylesheet">
@@ -23,7 +23,7 @@ session_start();
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
-  <script src="./scripts/PostAJob.js"></script>
+  <script src="../JavaScript/PostAJob.js"></script>
 </head>
 
 <body>
