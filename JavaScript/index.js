@@ -1,6 +1,3 @@
-$(function () {
-  $("#footer").load("./pages/components/footer.html");
-});
 $(document).ready(function () {
   $("#searchQuery").select2({
     theme: "bootstrap-5",
