@@ -11,10 +11,10 @@
   }
 }
 @media screen and (max-device-width: 370px) {
-    table {
-      font-size: xx-small !important;
-    }
-    button {
-      font-size: x-small !important;
-    }
+  table {
+    font-size: xx-small !important;
   }
+  button {
+    font-size: x-small !important;
+  }
+}

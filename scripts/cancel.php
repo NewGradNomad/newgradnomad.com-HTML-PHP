@@ -1,5 +1,5 @@
 <?php
-require_once '../../components/db_connect.php';
+require_once '../components/db_connect.php';
 
 //includes session info
 session_start();
@@ -10,12 +10,13 @@ $query = $db->prepare("DELETE FROM jobListings WHERE listingID = :listingID AND 
 $query->bindParam(':listingID', $listingID);
 if ($query->execute()) {
   $_SESSION['cancelSuccess'] = true;
-  header('Location: ../PostAJob');
+  header('Location: ../pages/PostAJob');
 } else {
   $_SESSION['contactSupport'] = true;
   $_SESSION['listingID'] = $listingID;
-  header('Location: ../PostAJob');
+  header('Location: ../pages/PostAJob');
 }
 //closes database connection
 $db = null;
 exit();
+
