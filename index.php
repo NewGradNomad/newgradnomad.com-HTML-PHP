@@ -124,7 +124,7 @@ $date = date("Y/m/d H:i:s");
                   </div>
                 </div>
                 <div class="';
-      if ($listing['highlightOrange'] == 39) {
+      if ($listing['highlightOrange'] == $highlightPostPrice) {
         echo 'orange-Post-Font';
       }
       echo ' h6">' . $listing['companyName'] . '</div>
@@ -141,7 +141,7 @@ $date = date("Y/m/d H:i:s");
                 </div>
                 <div class="tag-wrap">';
       echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link btn ';
-      if ($listing['highlightOrange'] == 39) {
+      if ($listing['highlightOrange'] == $highlightPostPrice) {
         echo 'btn-dark ';
       } else {
         echo 'button btn-primary ';
