@@ -22,7 +22,7 @@ ErrorDocument 401 https://localhost/newgradnomad.com-html/error/401
 ErrorDocument 403 https://localhost/newgradnomad.com-html/error/403
 ErrorDocument 404 https://localhost/newgradnomad.com-html/error/404
 ErrorDocument 503 https://localhost/newgradnomad.com-html/error/503
-</eIf>
+</If>
 
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
