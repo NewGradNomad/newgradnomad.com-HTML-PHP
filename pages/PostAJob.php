@@ -183,13 +183,14 @@ session_start();
         <small class="form-text" id="EmailURLRequiredMessage" style="color: red !important;">* Required: Please choose either email or URL.</small>
         <div class="mb-3">
           <label class="form-label" for="appURL"><b>Application URL</b></label>
+          <small class="form-text" id="URLFormatMessage" style="color: red !important;" hidden>* The URL must include https://</small>
           <input required maxlength="200" placeholder="https://" name="appURL" type="url" id="appURL" class="form-control" onkeyup="checkEmailOrURL()" />
           <div class="container"><small class="form-text">- This is the job link applicants will be forwarded to in order to apply top your job</small></div>
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="appEmail"><b>Gateway Email Address</b></label>
-          <small class="form-text" id="EmailFormatMessage" style="color: red !important;" hidden>* This email is invalid.</small>
+          <small class="form-text" id="EmailFormatMessage" style="color: red !important;" hidden>* This email is invalid, it needs to be in the format: name@example.com</small>
           <input required maxlength="200" placeholder="name@example.com" name="appEmail" type="email" id="appEmail" class="form-control" onkeyup="checkEmailOrURL()" />
           <div class="container"><small class="form-text">- Applicant is routed to this email if no application url is provided!</small></div>
         </div>
