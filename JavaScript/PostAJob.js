@@ -104,6 +104,11 @@ function checkEmailOrURL() {
     document
       .getElementById("EmailURLRequiredMessage")
       .setAttribute("hidden", "");
+    if (document.forms["jobForm"]["appURL"].value.includes("https://")) {
+      document.getElementById("URLFormatMessage").setAttribute("hidden", "");
+    } else {
+      document.getElementById("URLFormatMessage").removeAttribute("hidden");
+    }
   } else if (
     document.forms["jobForm"]["appEmail"].value != null &&
     document.forms["jobForm"]["appEmail"].value != ""
@@ -128,6 +133,7 @@ function checkEmailOrURL() {
       .getElementById("EmailURLRequiredMessage")
       .removeAttribute("hidden");
     document.getElementById("EmailFormatMessage").setAttribute("hidden", "");
+    document.getElementById("URLFormatMessage").setAttribute("hidden", "");
   }
   checkEnableCheckoutButton();
 }
@@ -162,7 +168,10 @@ function checkEnableCheckoutButton() {
       ).test(document.forms["jobForm"]["appEmail"].value)
     ) {
       checkoutButton.disabled = false;
-    } else if (appEmail.disabled == true) {
+    } else if (
+      appEmail.disabled == true &&
+      document.forms["jobForm"]["appURL"].value.includes("https://")
+    ) {
       checkoutButton.disabled = false;
     } else {
       checkoutButton.disabled = true;
