@@ -9,7 +9,7 @@ $searchReq = filter_input(INPUT_GET, 'searchQuery');
 
 //prepare query based on input received
 if ($searchReq != NULL || $searchReq != FALSE) {
-  $query = $db->prepare("SELECT * FROM jobListings WHERE paymentStatus = 1 AND primaryTag like :search OR keywords like :search OR positionType like :search OR positionName like :search OR companyName like :search ORDER BY`jobListings`.`postedDate` DESC");
+  $query = $db->prepare("SELECT * FROM jobListings WHERE paymentStatus = 1 AND primaryTag like :search OR keywords like :search OR positionType like :search OR positionName like :search OR companyName like :search ORDER BY `jobListings`.`postedDate` DESC");
   $query->bindValue(':search', "%" . $searchReq . "%");
 } else {
   $query = $db->prepare("SELECT * FROM jobListings WHERE paymentStatus = 1 ORDER BY `jobListings`.`postedDate` DESC");
