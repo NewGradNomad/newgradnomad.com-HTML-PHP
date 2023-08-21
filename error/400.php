@@ -18,8 +18,8 @@
 <body>
   <div id="navbar"></div>
   <div class="text-center container">
-    <h1 class="mt-3">403 Forbidden</h1>
-    <h3 class="mt-3">You do not have access to this resource.</h3>
+    <h1 class="mt-3">400 Bad Request</h1>
+    <h3 class="mt-3">Warning: The client should not repeat this request without modification.</h3>
     <div id="errorLinks"></div>
   </div>
 

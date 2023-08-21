@@ -26,3 +26,4 @@ jobs:
           db_connect.php
           secrets.php
           domain.php
+          README.md

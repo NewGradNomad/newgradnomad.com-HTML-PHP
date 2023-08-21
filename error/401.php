@@ -18,8 +18,8 @@
 <body>
   <div id="navbar"></div>
   <div class="text-center container">
-    <h1 class="mt-3">403 Forbidden</h1>
-    <h3 class="mt-3">You do not have access to this resource.</h3>
+    <h1 class="mt-3">401 Unauthorized</h1>
+    <h3 class="mt-3">Client Request Has Not Been Completed Because It Lacks Valid Authentication Credentials for the Requested Resource.</h3>
     <div id="errorLinks"></div>
   </div>
 

@@ -18,8 +18,8 @@
 <body>
   <div id="navbar"></div>
   <div class="text-center container">
-    <h1 class="mt-3">403 Forbidden</h1>
-    <h3 class="mt-3">You do not have access to this resource.</h3>
+    <h1 class="mt-3">503 Service Unavailable</h1>
+    <h3 class="mt-3">The Server Is Not Ready To Handle the Request, Try Again Later.</h3>
     <div id="errorLinks"></div>
   </div>
 

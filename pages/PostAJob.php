@@ -1,7 +1,7 @@
 <?php
 //includes database connection
-require_once '../db_connect.php';
-require_once '../prices.php';
+require_once '../components/db_connect.php';
+require_once '../components/prices.php';
 //get session variables
 session_start();
 ?>
@@ -11,7 +11,7 @@ session_start();
 <head>
   <title>NewGradNomad</title>
   <meta charset="utf-8">
-  <link rel="icon" href="../icon.png" />
+  <link rel="icon" href="../style/icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="../style/NavBar.css" rel="stylesheet">
   <link href="../style/PostAJob.css" rel="stylesheet">
@@ -78,7 +78,7 @@ session_start();
     </div>
 
     <div class="gray-form mt-4 container">
-      <form name="jobForm" method="POST" action="./scripts/processPostAJob">
+      <form name="jobForm" method="POST" action="../scripts/processPostAJob">
         <label class="section-title mt-3 form-label"><b>Getting Started</b></label>
 
         <div class="mb-3">
@@ -211,20 +211,37 @@ session_start();
           either email or URL.</small>
         <div class="mb-3">
           <label class="form-label" for="appURL"><b>Application URL</b></label>
+          <<<<<<< HEAD <input required maxlength="200" placeholder="https://" name="appURL" type="url" id="appURL"
+            class="form-control" onkeyup="checkEmailOrURL()" />
+          <div class="container"><small class="form-text">- This is the job link applicants will be forwarded to in
+              order to apply top your job</small></div>
+          =======
+          <small class="form-text" id="URLFormatMessage" style="color: red !important;" hidden>* The URL must include
+            https://</small>
           <input required maxlength="200" placeholder="https://" name="appURL" type="url" id="appURL"
             class="form-control" onkeyup="checkEmailOrURL()" />
           <div class="container"><small class="form-text">- This is the job link applicants will be forwarded to in
               order to apply top your job</small></div>
+          >>>>>>> 6877d3c1af29e6054ae3a5304104f5dc37b44f87
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="appEmail"><b>Gateway Email Address</b></label>
-          <small class="form-text" id="EmailFormatMessage" style="color: red !important;" hidden>* This email is
+          <<<<<<< HEAD <small class="form-text" id="EmailFormatMessage" style="color: red !important;" hidden>* This
+            email is
             invalid.</small>
-          <input required maxlength="200" placeholder="name@example.com" name="appEmail" type="email" id="appEmail"
-            class="form-control" onkeyup="checkEmailOrURL()" />
-          <div class="container"><small class="form-text">- Applicant is routed to this email if no application url is
-              provided!</small></div>
+            <input required maxlength="200" placeholder="name@example.com" name="appEmail" type="email" id="appEmail"
+              class="form-control" onkeyup="checkEmailOrURL()" />
+            <div class="container"><small class="form-text">- Applicant is routed to this email if no application url is
+                provided!</small></div>
+            =======
+            <small class="form-text" id="EmailFormatMessage" style="color: red !important;" hidden>* This email is
+              invalid, it needs to be in the format: name@example.com</small>
+            <input required maxlength="200" placeholder="name@example.com" name="appEmail" type="email" id="appEmail"
+              class="form-control" onkeyup="checkEmailOrURL()" />
+            <div class="container"><small class="form-text">- Applicant is routed to this email if no application url is
+                provided!</small></div>
+            >>>>>>> 6877d3c1af29e6054ae3a5304104f5dc37b44f87
         </div>
 
         <label class="form-label"><b>Job Description</b></label>

@@ -1,10 +1,10 @@
 <?php
 //includes database connection
-require_once '../../db_connect.php';
-require_once '../../vendor/autoload.php';
-require_once '../../secrets.php';
-require_once '../../prices.php';
-require_once '../../domain.php';
+require_once '../components/db_connect.php';
+require_once '../vendor/autoload.php';
+require_once '../components/secrets.php';
+require_once '../components/prices.php';
+require_once '../components/domain.php';
 
 //includes session info
 session_start();
@@ -60,7 +60,7 @@ if ($support != -1) {
 if (empty($companyName) || empty($positionName) || empty($positionType) || empty($primaryTag) || empty($keywords) || empty($basicPosting) || ($appURL == "mailto:-1" && $appEmail == -1) || empty($jobDesc) || empty($totalCost) || $totalCost < $standardListingPrice || $pinCount > 1 || $calculatedTotal != $totalCost) {
 
   $_SESSION['missingInput'] = true;
-  header('Location: ../PostAJob');
+  header('Location: ../pages/PostAJob');
 
   //closes database connection
   $db = null;
@@ -120,15 +120,15 @@ if ($query->execute()) {
       'quantity' => 1,
     ]],
     'mode' => 'payment',
-    'success_url' => $YOUR_DOMAIN . '/pages/scripts/success?' . $listingNumber,
-    'cancel_url' => $YOUR_DOMAIN . '/pages/scripts/cancel?' . $listingNumber,
+    'success_url' => $YOUR_DOMAIN . '/scripts/success?' . $listingNumber,
+    'cancel_url' => $YOUR_DOMAIN . '/scripts/cancel?' . $listingNumber,
   ]);
 
   header("HTTP/1.1 303 See Other");
   header("Location: " . $checkout_session->url);
 } else {
   $_SESSION['listingError'] = true;
-  header('Location: ../PostAJob');
+  header('Location: ../pages/PostAJob');
 }
 //closes database connection
 $db = null;

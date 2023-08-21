@@ -1,6 +1,3 @@
-$(function () {
-  $("#footer").load("./pages/footer.html");
-});
 $(document).ready(function () {
   $("#searchQuery").select2({
     theme: "bootstrap-5",
@@ -15,4 +12,9 @@ $(document).ready(function () {
       ? "100%"
       : "style",
   });
+});
+
+$(function () {
+  $("#navbar").load("./components/navbar.html");
+  $("#footer").load("./components/footer.html");
 });
