@@ -1,6 +1,6 @@
 <?php
 //includes database connection
-require_once './db_connect.php';
+require_once './components/db_connect.php';
 //get session data
 session_start();
 
