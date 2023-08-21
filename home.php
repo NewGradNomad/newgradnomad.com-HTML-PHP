@@ -9,10 +9,10 @@ $searchReq = filter_input(INPUT_GET, 'searchQuery');
 
 //prepare query based on input received
 if ($searchReq != NULL || $searchReq != FALSE) {
-  $query = $db->prepare("SELECT * FROM jobListings WHERE paymentStatus = 1 AND primaryTag like :search OR keywords like :search OR positionType like :search OR positionName like :search OR companyName like :search ORDER BY `jobListings`.`pin` DESC");
+  $query = $db->prepare("SELECT * FROM jobListings WHERE paymentStatus = 1 AND primaryTag like :search OR keywords like :search OR positionType like :search OR positionName like :search OR companyName like :search ORDER BY`jobListings`.`postedDate` DESC");
   $query->bindValue(':search', "%" . $searchReq . "%");
 } else {
-  $query = $db->prepare("SELECT * FROM jobListings WHERE paymentStatus = 1 ORDER BY `jobListings`.`pin` DESC");
+  $query = $db->prepare("SELECT * FROM jobListings WHERE paymentStatus = 1 ORDER BY `jobListings`.`postedDate` DESC");
 }
 
 //query database
@@ -20,9 +20,23 @@ $query->execute();
 $listings = $query->fetchAll();
 $query->closeCursor();
 
+$sortedListings = array();
+$pinListings = array();
+$noPinListings = array();
 date_default_timezone_set("America/New_York");
 $date = date("Y/m/d H:i:s");
-
+$secondsPerDay = 86400;
+$secondsPerWeek = 604800;
+$secondsPerMonth = 2629800;
+foreach ($listings as $listing) :
+  $timeSincePost = strtotime($date) - strtotime($listing['postedDate']);
+  if (($listing['pin'] == $pinPost24hrPrice && $timeSincePost <= $secondsPerDay) || ($listing['pin'] == $pinPost1wkPrice && $timeSincePost <= $secondsPerWeek) || ($listing['pin'] == $pinPost1mthPrice && $timeSincePost <= $secondsPerMonth)) {
+    array_push($pinListings, $listing);
+  } else {
+    array_push($noPinListings, $listing);
+  }
+endforeach;
+$sortedListings = array_merge($pinListings, $noPinListings)
 ?>
 
 <!DOCTYPE html>
@@ -93,14 +107,11 @@ $date = date("Y/m/d H:i:s");
       echo strtolower($searchReq) . '.</div>';
     }
     ?>
-    <?php foreach ($listings as $listing) : ?>
+    <?php foreach ($sortedListings as $listing) : ?>
       <?php
       $tags = explode(";", $listing['keywords']);
-      $timeSincePost = strtotime($date) - strtotime($listing['postedDate']);
       $pin = false;
-      $secondsPerDay = 86400;
-      $secondsPerWeek = 604800;
-      $secondsPerMonth = 2629800;
+      $timeSincePost = strtotime($date) - strtotime($listing['postedDate']);
       if ($listing['pin'] == $pinPost24hrPrice && $timeSincePost <= $secondsPerDay) {
         $pin = true;
       } else if ($listing['pin'] == $pinPost1wkPrice && $timeSincePost <= $secondsPerWeek) {
