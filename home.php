@@ -37,11 +37,16 @@ $date = date("Y/m/d H:i:s");
   <link href="./style/Index.css" rel="stylesheet">
   <link href="./style/HeroSection.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="./JavaScript/home.js"></script>
 </head>
@@ -93,7 +98,7 @@ $date = date("Y/m/d H:i:s");
       echo strtolower($searchReq) . '.</div>';
     }
     ?>
-    <?php foreach ($listings as $listing) : ?>
+    <?php foreach ($listings as $listing): ?>
       <?php
       $timeSincePost = strtotime($date) - strtotime($listing['postedDate']);
       $pin = false;
@@ -107,37 +112,24 @@ $date = date("Y/m/d H:i:s");
       } else if ($listing['pin'] == $pinPost1mthPrice && $timeSincePost <= $secondsPerMonth) {
         $pin = true;
       }
-      echo  '<div class="mt-4 card';
-      if ($listing['highlightOrange'] == $highlightPostPrice) {
-        echo ' orange-Card';
-      }
+      echo '<div class="mt-4 card';
       echo '">
               <div class="card-body">
                 <div class="container-fluid px-0">
                   <div class="row">
                     <div class="col">
                       <div class="card-title h5';
-      if ($listing['highlightOrange'] == $highlightPostPrice) {
-        echo ' orange-Post-Font';
-      }
       echo '">' . $listing['positionName'] . ': ' . $listing['positionType'] . '</div>
                     </div>
                     <div class="col-auto">
                       <a role="button" href="' . $listing['url'] . '" class="';
-      if ($listing['highlightOrange'] == $highlightPostPrice) {
-        echo 'btn-dark ';
-      } else {
-        echo 'button btn-primary ';
-      }
+      echo 'button btn-primary ';
       echo 'btn"><strong>Apply</strong></a>
                     </div>
                     <div class="col-auto">
                     ';
       if ($pin) {
         echo '<p class="" style="font-size: 16px; ';
-        if ($listing['highlightOrange'] == $highlightPostPrice) {
-          echo 'background-color:gray;';
-        }
         echo '">📌</p>';
       }
       echo '
@@ -146,9 +138,6 @@ $date = date("Y/m/d H:i:s");
                   </div>
                 </div>
                 <div class="';
-      if ($listing['highlightOrange'] == $highlightPostPrice) {
-        echo 'orange-Post-Font';
-      }
       echo ' h6">' . $listing['companyName'] . '</div>
 
                 <p class="mt-3">
@@ -163,11 +152,7 @@ $date = date("Y/m/d H:i:s");
                 </div>
                 <div class="tag-wrap">';
       echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link btn ';
-      if ($listing['highlightOrange'] == $highlightPostPrice) {
-        echo 'btn-dark ';
-      } else {
-        echo 'button btn-primary ';
-      }
+      echo 'button btn-primary ';
       echo '"><strong>' . $listing['primaryTag'] . '</strong></button></a>';
       $tags = explode(";", $listing['keywords']);
       for ($i = 0; $i < sizeof($tags) - 1; $i++) {
@@ -190,11 +175,13 @@ $date = date("Y/m/d H:i:s");
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>Signing up for the newsletter will enable you to get notified via email when a new job listing is posted.</p>
+          <p>Signing up for the newsletter will enable you to get notified via email when a new job listing is posted.
+          </p>
           <form novalidate="">
             <div class="mb-3"><label class="form-label">Email address</label>
               <div class="input-group">
-                <input required="" placeholder="name@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" class="form-control">
+                <input required="" placeholder="name@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                  type="email" class="form-control">
               </div>
             </div>
           </form>
