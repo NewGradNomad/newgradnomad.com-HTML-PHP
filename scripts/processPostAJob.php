@@ -22,7 +22,6 @@ $primaryTag = trim($_POST['primaryTag']);
 $keywords = $_POST['keywords'];
 $basicPosting = trim($_POST['basicPosting']);
 $support = trim($_POST['support']) ?? 0 ?: -1;
-$highlightPost = trim($_POST['highlightPost']) ?? 0 ?: -1;
 $pinPost24hr = trim($_POST['pinPost24hr']) ?? 0 ?: -1;
 $pinPost1wk = trim($_POST['pinPost1wk']) ?? 0 ?: -1;
 $pinPost1mth = trim($_POST['pinPost1mth']) ?? 0 ?: -1;
@@ -49,9 +48,6 @@ if ($pinPost24hr == $pinPost24hrPrice) {
   $calculatedTotal += $pinPost1mthPrice;
 }
 
-if ($highlightPost != -1) {
-  $calculatedTotal += $highlightPostPrice;
-}
 if ($support != -1) {
   $calculatedTotal += $supportPrice;
 }
@@ -81,7 +77,7 @@ for ($i = 0; $i < sizeof($keywords); $i++) {
   $allKeywords .= $keywords[$i] . ";";
 }
 //prepares insert statement
-$query = $db->prepare("INSERT INTO jobListings VALUES (:listingNumber, :companyName, :positionName, :positionType, :primaryTag, :keywords, :support, :highlightPost, :pin, :appURL, :appEmail, :jobDesc, :date, :paymentStatus)");
+$query = $db->prepare("INSERT INTO jobListings VALUES (:listingNumber, :companyName, :positionName, :positionType, :primaryTag, :keywords, :support, :pin, :appURL, :appEmail, :jobDesc, :date, :paymentStatus)");
 $query->bindParam(':listingNumber', $listingNumber);
 $query->bindParam(':companyName', $companyName);
 $query->bindParam(':positionName', $positionName);
@@ -89,7 +85,6 @@ $query->bindParam(':positionType', $positionType);
 $query->bindParam(':primaryTag', $primaryTag);
 $query->bindParam(':keywords', $allKeywords);
 $query->bindParam(':support', $support);
-$query->bindParam(':highlightPost', $highlightPost);
 $query->bindParam(':pin', $pin);
 $query->bindParam(':appURL', $appURL);
 $query->bindParam(':appEmail', $appEmail);

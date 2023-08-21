@@ -95,6 +95,7 @@ $date = date("Y/m/d H:i:s");
     ?>
     <?php foreach ($listings as $listing) : ?>
       <?php
+      $tags = explode(";", $listing['keywords']);
       $timeSincePost = strtotime($date) - strtotime($listing['postedDate']);
       $pin = false;
       $secondsPerDay = 86400;
@@ -107,105 +108,74 @@ $date = date("Y/m/d H:i:s");
       } else if ($listing['pin'] == $pinPost1mthPrice && $timeSincePost <= $secondsPerMonth) {
         $pin = true;
       }
-      echo  '<div class="mt-4 card';
-      if ($listing['highlightOrange'] == $highlightPostPrice) {
-        echo ' orange-Card';
-      }
-      echo '">
-              <div class="card-body">
-                <div class="container-fluid px-0">
-                  <div class="row">
-                    <div class="col">
-                      <div class="card-title h5';
-      if ($listing['highlightOrange'] == $highlightPostPrice) {
-        echo ' orange-Post-Font';
-      }
-      echo '">' . $listing['positionName'] . ': ' . $listing['positionType'] . '</div>
-                    </div>
-                    <div class="col-auto">
-                      <a role="button" href="' . $listing['url'] . '" class="';
-      if ($listing['highlightOrange'] == $highlightPostPrice) {
-        echo 'btn-dark ';
-      } else {
-        echo 'button btn-primary ';
-      }
-      echo 'btn"><strong>Apply</strong></a>
-                    </div>
-                    <div class="col-auto">
-                    ';
+      echo '
+      <div class="mt-4 card">
+        <div class="card-body">
+          <div class="container-fluid px-0">
+            <div class="row">
+              <div class="col">
+                <div class="card-title h5">' . $listing['positionName'] . ': ' . $listing['positionType'] . '</div>
+              </div>
+              <div class="col-auto">
+                <a role="button" href="' . $listing['url'] . '" class="button btn btn-primary"><strong>Apply</strong></a>
+              </div>
+              <div class="col-auto">
+              ';
       if ($pin) {
-        echo '<p class="" style="font-size: 16px; ';
-        if ($listing['highlightOrange'] == $highlightPostPrice) {
-          echo 'background-color:gray;';
-        }
-        echo '">📌</p>';
+        echo '<p class="" style="font-size: 16px;">📌</p>';
       }
       echo '
-                      
-                    </div>
-                  </div>
-                </div>
-                <div class="';
-      if ($listing['highlightOrange'] == $highlightPostPrice) {
-        echo 'orange-Post-Font';
-      }
-      echo ' h6">' . $listing['companyName'] . '</div>
-
-                <p class="mt-3">
-                  <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#' . $listing['listingID'] . '" aria-expanded="false" aria-controls="' . $listing['listingID'] . '" style="background-color: #449175 !important;">
-                    Toggle Job Description
-                  </button>
-                </p>
-                <div class="collapse" id="' . $listing['listingID'] . '">
-                  <div class="card card-body mb-2">
-                  ' . $listing['jobDescription'] . '
-                  </div>
-                </div>
-                <div class="tag-wrap">';
-      echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link btn ';
-      if ($listing['highlightOrange'] == $highlightPostPrice) {
-        echo 'btn-dark ';
-      } else {
-        echo 'button btn-primary ';
-      }
-      echo '"><strong>' . $listing['primaryTag'] . '</strong></button></a>';
-      $tags = explode(";", $listing['keywords']);
+              </div>
+            </div>
+          </div>
+          <div class="text-muted card-subtitle h6">' . $listing['companyName'] . '</div>
+          <p class="mt-3">
+            <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#' . $listing['listingID'] . '" aria-expanded="false" aria-controls="' . $listing['listingID'] . '" style="background-color: #449175 !important;">
+              Toggle Job Description
+            </button>
+          </p>
+          <div class="collapse" id="' . $listing['listingID'] . '">
+            <div class="card card-body">
+            ' . $listing['jobDescription'] . '
+            </div>
+          </div>
+          <div class="tag-wrap mt-3">
+            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button btn btn-primary"><strong>' . $listing['primaryTag'] . '</strong></button></a>';
       for ($i = 0; $i < sizeof($tags) - 1; $i++) {
         echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">' . $tags[$i] . '</button></a>';
       }
-      echo ' 
-                </div>
-              </div>
-            </div>
-        ';
+      echo '
+          </div>
+        </div>
+      </div>
+      ';
       ?>
     <?php endforeach; ?>
-  </div name="put job cards above this">
 
-  <div class="modal fade" id="newsletterModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="modal-title h4">Newsletter Signup</div>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>Signing up for the newsletter will enable you to get notified via email when a new job listing is posted.</p>
-          <form novalidate="">
-            <div class="mb-3"><label class="form-label">Email address</label>
-              <div class="input-group">
-                <input required="" placeholder="name@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" class="form-control">
+    <div class="modal fade" id="newsletterModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modal-title h4">Newsletter Signup</div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Signing up for the newsletter will enable you to get notified via email when a new job listing is posted.</p>
+            <form novalidate="">
+              <div class="mb-3"><label class="form-label">Email address</label>
+                <div class="input-group">
+                  <input required="" placeholder="name@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" class="form-control">
+                </div>
               </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Sign up</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Sign up</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
 </body>
 
