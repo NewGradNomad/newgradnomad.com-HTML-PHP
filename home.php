@@ -1,6 +1,7 @@
 <?php
 //includes database connection
 require_once './components/db_connect.php';
+require_once './components/prices.php';
 //get session data
 session_start();
 
@@ -30,23 +31,24 @@ $date = date("Y/m/d H:i:s");
 <head>
   <title>NewGradNomad</title>
   <meta charset="utf-8">
-  <link rel="icon" href="./icon.png" />
+  <link rel="icon" href="./style/icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="./style/NavBar.css" rel="stylesheet">
   <link href="./style/Index.css" rel="stylesheet">
   <link href="./style/HeroSection.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
     crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-  <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
-  <script src="./pages/scripts/index.js"></script>
+  <script src="./JavaScript/home.js"></script>
 </head>
 
 <body>
@@ -60,36 +62,8 @@ $date = date("Y/m/d H:i:s");
     $_SESSION['listingSuccess'] = '';
   }
   ?>
-  <nav class="green-nav navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid"><a href="./" class="navbar-brand">newgradnomad.com</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <div class="ms-auto navbar-nav">
-            <a class="nav-links nav-link" href="./pages/PostAJob">
-              <button type="button" class="button btn btn-primary"><strong>Post a Job</strong></button>
-            </a>
-            <a class="nav-links nav-link" href="./">
-              <button type="button" class="button-hide btn btn-primary"><strong>Home</strong></button>
-            </a>
-            <!-- <div class="button-hide nav-links mt-auto mb-auto show dropdown">
-              <button data-bs-toggle="dropdown" type="button" aria-expanded="false" class="dropdown-toggle btn btn-button-hide"><strong>Community</strong></button>
-              <div aria-labelledby="dropdown" data-bs-popper="static" class="dropdown-menu">
-                <a target="_blank" href="https://discord.gg/khfQcbtHw8" class="nav-links dropdown-item"><button type="button" class="button-hide btn btn-primary"><strong>Discord</strong></button></a>
-                <a data-bs-toggle="modal" data-bs-target="#newsletterModal" class="nav-links dropdown-item"><button type="button" class="button-hide btn btn-primary"><strong>Newsletter</strong></button></a>
-              </div>
-            </div> -->
-            <a class="nav-links nav-link" href="./pages/about">
-              <button type="button" class="button-hide btn btn-primary"><strong>About</strong></button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
+
+  <div id="navbar"></div>
 
   <div class="text-center hero-container container-fluid">
     <h1 class="fs-1 text-center">Find Remote New Grad Jobs</h1>
@@ -131,32 +105,44 @@ $date = date("Y/m/d H:i:s");
       $secondsPerDay = 86400;
       $secondsPerWeek = 604800;
       $secondsPerMonth = 2629800;
-      if ($listing['pin'] == 99 && $timeSincePost <= $secondsPerDay) {
+      if ($listing['pin'] == $pinPost24hrPrice && $timeSincePost <= $secondsPerDay) {
         $pin = true;
-      } else if ($listing['pin'] == 199 && $timeSincePost <= $secondsPerWeek) {
+      } else if ($listing['pin'] == $pinPost1wkPrice && $timeSincePost <= $secondsPerWeek) {
         $pin = true;
-      } else if ($listing['pin'] == 349 && $timeSincePost <= $secondsPerMonth) {
+      } else if ($listing['pin'] == $pinPost1mthPrice && $timeSincePost <= $secondsPerMonth) {
         $pin = true;
       }
       echo '<div class="mt-4 card';
+      if ($listing['highlightOrange'] == $highlightPostPrice) {
+        echo ' orange-Card';
+      }
       echo '">
               <div class="card-body">
                 <div class="container-fluid px-0">
                   <div class="row">
                     <div class="col">
                       <div class="card-title h5';
-
+      if ($listing['highlightOrange'] == $highlightPostPrice) {
+        echo ' orange-Post-Font';
+      }
       echo '">' . $listing['positionName'] . ': ' . $listing['positionType'] . '</div>
                     </div>
                     <div class="col-auto">
                       <a role="button" href="' . $listing['url'] . '" class="';
-      echo 'button btn-primary ';
+      if ($listing['highlightOrange'] == $highlightPostPrice) {
+        echo 'btn-dark ';
+      } else {
+        echo 'button btn-primary ';
+      }
       echo 'btn"><strong>Apply</strong></a>
                     </div>
                     <div class="col-auto">
                     ';
       if ($pin) {
         echo '<p class="" style="font-size: 16px; ';
+        if ($listing['highlightOrange'] == $highlightPostPrice) {
+          echo 'background-color:gray;';
+        }
         echo '">📌</p>';
       }
       echo '
@@ -165,7 +151,9 @@ $date = date("Y/m/d H:i:s");
                   </div>
                 </div>
                 <div class="';
-
+      if ($listing['highlightOrange'] == $highlightPostPrice) {
+        echo 'orange-Post-Font';
+      }
       echo ' h6">' . $listing['companyName'] . '</div>
 
                 <p class="mt-3">
@@ -180,7 +168,11 @@ $date = date("Y/m/d H:i:s");
                 </div>
                 <div class="tag-wrap">';
       echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link btn ';
-      echo 'button btn-primary ';
+      if ($listing['highlightOrange'] == $highlightPostPrice) {
+        echo 'btn-dark ';
+      } else {
+        echo 'button btn-primary ';
+      }
       echo '"><strong>' . $listing['primaryTag'] . '</strong></button></a>';
       $tags = explode(";", $listing['keywords']);
       for ($i = 0; $i < sizeof($tags) - 1; $i++) {
