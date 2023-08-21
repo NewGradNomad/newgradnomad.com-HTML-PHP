@@ -35,18 +35,22 @@ $date = date("Y/m/d H:i:s");
   <link href="./style/NavBar.css" rel="stylesheet">
   <link href="./style/Index.css" rel="stylesheet">
   <link href="./style/HeroSection.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
   <script src="./pages/scripts/index.js"></script>
 </head>
 
 <body>
-<?php
+  <?php
   if (!empty($_SESSION['listingSuccess']) && $_SESSION['listingSuccess']) {
     echo '
     <div class="alert alert-success alert-dismissible fade show my-0 text-center" role="alert">
@@ -58,7 +62,8 @@ $date = date("Y/m/d H:i:s");
   ?>
   <nav class="green-nav navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid"><a href="./" class="navbar-brand">newgradnomad.com</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="container-fluid">
@@ -113,60 +118,75 @@ $date = date("Y/m/d H:i:s");
   </form>
 
   <div class="container">
-    <?php 
-      if (empty($listings)){
-        echo '<div class="alert alert-warning text-center mt-4" role="alert">No results found for '; echo strtolower($searchReq). '.</div>';
-      }
+    <?php
+    if (empty($listings)) {
+      echo '<div class="alert alert-warning text-center mt-4" role="alert">No results found for ';
+      echo strtolower($searchReq) . '.</div>';
+    }
     ?>
-    <?php foreach ($listings as $listing) : ?>
+    <?php foreach ($listings as $listing): ?>
       <?php
       $timeSincePost = strtotime($date) - strtotime($listing['postedDate']);
       $pin = false;
       $secondsPerDay = 86400;
       $secondsPerWeek = 604800;
       $secondsPerMonth = 2629800;
-      if ($listing['pin'] == 99 && $timeSincePost <= $secondsPerDay){
+      if ($listing['pin'] == 99 && $timeSincePost <= $secondsPerDay) {
         $pin = true;
-      } else if ($listing['pin'] == 199 && $timeSincePost <= $secondsPerWeek){
+      } else if ($listing['pin'] == 199 && $timeSincePost <= $secondsPerWeek) {
         $pin = true;
-      } else if ($listing['pin'] == 349 && $timeSincePost <= $secondsPerMonth){
+      } else if ($listing['pin'] == 349 && $timeSincePost <= $secondsPerMonth) {
         $pin = true;
       }
-      echo  '<div class="mt-4 card'; if ($listing['highlightOrange'] == 39) {echo ' orange-Card';} echo'">
+      echo '<div class="mt-4 card';
+      echo '">
               <div class="card-body">
                 <div class="container-fluid px-0">
                   <div class="row">
                     <div class="col">
-                      <div class="card-title h5'; if ($listing['highlightOrange'] == 39) {echo ' orange-Post-Font';} echo'">'.$listing['positionName'].': '.$listing['positionType'].'</div>
+                      <div class="card-title h5';
+
+      echo '">' . $listing['positionName'] . ': ' . $listing['positionType'] . '</div>
                     </div>
                     <div class="col-auto">
-                      <a role="button" href="'.$listing['url'].'" class="'; if ($listing['highlightOrange'] == 39) {echo 'btn-dark ';} else{echo 'button btn-primary ';} echo'btn"><strong>Apply</strong></a>
+                      <a role="button" href="' . $listing['url'] . '" class="';
+      echo 'button btn-primary ';
+      echo 'btn"><strong>Apply</strong></a>
                     </div>
                     <div class="col-auto">
-                    '; if ($pin) {echo '<p class="" style="font-size: 16px; '; if ($listing['highlightOrange'] == 39) {echo 'background-color:gray;';} echo'">📌</p>';} echo'
+                    ';
+      if ($pin) {
+        echo '<p class="" style="font-size: 16px; ';
+        echo '">📌</p>';
+      }
+      echo '
                       
                     </div>
                   </div>
                 </div>
-                <div class="'; if ($listing['highlightOrange'] == 39) {echo 'orange-Post-Font';} echo' h6">'.$listing['companyName'].'</div>
+                <div class="';
+
+      echo ' h6">' . $listing['companyName'] . '</div>
 
                 <p class="mt-3">
-                  <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#'.$listing['listingID'].'" aria-expanded="false" aria-controls="'.$listing['listingID'].'" style="background-color: #449175 !important;">
+                  <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#' . $listing['listingID'] . '" aria-expanded="false" aria-controls="' . $listing['listingID'] . '" style="background-color: #449175 !important;">
                     Toggle Job Description
                   </button>
                 </p>
-                <div class="collapse" id="'.$listing['listingID'].'">
+                <div class="collapse" id="' . $listing['listingID'] . '">
                   <div class="card card-body mb-2">
-                  '.$listing['jobDescription'].'
+                  ' . $listing['jobDescription'] . '
                   </div>
                 </div>
                 <div class="tag-wrap">';
-                    echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link btn '; if ($listing['highlightOrange'] == 39) {echo 'btn-dark ';} else{echo 'button btn-primary ';} echo'"><strong>' . $listing['primaryTag'] . '</strong></button></a>';
-                    $tags = explode(";", $listing['keywords']);
-                    for ($i = 0; $i < sizeof($tags) - 1; $i++) {
-                      echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">' . $tags[$i] . '</button></a>';
-                    }
-                echo' 
+      echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link btn ';
+      echo 'button btn-primary ';
+      echo '"><strong>' . $listing['primaryTag'] . '</strong></button></a>';
+      $tags = explode(";", $listing['keywords']);
+      for ($i = 0; $i < sizeof($tags) - 1; $i++) {
+        echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">' . $tags[$i] . '</button></a>';
+      }
+      echo ' 
                 </div>
               </div>
             </div>
@@ -183,11 +203,13 @@ $date = date("Y/m/d H:i:s");
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>Signing up for the newsletter will enable you to get notified via email when a new job listing is posted.</p>
+          <p>Signing up for the newsletter will enable you to get notified via email when a new job listing is posted.
+          </p>
           <form novalidate="">
             <div class="mb-3"><label class="form-label">Email address</label>
               <div class="input-group">
-                <input required="" placeholder="name@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" class="form-control">
+                <input required="" placeholder="name@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                  type="email" class="form-control">
               </div>
             </div>
           </form>
