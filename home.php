@@ -176,7 +176,7 @@ $date = date("Y/m/d H:i:s");
         </div>
       </div>
     </div>
-
+  </div>
 </body>
 
 <footer id="footer"></footer>
