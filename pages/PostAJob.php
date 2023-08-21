@@ -153,13 +153,6 @@ session_start();
 
         <div class="mb-3">
           <div class="form-check">
-            <input value="<?php echo $highlightPostPrice; ?>" name="highlightPost" type="checkbox" id="highlightPost" class="form-check-input" onclick="updateTotal(this)" />
-            <label title="" for="highlightPost" class="form-check-label">Highlight your job post in orange 🍊 to gain more views (+$<?php echo $highlightPostPrice; ?>)</label>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <div class="form-check">
             <input value="<?php echo $pinPost24hrPrice; ?>" name="pinPost24hr" type="checkbox" id="pinPost24hr" class="form-check-input" onclick="checkCheckboxStatus(this)" />
             <label title="" for="pinPost24hr" class="form-check-label">Pin post on front page for 24 hours (+$<?php echo $pinPost24hrPrice; ?>)</label>
           </div>
