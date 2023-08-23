@@ -16,18 +16,18 @@ RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 <If "%{HTTP_HOST} != 'localhost'">
-ErrorDocument 400 https://ngn.000.pe/error/error?400
-ErrorDocument 401 https://ngn.000.pe/error/error?401
-ErrorDocument 403 https://ngn.000.pe/error/error?403
-ErrorDocument 404 https://ngn.000.pe/error/error?404
-ErrorDocument 503 https://ngn.000.pe/error/error?503
+ErrorDocument 400 https://ngn.000.pe/error?400
+ErrorDocument 401 https://ngn.000.pe/error?401
+ErrorDocument 403 https://ngn.000.pe/error?403
+ErrorDocument 404 https://ngn.000.pe/error?404
+ErrorDocument 503 https://ngn.000.pe/error?503
 </If>
 <ElseIf "%{HTTP_HOST} == 'localhost'">
-ErrorDocument 400 https://localhost/newgradnomad.com-html/error/error?400
-ErrorDocument 401 https://localhost/newgradnomad.com-html/error/error?401
-ErrorDocument 403 https://localhost/newgradnomad.com-html/error/error?403
-ErrorDocument 404 https://localhost/newgradnomad.com-html/error/error?404
-ErrorDocument 503 https://localhost/newgradnomad.com-html/error/error?503
+ErrorDocument 400 https://localhost/newgradnomad.com-html/error?400
+ErrorDocument 401 https://localhost/newgradnomad.com-html/error?401
+ErrorDocument 403 https://localhost/newgradnomad.com-html/error?403
+ErrorDocument 404 https://localhost/newgradnomad.com-html/error?404
+ErrorDocument 503 https://localhost/newgradnomad.com-html/error?503
 </ElseIf>
 
 Header set Connection keep-alive
