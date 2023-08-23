@@ -37,4 +37,10 @@ if (dir.includes("400")) {
       '<h1 class="mt-3">503 Service Unavailable</h1><h3 class="mt-3">The Server Is Not Ready To Handle the Request, Try Again Later.</h3>'
     )
     .show();
+} else {
+  $("#errorMessage")
+    .html(
+      '<h1 class="mt-3">404 Not Found</h1><h3 class="mt-3">Oops! You seem to be lost.</h3>'
+    )
+    .show();
 }
