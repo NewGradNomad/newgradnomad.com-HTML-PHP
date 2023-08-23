@@ -81,7 +81,7 @@ $sortedListings = array_merge($pinListings, $noPinListings)
     <!--     <a role="button" href="./NewGradPrograms" class=" btn btn-lg mx-1 mb-3 btn btn-light">New Grad Programs</a>     -->
   </div>
   <form class="container" role="search" method="get" action="./">
-    <label class="text-center mt-4 form-label" style="width: 100%;">
+    <label for="searchQuery" class="text-center mt-4 form-label" style="width: 100%;">
       <h4>Search Remote Jobs</h4>
     </label>
     <div class="mt-2 d-flex align-items-center justify-content-center">
@@ -163,34 +163,6 @@ $sortedListings = array_merge($pinListings, $noPinListings)
       ?>
     <?php endforeach; ?>
 
-    <div class="modal fade" id="newsletterModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <div class="modal-title h4">Newsletter Signup</div>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>Signing up for the newsletter will enable you to get notified via email when a new job listing is posted.
-            </p>
-            <form novalidate="">
-              <div class="mb-3"><label class="form-label">Email address</label>
-                <div class="input-group">
-                  <input required="" placeholder="name@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" class="form-control">
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary">Sign up</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-
-<footer id="footer"></footer>
+    <footer id="footer"></footer>
 
 </html>
