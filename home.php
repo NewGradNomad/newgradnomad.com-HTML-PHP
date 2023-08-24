@@ -32,6 +32,7 @@ foreach ($listings as $listing) :
   $timeSincePost = strtotime($date) - strtotime($listing['postedDate']);
   if (($listing['pin'] == $pinPost24hrPrice && $timeSincePost <= $secondsPerDay) || ($listing['pin'] == $pinPost1wkPrice && $timeSincePost <= $secondsPerWeek) || ($listing['pin'] == $pinPost1mthPrice && $timeSincePost <= $secondsPerMonth)) {
     array_push($pinListings, $listing);
+    $_SESSION[$listing['listingID'] . 'Pin?'] = true;
   } else {
     array_push($noPinListings, $listing);
   }
@@ -110,15 +111,7 @@ $sortedListings = array_merge($pinListings, $noPinListings)
     <?php foreach ($sortedListings as $listing) : ?>
       <?php
       $tags = explode(";", $listing['keywords']);
-      $pin = false;
-      $timeSincePost = strtotime($date) - strtotime($listing['postedDate']);
-      if ($listing['pin'] == $pinPost24hrPrice && $timeSincePost <= $secondsPerDay) {
-        $pin = true;
-      } else if ($listing['pin'] == $pinPost1wkPrice && $timeSincePost <= $secondsPerWeek) {
-        $pin = true;
-      } else if ($listing['pin'] == $pinPost1mthPrice && $timeSincePost <= $secondsPerMonth) {
-        $pin = true;
-      }
+      $daysSincePost = ceil((strtotime($date) - strtotime($listing['postedDate'])) / $secondsPerDay);
       echo '
       <div class="mt-4 card">
         <div class="card-body">
@@ -132,10 +125,10 @@ $sortedListings = array_merge($pinListings, $noPinListings)
               </div>
               <div class="col-auto">
               ';
-      if ($pin) {
-        echo '<p class="" style="font-size: 16px;">📌</p>';
+      if (isset($_SESSION[$listing['listingID'] . 'Pin?'])) {
+        echo '📌&emsp;';
       }
-      echo '
+      echo $daysSincePost . 'd
               </div>
             </div>
           </div>
