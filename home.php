@@ -162,7 +162,9 @@ $sortedListings = array_merge($pinListings, $noPinListings)
       ';
       ?>
     <?php endforeach; ?>
+  </div>
+</body>
 
-    <footer id="footer"></footer>
+<footer id="footer"></footer>
 
 </html>
