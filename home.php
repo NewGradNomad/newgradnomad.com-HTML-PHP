@@ -102,58 +102,58 @@ $sortedListings = array_merge($pinListings, $noPinListings)
   </form>
 
   <div class="container">
-    <?php
-    if (empty($listings)) {
+    <?php if (empty($listings)) {
       echo '<div class="alert alert-warning text-center mt-4" role="alert">No results found for ';
       echo strtolower($searchReq) . '.</div>';
-    }
-    ?>
+    } ?>
     <?php foreach ($sortedListings as $listing) : ?>
       <?php
       $tags = explode(";", $listing['keywords']);
       $daysSincePost = ceil((strtotime($date) - strtotime($listing['postedDate'])) / $secondsPerDay);
-      echo '
-      <div class="mt-4 card">
+      ?>
+      <div class="my-4 card">
         <div class="card-body">
           <div class="container-fluid px-0">
             <div class="row">
               <div class="col">
-                <div class="card-title h5">' . $listing['positionName'] . ': ' . $listing['positionType'] . '</div>
+                <div class="card-title h5">
+                  <?php echo  $listing['positionName'] . ' : ' . $listing['positionType']; ?>
+                </div>
               </div>
-              <div class="col-auto">
-                <a role="button" href="' . $listing['url'] . '" class="button btn btn-primary"><strong>Apply</strong></a>
-              </div>
-              <div class="col-auto">
-              ';
-      if (isset($_SESSION[$listing['listingID'] . 'Pin?'])) {
-        echo '📌&emsp;';
-      }
-      echo $daysSincePost . 'd
+              <div class="col-auto text-end mb-3">
+                <a role="button" href="<?php echo  $listing['url']; ?>" class="button btn btn-primary me-4"><strong>Apply</strong></a>
+                <?php if (isset($_SESSION[$listing['listingID'] . 'Pin?'])) echo '📌&emsp;'; ?>
+                <?php echo $daysSincePost; ?>d
               </div>
             </div>
-          </div>
-          <div class="text-muted card-subtitle h6">' . $listing['companyName'] . '</div>
-          <p class="mt-3">
-            <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#' . $listing['listingID'] . '" aria-expanded="false" aria-controls="' . $listing['listingID'] . '" style="background-color: #449175 !important;">
-              Toggle Job Description
-            </button>
-          </p>
-          <div class="collapse" id="' . $listing['listingID'] . '">
-            <div class="card card-body">
-            ' . $listing['jobDescription'] . '
+            <div class="row">
+              <div class="col">
+                <div class="text-muted card-subtitle h6"><?php echo  $listing['companyName']; ?></div>
+              </div>
             </div>
-          </div>
-          <div class="tag-wrap mt-3">
-            <a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button btn btn-primary"><strong>' . $listing['primaryTag'] . '</strong></button></a>';
-      for ($i = 0; $i < sizeof($tags) - 1; $i++) {
-        echo '<a class="card-link ms-0 me-2"><button type="button" class="my-2 card-link button-tag btn btn-secondary btn-sm">' . $tags[$i] . '</button></a>';
-      }
-      echo '
+            <div class="row my-3">
+              <div class="col">
+                <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo  $listing['listingID']; ?>" aria-expanded="false" aria-controls="<?php echo  $listing['listingID']; ?>">
+                  Toggle Job Description
+                </button>
+                <div class="collapse mt-3" id="<?php echo  $listing['listingID']; ?>">
+                  <div class="card card-body">
+                    <?php echo  $listing['jobDescription']; ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <a class="card-link ms-0 me-2"><button class="my-2 card-link button btn btn-primary"><strong><?php echo  $listing['primaryTag']; ?></strong></button></a>
+                <?php for ($i = 0; $i < sizeof($tags) - 1; $i++) {
+                  echo '<a class="card-link ms-0 me-2"><button class="my-2 card-link button-tag btn btn-secondary btn-sm">' . $tags[$i] . '</button></a>';
+                } ?>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      ';
-      ?>
     <?php endforeach; ?>
   </div>
 </body>
