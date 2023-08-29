@@ -121,7 +121,7 @@ $sortedListings = array_merge($pinListings, $noPinListings)
                 </div>
               </div>
               <div class="col-auto text-end mb-3">
-                <a role="button" href="<?php echo  $listing['url']; ?>" class="button btn btn-primary me-4"><strong>Apply</strong></a>
+                <a role="button" href="<?php echo  $listing['url']; ?>" class="button btn btn-primary me-3"><strong>Apply</strong></a>
                 <?php if (isset($_SESSION[$listing['listingID'] . 'Pin?'])) echo '📌&emsp;'; ?>
                 <?php echo $daysSincePost; ?>d
               </div>
