@@ -40,3 +40,12 @@ function checkApplyStatus(chk) {
     bootstrap.Tooltip.getInstance(toolTip).enable();
   }
 }
+
+function updateDescriptionButton(btn) {
+  var btnID = document.getElementById(btn.id);
+  if (btnID.textContent.toLowerCase().includes("show")) {
+    btnID.textContent = "Hide Job Description";
+  } else {
+    btnID.textContent = "Show Job Description";
+  }
+}
