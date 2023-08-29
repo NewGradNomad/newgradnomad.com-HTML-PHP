@@ -137,8 +137,8 @@ $sortedListings = array_merge($pinListings, $noPinListings)
             </div>
             <div class="row my-3">
               <div class="col">
-                <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo  $listingID; ?>" aria-expanded="false" aria-controls="<?php echo  $listingID; ?>">
-                  Toggle Job Description
+                <button id="#<?php echo  $listingID; ?>" onclick="updateDescriptionButton(this)" class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo  $listingID; ?>" aria-expanded="false" aria-controls="<?php echo  $listingID; ?>">
+                  Show Job Description
                 </button>
                 <div class="collapse mt-3" id="<?php echo  $listingID; ?>">
                   <div class="card card-body">
