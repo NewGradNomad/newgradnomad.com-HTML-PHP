@@ -106,6 +106,7 @@ $sortedListings = array_merge($pinListings, $noPinListings)
       echo '<div class="alert alert-warning text-center mt-4" role="alert">No results found for ';
       echo strtolower($searchReq) . '.</div>';
     } ?>
+    <?php $listingID = 0; ?>
     <?php foreach ($sortedListings as $listing) : ?>
       <?php
       $tags = explode(";", $listing['keywords']);
@@ -121,7 +122,10 @@ $sortedListings = array_merge($pinListings, $noPinListings)
                 </div>
               </div>
               <div class="col-auto text-end mb-3">
-                <a role="button" href="<?php echo  $listing['url']; ?>" class="button btn btn-primary me-3"><strong>Apply</strong></a>
+                <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Please Agree to the Terms in the Description Before Applying." id="ToolTip<?php echo  $listingID; ?>">
+                  <!-- disabled MUST be at the end of the class attribute for the apply button-->
+                  <a role="button" href="<?php echo  $listing['url']; ?>" class="button btn btn-primary me-3 disabled" id="<?php echo  $listingID; ?>ApplyButton"><strong>Apply</strong></a>
+                </span>
                 <?php if (isset($_SESSION[$listing['listingID'] . 'Pin?'])) echo '📌&emsp;'; ?>
                 <?php echo $daysSincePost; ?>d
               </div>
@@ -133,12 +137,16 @@ $sortedListings = array_merge($pinListings, $noPinListings)
             </div>
             <div class="row my-3">
               <div class="col">
-                <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo  $listing['listingID']; ?>" aria-expanded="false" aria-controls="<?php echo  $listing['listingID']; ?>">
+                <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo  $listingID; ?>" aria-expanded="false" aria-controls="<?php echo  $listingID; ?>">
                   Toggle Job Description
                 </button>
-                <div class="collapse mt-3" id="<?php echo  $listing['listingID']; ?>">
+                <div class="collapse mt-3" id="<?php echo  $listingID; ?>">
                   <div class="card card-body">
                     <?php echo  $listing['jobDescription']; ?>
+                  </div>
+                  <div class="ms-2 form-check mt-3">
+                    <input type="checkbox" id="<?php echo  $listingID; ?>ApplyCheckbox" class="form-check-input" onclick="checkApplyStatus(this)" />
+                    <label title="" for="<?php echo  $listingID; ?>ApplyCheckbox" class="form-check-label">I have read and agree to the warnings and TOS.</label>
                   </div>
                 </div>
               </div>
@@ -154,8 +162,13 @@ $sortedListings = array_merge($pinListings, $noPinListings)
           </div>
         </div>
       </div>
+      <?php $listingID++; ?>
     <?php endforeach; ?>
   </div>
+  <script id="enableToolTips">
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  </script>
 </body>
 
 <footer id="footer"></footer>
