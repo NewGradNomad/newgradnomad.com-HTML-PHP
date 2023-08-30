@@ -123,7 +123,6 @@ $sortedListings = array_merge($pinListings, $noPinListings)
               </div>
               <div class="col-auto text-end mb-3">
                 <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Please Agree to the Terms in the Description Before Applying." id="ToolTip<?php echo  $listingID; ?>">
-                  <!-- disabled MUST be at the end of the class attribute for the apply button-->
                   <a role="button" href="<?php echo  $listing['url']; ?>" class="button btn btn-primary me-3 disabled" id="<?php echo  $listingID; ?>ApplyButton"><strong>Apply</strong></a>
                 </span>
                 <?php if (isset($_SESSION[$listing['listingID'] . 'Pin?'])) echo '📌&emsp;'; ?>
