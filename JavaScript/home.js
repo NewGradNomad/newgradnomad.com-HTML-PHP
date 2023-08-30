@@ -24,28 +24,22 @@ function checkApplyStatus(chk) {
   var listingID = chk.id.substring(0, chk.id.indexOf("A"));
   var applyButton = document.getElementById(listingID + "ApplyButton");
   var toolTip = document.getElementById("ToolTip" + listingID);
+  var classData = applyButton.getAttribute("class").toLowerCase();
   if (chkID.checked) {
-    applyButton.setAttribute(
-      "class",
-      applyButton
-        .getAttribute("class")
-        .substring(0, applyButton.getAttribute("class").indexOf("disabled"))
-    );
+    applyButton.setAttribute("class", classData.replace("disabled", ""));
     bootstrap.Tooltip.getInstance(toolTip).disable();
   } else {
-    applyButton.setAttribute(
-      "class",
-      applyButton.getAttribute("class") + "disabled"
-    );
+    applyButton.setAttribute("class", classData.concat("disabled"));
     bootstrap.Tooltip.getInstance(toolTip).enable();
   }
 }
 
 function updateDescriptionButton(btn) {
   var btnID = document.getElementById(btn.id);
-  if (btnID.textContent.toLowerCase().includes("show")) {
-    btnID.textContent = "Hide Job Description";
+  var buttonText = btnID.textContent;
+  if (buttonText.toLowerCase().includes("show")) {
+    btnID.textContent = buttonText.replace("Show", "Hide");
   } else {
-    btnID.textContent = "Show Job Description";
+    btnID.textContent = buttonText.replace("Hide", "Show");
   }
 }
