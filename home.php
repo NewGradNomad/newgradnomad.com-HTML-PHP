@@ -58,6 +58,7 @@ $sortedListings = array_merge($pinListings, $noPinListings)
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="./JavaScript/selectData.js"></script>
   <script src="./JavaScript/home.js"></script>
 </head>
 
@@ -87,15 +88,6 @@ $sortedListings = array_merge($pinListings, $noPinListings)
     </label>
     <div class="mt-2 d-flex align-items-center justify-content-center">
       <Select id="searchQuery" name="searchQuery" class="form-select" style="width:300px;" multiple="single">
-        <option value=""></option>
-        <option value="Software Development">Software Development</option>
-        <option value="Customer Support">Customer Support</option>
-        <option value="Sales">Sales</option>
-        <option value="IT">IT</option>
-        <option value="Writing">Writing</option>
-        <option value="Human Resource">Human Resource</option>
-        <option value="Design">Design</option>
-        <option value="Recruiter">Recruiter</option>
       </select>
       <button type="submit" class="ms-4 button btn btn-primary"><strong>Submit</strong></button>
     </div>

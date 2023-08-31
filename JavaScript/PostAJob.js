@@ -19,6 +19,7 @@ $(document).ready(function () {
     tags: true,
     allowClear: true,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
+    data: keywords,
   });
 });
 
@@ -29,6 +30,7 @@ $(document).ready(function () {
     closeOnSelect: true,
     allowClear: true,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
+    data: positionTypes,
   });
 });
 
@@ -39,6 +41,29 @@ $(document).ready(function () {
     closeOnSelect: true,
     allowClear: true,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
+    data: primaryTags,
+  });
+});
+
+$(document).ready(function () {
+  $("#salaryRangeMin").select2({
+    theme: "bootstrap-5",
+    placeholder: "Minimum per year",
+    closeOnSelect: true,
+    allowClear: true,
+    width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
+    data: salaryRanges,
+  });
+});
+
+$(document).ready(function () {
+  $("#salaryRangeMax").select2({
+    theme: "bootstrap-5",
+    placeholder: "Maximum per year",
+    closeOnSelect: true,
+    allowClear: true,
+    width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
+    data: salaryRanges,
   });
 });
 
@@ -120,7 +145,9 @@ function checkEnableCheckoutButton() {
     primaryTag.checkValidity() &&
     keywords.checkValidity() &&
     jobDesc.checkValidity() &&
-    (appEmail.checkValidity() || appURL.checkValidity())
+    (appEmail.checkValidity() || appURL.checkValidity()) &&
+    salaryRangeMin.checkValidity() &&
+    salaryRangeMax.checkValidity()
   ) {
     if (appURL.disabled == true && RegExp(/^\w+([\.-]?(?=(\w+))\1)*@\w+([\.-]?(?=(\w+))\1)*(\.\w{2,3})+$/).test(document.forms["jobForm"]["appEmail"].value)) {
       checkoutButton.disabled = false;
@@ -132,4 +159,16 @@ function checkEnableCheckoutButton() {
   } else {
     checkoutButton.disabled = true;
   }
+}
+
+function checkSalaryRange() {
+  var currentFieldMessage = "salaryRangeRequiredMessage";
+  var salaryMinValue = document.forms["jobForm"][salaryRangeMin.id].value;
+  var salaryMaxValue = document.forms["jobForm"][salaryRangeMax.id].value;
+  if (salaryMinValue != null && salaryMinValue != "" && salaryMaxValue != null && salaryMaxValue != "") {
+    document.getElementById(currentFieldMessage).setAttribute("hidden", "");
+  } else {
+    document.getElementById(currentFieldMessage).removeAttribute("hidden");
+  }
+  checkEnableCheckoutButton();
 }
