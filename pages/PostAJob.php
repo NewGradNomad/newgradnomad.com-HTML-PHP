@@ -168,14 +168,15 @@ session_start();
         <div class="mb-3">
           <label class="form-label" id="salaryRange"><b>Position Salary Range</b></label>
           <small class="form-text" id="salaryRangeRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
+
           <select required class="form-select form-control" name="salaryRangeMin" id="salaryRangeMin" onchange="checkSalaryRange()">
           </select>
-          <div class="mb-2"></div>
+          <div class="mt-2"></div>
           <select required class="form-select form-control" name="salaryRangeMax" id="salaryRangeMax" onchange="checkSalaryRange()">
           </select>
-        </div>
-        <div class="container"><small class="form-text">- Please provide a salary range in thousands.</small></div>
 
+          <div class="container"><small class="form-text">- Please select a minimum and maximum salary from the select boxes</small></div>
+        </div>
         <label class="form-label"><b>Job Description</b></label>
         <small class="form-text" id="jobDescRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
         <div>
