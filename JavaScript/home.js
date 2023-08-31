@@ -6,11 +6,7 @@ $(document).ready(function () {
     tags: true,
     closeOnSelect: true,
     allowClear: true,
-    width: $(this).data("width")
-      ? $(this).data("width")
-      : $(this).hasClass("w-100")
-      ? "100%"
-      : "style",
+    width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
   });
 });
 
