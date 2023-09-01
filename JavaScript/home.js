@@ -5,8 +5,9 @@ $(document).ready(function () {
     placeholder: "Categories",
     tags: true,
     closeOnSelect: true,
-    allowClear: true,
+    allowClear: false,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
+    data: primaryTagsData,
   });
 });
 

@@ -28,11 +28,14 @@ $pinPost1mth = trim($_POST['pinPost1mth']) ?? 0 ?: -1;
 $pin = -1;
 $appEmail = trim($_POST['appEmail']) ?? 0 ?: -1;;
 $appURL = trim($_POST['appURL']) ?? 0 ?: "mailto:" . $appEmail;
+$salaryRangeMin = trim($_POST['salaryRangeMin']);
+$salaryRangeMax = trim($_POST['salaryRangeMax']);
 $jobDesc = trim($_POST['jobDesc']);
 $totalCost = trim($_POST['totalCost']);
 
 $pinCount = 0;
 $calculatedTotal = $standardListingPrice;
+$combinedSalaryRange = $salaryRangeMin . ' - ' . $salaryRangeMax;
 
 if ($pinPost24hr == $pinPost24hrPrice) {
   $pin = $pinPost24hrPrice;
@@ -47,13 +50,12 @@ if ($pinPost24hr == $pinPost24hrPrice) {
   $pinCount++;
   $calculatedTotal += $pinPost1mthPrice;
 }
-
 if ($support != -1) {
   $calculatedTotal += $supportPrice;
 }
 
 //checks if all required values are not empty
-if (empty($companyName) || empty($positionName) || empty($positionType) || empty($primaryTag) || empty($keywords) || empty($basicPosting) || ($appURL == "mailto:-1" && $appEmail == -1) || empty($jobDesc) || empty($totalCost) || $totalCost < $standardListingPrice || $pinCount > 1 || $calculatedTotal != $totalCost) {
+if (empty($companyName) || empty($positionName) || empty($positionType) || empty($primaryTag) || empty($keywords) || empty($basicPosting) || ($appURL == "mailto:-1" && $appEmail == -1) || empty($jobDesc) || empty($totalCost) || $totalCost < $standardListingPrice || $pinCount > 1 || $calculatedTotal != $totalCost || empty($salaryRangeMax) || empty($salaryRangeMin)) {
 
   $_SESSION['missingInput'] = true;
   header('Location: ../pages/PostAJob');
@@ -77,7 +79,7 @@ for ($i = 0; $i < sizeof($keywords); $i++) {
   $allKeywords .= $keywords[$i] . ";";
 }
 //prepares insert statement
-$query = $db->prepare("INSERT INTO jobListings VALUES (:listingNumber, :companyName, :positionName, :positionType, :primaryTag, :keywords, :support, :pin, :appURL, :appEmail, :jobDesc, :date, :paymentStatus)");
+$query = $db->prepare("INSERT INTO jobListings VALUES (:listingNumber, :companyName, :positionName, :positionType, :primaryTag, :keywords, :support, :pin, :appURL, :appEmail, :combinedSalaryRange, :jobDesc, :date, :paymentStatus)");
 $query->bindParam(':listingNumber', $listingNumber);
 $query->bindParam(':companyName', $companyName);
 $query->bindParam(':positionName', $positionName);
@@ -88,6 +90,7 @@ $query->bindParam(':support', $support);
 $query->bindParam(':pin', $pin);
 $query->bindParam(':appURL', $appURL);
 $query->bindParam(':appEmail', $appEmail);
+$query->bindParam(':combinedSalaryRange', $combinedSalaryRange);
 $query->bindParam(':jobDesc', $jobDesc);
 $query->bindParam(':date', $date);
 $paymentStatus = 0;

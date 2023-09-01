@@ -22,6 +22,7 @@ session_start();
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="../JavaScript/selectData.js"></script>
   <script src="../JavaScript/PostAJob.js"></script>
 </head>
 
@@ -91,10 +92,6 @@ session_start();
         <div class="mb-3">
           <small class="form-text" id="positionTypeRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
           <select required class="form-select form-control" name="positionType" id="positionType" onchange="checkInputField(this)">
-            <option value=""></option>
-            <option value="Full Time">Full Time</option>
-            <option value="Part Time">Part Time</option>
-            <option value="Contract">Contract</option>
           </select>
           <div class="container"><small class="form-text">- Specify full-time, part-time, etc...</small></div>
         </div>
@@ -103,15 +100,6 @@ session_start();
           <label class="form-label" for="primaryTag"><b>Primary Tag</b></label>
           <small class="form-text" id="primaryTagRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
           <select required class="form-select form-control" name="primaryTag" id="primaryTag" onchange="checkInputField(this)">
-            <option value=""></option>
-            <option value="Software Development">Software Development</option>
-            <option value="Customer Support">Customer Support</option>
-            <option value="Sales">Sales</option>
-            <option value="IT">IT</option>
-            <option value="Writing">Writing</option>
-            <option value="Human Resource">Human Resource</option>
-            <option value="Design">Design</option>
-            <option value="Recruiter">Recruiter</option>
           </select>
           <div class="container"><small class="form-text">- Main function of specified job</small></div>
         </div>
@@ -120,17 +108,6 @@ session_start();
           <label class="form-label" for="keywords"><b>Keywords</b></label>
           <small class="form-text" id="keywordsRequiredMessage" style="color: red !important;">* Required: Max of 3.</small>
           <select required class="form-select form-control" multiple="multiple" name="keywords[]" id="keywords" onchange="checkInputField(this)">
-            <option value="Developer">Developer</option>
-            <option value="Engineer">Engineer</option>
-            <option value="Full Stack">Full Stack</option>
-            <option value="Finance">Finance</option>
-            <option value="Accounting">Accounting</option>
-            <option value="UX/UI">UX/UI</option>
-            <option value="Technical">Technical</option>
-            <option value="Non Technical">Non Technical</option>
-            <option value="Manager">Manager</option>
-            <option value="Crypto">Crypto</option>
-            <option value="Testing">Testing</option>
           </select>
           <div class="container"><small class="form-text">- Add keywords that pertain to the jobs purpose</small></div>
         </div>
@@ -173,9 +150,9 @@ session_start();
         </div>
 
         <label class="section-title form-label"><b>Job Details</b></label>
-        <small class="form-text" id="EmailURLRequiredMessage" style="color: red !important;">* Required: Please choose either email or URL.</small>
         <div class="mb-3">
           <label class="form-label" for="appURL"><b>Application URL</b></label>
+          <small class="form-text" id="EmailURLRequiredMessage" style="color: red !important;">* Required: Please choose either email or URL.</small>
           <small class="form-text" id="URLFormatMessage" style="color: red !important;" hidden>* The URL must include https://</small>
           <input required maxlength="200" placeholder="https://" name="appURL" type="url" id="appURL" class="form-control" onkeyup="checkEmailOrURL()" />
           <div class="container"><small class="form-text">- This is the job link applicants will be forwarded to in order to apply top your job</small></div>
@@ -188,6 +165,18 @@ session_start();
           <div class="container"><small class="form-text">- Applicant is routed to this email if no application url is provided!</small></div>
         </div>
 
+        <div class="mb-3">
+          <label class="form-label" id="salaryRange"><b>Position Salary Range</b></label>
+          <small class="form-text" id="salaryRangeRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
+          <small hidden class="form-text" id="salaryRangeSwappedMessage" style="color: red !important;">* Max salary must be greater than min salary.</small>
+          <select required class="form-select form-control" name="salaryRangeMin" id="salaryRangeMin" onchange="checkSalaryRange()">
+          </select>
+          <div class="mt-2"></div>
+          <select required class="form-select form-control" name="salaryRangeMax" id="salaryRangeMax" onchange="checkSalaryRange()">
+          </select>
+
+          <div class="container"><small class="form-text">- Please select a minimum and maximum salary from the select boxes</small></div>
+        </div>
         <label class="form-label"><b>Job Description</b></label>
         <small class="form-text" id="jobDescRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
         <div>
