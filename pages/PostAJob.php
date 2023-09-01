@@ -27,8 +27,8 @@ session_start();
 </head>
 
 <body>
-  <div class="container" style="color: red;">
-    <h1><b>DO NOT use real cards at checkout, against stripe TOS in test mode.<br> Use stripe test card: 4242424242424242 04/24 024</b></h1>
+  <div class="alert alert-danger mb-0 text-center fs-3" role="alert">
+    <b>DO NOT use real cards or any personal information at checkout, this is against Stripe's TOS in test mode.<br> Use stripe test card: 4242424242424242 04/24 024</b>
   </div>
   <div id="navbar"></div>
   <?php
