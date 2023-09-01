@@ -19,4 +19,3 @@ if ($query->execute()) {
 //closes database connection
 $db = null;
 exit();
-

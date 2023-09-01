@@ -50,7 +50,8 @@ $sortedListings = array_merge($pinListings, $noPinListings)
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="./style/NavBar.css" rel="stylesheet">
   <link href="./style/Footer.css" rel="stylesheet">
-  <link href="./style/Index.css" rel="stylesheet">
+  <link href="./style/Home.css" rel="stylesheet">
+
   <link href="./style/HeroSection.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -59,6 +60,7 @@ $sortedListings = array_merge($pinListings, $noPinListings)
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="./JavaScript/selectData.js"></script>
   <script src="./JavaScript/home.js"></script>
 </head>
 
@@ -88,17 +90,8 @@ $sortedListings = array_merge($pinListings, $noPinListings)
     </label>
     <div class="mt-2 d-flex align-items-center justify-content-center">
       <Select id="searchQuery" name="searchQuery" class="form-select" style="width:300px;" multiple="single">
-        <option value=""></option>
-        <option value="Software Development">Software Development</option>
-        <option value="Customer Support">Customer Support</option>
-        <option value="Sales">Sales</option>
-        <option value="IT">IT</option>
-        <option value="Writing">Writing</option>
-        <option value="Human Resource">Human Resource</option>
-        <option value="Design">Design</option>
-        <option value="Recruiter">Recruiter</option>
       </select>
-      <button type="submit" class="ms-4 button btn btn-primary"><strong>Submit</strong></button>
+      <button type="submit" class="ms-4 orange-button btn btn-primary"><strong>Submit</strong></button>
     </div>
   </form>
 
@@ -107,6 +100,7 @@ $sortedListings = array_merge($pinListings, $noPinListings)
       echo '<div class="alert alert-warning text-center mt-4" role="alert">No results found for ';
       echo strtolower($searchReq) . '.</div>';
     } ?>
+    <?php $listingID = 0; ?>
     <?php foreach ($sortedListings as $listing) : ?>
       <?php
       $tags = explode(";", $listing['keywords']);
@@ -122,7 +116,9 @@ $sortedListings = array_merge($pinListings, $noPinListings)
                 </div>
               </div>
               <div class="col-auto text-end mb-3">
-                <a role="button" href="<?php echo  $listing['url']; ?>" class="button btn btn-primary me-4"><strong>Apply</strong></a>
+                <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Please Agree to the Terms in the Description Before Applying." id="ToolTip<?php echo  $listingID; ?>">
+                  <a role="button" href="<?php echo  $listing['url']; ?>" class="orange-button btn btn-primary mx-3 disabled" id="<?php echo  $listingID; ?>ApplyButton"><strong>Apply</strong></a>
+                </span>
                 <?php if (isset($_SESSION[$listing['listingID'] . 'Pin?'])) echo '📌&emsp;'; ?>
                 <?php echo $daysSincePost; ?>d
               </div>
@@ -134,19 +130,28 @@ $sortedListings = array_merge($pinListings, $noPinListings)
             </div>
             <div class="row my-3">
               <div class="col">
-                <button class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo  $listing['listingID']; ?>" aria-expanded="false" aria-controls="<?php echo  $listing['listingID']; ?>">
-                  Toggle Job Description
+                <button id="#<?php echo  $listingID; ?>" onclick="updateDescriptionButton(this)" class="btn btn-primary button-green" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo  $listingID; ?>" aria-expanded="false" aria-controls="<?php echo  $listingID; ?>">
+                  Show Job Description
                 </button>
-                <div class="collapse mt-3" id="<?php echo  $listing['listingID']; ?>">
+                <div class="collapse mt-3" id="<?php echo  $listingID; ?>">
                   <div class="card card-body">
                     <?php echo  $listing['jobDescription']; ?>
+                  </div>
+                  <div class="ms-2 form-check mt-3">
+                    <input type="checkbox" id="<?php echo  $listingID; ?>ApplyCheckbox" class="form-check-input" onclick="checkApplyStatus(this)" />
+                    <label title="" for="<?php echo  $listingID; ?>ApplyCheckbox" class="form-check-label">I have read and agree to the warnings and TOS.</label>
                   </div>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col">
-                <a class="card-link ms-0 me-2"><button class="my-2 card-link button btn btn-primary"><strong><?php echo  $listing['primaryTag']; ?></strong></button></a>
+                <a class="card-link ms-0 me-2"><button class="my-2 card-link orange-button btn btn-primary"><strong><?php echo  $listing['primaryTag']; ?></strong></button></a>
+                <a class="card-link ms-0 me-2"><button class="my-2 card-link btn btn-primary salary-button"><strong><?php echo  $listing['salaryRange']; ?></strong></button></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
                 <?php for ($i = 0; $i < sizeof($tags) - 1; $i++) {
                   echo '<a class="card-link ms-0 me-2"><button class="my-2 card-link button-tag btn btn-secondary btn-sm">' . $tags[$i] . '</button></a>';
                 } ?>
@@ -155,8 +160,13 @@ $sortedListings = array_merge($pinListings, $noPinListings)
           </div>
         </div>
       </div>
+      <?php $listingID++; ?>
     <?php endforeach; ?>
   </div>
+  <script id="enableToolTips">
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  </script>
 </body>
 
 <footer id="footer"></footer>
