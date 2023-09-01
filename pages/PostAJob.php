@@ -168,7 +168,7 @@ session_start();
         <div class="mb-3">
           <label class="form-label" id="salaryRange"><b>Position Salary Range</b></label>
           <small class="form-text" id="salaryRangeRequiredMessage" style="color: red !important;">* Required: Please fill out.</small>
-
+          <small hidden class="form-text" id="salaryRangeSwappedMessage" style="color: red !important;">* Max salary must be greater than min salary.</small>
           <select required class="form-select form-control" name="salaryRangeMin" id="salaryRangeMin" onchange="checkSalaryRange()">
           </select>
           <div class="mt-2"></div>

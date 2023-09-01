@@ -7,7 +7,7 @@ $(document).ready(function () {
     closeOnSelect: true,
     allowClear: false,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
-    data: primaryTags,
+    data: primaryTagsData,
   });
 });
 

@@ -1,4 +1,4 @@
-var salaryRanges = [
+var salaryRangesData = [
   {
     id: "",
     text: "",
@@ -65,7 +65,7 @@ var salaryRanges = [
   },
 ];
 
-var positionTypes = [
+var positionTypesData = [
   {
     id: "",
     text: "",
@@ -84,7 +84,7 @@ var positionTypes = [
   },
 ];
 
-var primaryTags = [
+var primaryTagsData = [
   {
     id: "",
     text: "",
@@ -123,7 +123,7 @@ var primaryTags = [
   },
 ];
 
-var keywords = [
+var keywordsData = [
   {
     id: "Developer",
     text: "Developer",

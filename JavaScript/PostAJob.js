@@ -19,7 +19,7 @@ $(document).ready(function () {
     tags: true,
     allowClear: true,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
-    data: keywords,
+    data: keywordsData,
   });
 });
 
@@ -30,7 +30,7 @@ $(document).ready(function () {
     closeOnSelect: true,
     allowClear: true,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
-    data: positionTypes,
+    data: positionTypesData,
   });
 });
 
@@ -41,7 +41,7 @@ $(document).ready(function () {
     closeOnSelect: true,
     allowClear: true,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
-    data: primaryTags,
+    data: primaryTagsData,
   });
 });
 
@@ -52,7 +52,7 @@ $(document).ready(function () {
     closeOnSelect: true,
     allowClear: true,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
-    data: salaryRanges,
+    data: salaryRangesData,
   });
 });
 
@@ -63,13 +63,12 @@ $(document).ready(function () {
     closeOnSelect: true,
     allowClear: true,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
-    data: salaryRanges,
+    data: salaryRangesData,
   });
 });
 
 function checkCheckboxStatus(chk) {
   var boxNames = ["pinPost24hr", "pinPost1wk", "pinPost1mth"];
-  var chkName = document.getElementsByName(chk.name);
   var chkID = document.getElementById(chk.id);
   if (chkID.checked) {
     for (var i = 0; i < boxNames.length; i++) {
@@ -138,6 +137,8 @@ function checkInputField(currentField) {
 }
 
 function checkEnableCheckoutButton() {
+  var salaryMinValue = document.forms["jobForm"][salaryRangeMin.id].value;
+  var salaryMaxValue = document.forms["jobForm"][salaryRangeMax.id].value;
   if (
     companyName.checkValidity() &&
     positionName.checkValidity() &&
@@ -147,7 +148,8 @@ function checkEnableCheckoutButton() {
     jobDesc.checkValidity() &&
     (appEmail.checkValidity() || appURL.checkValidity()) &&
     salaryRangeMin.checkValidity() &&
-    salaryRangeMax.checkValidity()
+    salaryRangeMax.checkValidity() &&
+    parseInt(salaryMinValue.replace("$", "").replace("k", "")) <= parseInt(salaryMaxValue.replace("$", "").replace("k", ""))
   ) {
     if (appURL.disabled == true && RegExp(/^\w+([\.-]?(?=(\w+))\1)*@\w+([\.-]?(?=(\w+))\1)*(\.\w{2,3})+$/).test(document.forms["jobForm"]["appEmail"].value)) {
       checkoutButton.disabled = false;
@@ -163,12 +165,17 @@ function checkEnableCheckoutButton() {
 
 function checkSalaryRange() {
   var currentFieldMessage = "salaryRangeRequiredMessage";
+  var salarySwappedMessage = "salaryRangeSwappedMessage";
   var salaryMinValue = document.forms["jobForm"][salaryRangeMin.id].value;
   var salaryMaxValue = document.forms["jobForm"][salaryRangeMax.id].value;
   if (salaryMinValue != null && salaryMinValue != "" && salaryMaxValue != null && salaryMaxValue != "") {
     document.getElementById(currentFieldMessage).setAttribute("hidden", "");
   } else {
     document.getElementById(currentFieldMessage).removeAttribute("hidden");
+  }
+  if (parseInt(salaryMinValue.replace("$", "").replace("k", "")) > parseInt(salaryMaxValue.replace("$", "").replace("k", ""))) {
+    document.getElementById(salarySwappedMessage).removeAttribute("hidden");
+    console.log(parseInt(salaryMinValue.replace("$", "").replace("k", "")));
   }
   checkEnableCheckoutButton();
 }
