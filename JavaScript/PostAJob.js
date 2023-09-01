@@ -149,7 +149,7 @@ function checkEnableCheckoutButton() {
     (appEmail.checkValidity() || appURL.checkValidity()) &&
     salaryRangeMin.checkValidity() &&
     salaryRangeMax.checkValidity() &&
-    parseInt(salaryMinValue.replace("$", "").replace("k", "")) <= parseInt(salaryMaxValue.replace("$", "").replace("k", ""))
+    parseInt(salaryMinValue.replaceAll("$", "").replaceAll("k", "")) <= parseInt(salaryMaxValue.replaceAll("$", "").replaceAll("k", ""))
   ) {
     if (appURL.disabled == true && RegExp(/^\w+([\.-]?(?=(\w+))\1)*@\w+([\.-]?(?=(\w+))\1)*(\.\w{2,3})+$/).test(document.forms["jobForm"]["appEmail"].value)) {
       checkoutButton.disabled = false;
@@ -173,9 +173,10 @@ function checkSalaryRange() {
   } else {
     document.getElementById(currentFieldMessage).removeAttribute("hidden");
   }
-  if (parseInt(salaryMinValue.replace("$", "").replace("k", "")) > parseInt(salaryMaxValue.replace("$", "").replace("k", ""))) {
+  if (parseInt(salaryMinValue.replaceAll("$", "").replaceAll("k", "")) > parseInt(salaryMaxValue.replaceAll("$", "").replaceAll("k", ""))) {
     document.getElementById(salarySwappedMessage).removeAttribute("hidden");
-    console.log(parseInt(salaryMinValue.replace("$", "").replace("k", "")));
+  } else {
+    document.getElementById(salarySwappedMessage).setAttribute("hidden", "");
   }
   checkEnableCheckoutButton();
 }
