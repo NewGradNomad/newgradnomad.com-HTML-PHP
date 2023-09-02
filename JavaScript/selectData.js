@@ -63,6 +63,66 @@ var salaryRangesData = [
     id: "$150k",
     text: "$150,000 per year",
   },
+  {
+    id: "$160k",
+    text: "$160,000 per year",
+  },
+  {
+    id: "$170k",
+    text: "$170,000 per year",
+  },
+  {
+    id: "$180k",
+    text: "$180,000 per year",
+  },
+  {
+    id: "$190k",
+    text: "$190,000 per year",
+  },
+  {
+    id: "$200k",
+    text: "$200,000 per year",
+  },
+  {
+    id: "$210k",
+    text: "$210,000 per year",
+  },
+  {
+    id: "$220k",
+    text: "$220,000 per year",
+  },
+  {
+    id: "$230k",
+    text: "$230,000 per year",
+  },
+  {
+    id: "$240k",
+    text: "$240,000 per year",
+  },
+  {
+    id: "$250k",
+    text: "$250,000 per year",
+  },
+  {
+    id: "$260k",
+    text: "$260,000 per year",
+  },
+  {
+    id: "$270k",
+    text: "$270,000 per year",
+  },
+  {
+    id: "$280k",
+    text: "$280,000 per year",
+  },
+  {
+    id: "$290k",
+    text: "$290,000 per year",
+  },
+  {
+    id: "$300k",
+    text: "$300,000 per year",
+  },
 ];
 
 var positionTypesData = [
