@@ -110,7 +110,7 @@ $sortedListings = array_merge($pinListings, $noPinListings)
             <div class="row">
               <div class="col">
                 <div class="card-title h5">
-                  <?php echo  $listing['positionName'] . ' : ' . $listing['positionType']; ?>
+                  <?php echo  $listing['positionName'] . ': ' . $listing['positionType']; ?>
                 </div>
               </div>
               <div class="col-auto text-end mb-3">
