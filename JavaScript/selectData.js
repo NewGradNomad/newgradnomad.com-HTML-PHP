@@ -123,10 +123,6 @@ var salaryRangesData = [
     id: "$300k",
     text: "$300,000 per year",
   },
-  {
-    id: ">$300k",
-    text: "Over $300,000 per year",
-  },
 ];
 
 var positionTypesData = [
