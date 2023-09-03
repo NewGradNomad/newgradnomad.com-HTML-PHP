@@ -135,7 +135,7 @@ function checkEmailOrURL() {
 function checkInputField(currentField) {
   var currentFieldMessage = currentField.id + "RequiredMessage";
   var messageValue = document.forms["jobForm"][currentField.id].value;
-  if (messageValue != null && messageValue) {
+  if (messageValue != null && messageValue != "") {
     document.getElementById(currentFieldMessage).setAttribute("hidden", "");
   } else {
     document.getElementById(currentFieldMessage).removeAttribute("hidden");
