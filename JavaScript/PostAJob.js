@@ -68,19 +68,19 @@ $(document).ready(function () {
 });
 
 function checkCheckboxStatus(chk) {
-  var boxNames = ["pinPost24hr", "pinPost1wk", "pinPost1mth"];
+  var pinNames = ["pinPost24hr", "pinPost1wk", "pinPost1mth"];
   var chkID = document.getElementById(chk.id);
   if (chkID.checked) {
-    for (var i = 0; i < boxNames.length; i++) {
-      if (!document.getElementById(boxNames[i]).checked) {
-        document.getElementById(boxNames[i]).setAttribute("disabled", "");
+    for (var i = 0; i < pinNames.length; i++) {
+      if (!document.getElementById(pinNames[i]).checked) {
+        document.getElementById(pinNames[i]).setAttribute("disabled", "");
       } else {
-        document.getElementById(boxNames[i]).removeAttribute("disabled");
+        document.getElementById(pinNames[i]).removeAttribute("disabled");
       }
     }
   } else {
-    for (var i = 0; i < boxNames.length; i++) {
-      document.getElementById(boxNames[i]).removeAttribute("disabled");
+    for (var i = 0; i < pinNames.length; i++) {
+      document.getElementById(pinNames[i]).removeAttribute("disabled");
     }
   }
   updateTotal(chk);
@@ -88,11 +88,13 @@ function checkCheckboxStatus(chk) {
 
 function updateTotal(chk) {
   var chkID = document.getElementById(chk.id);
+  var currentTotal = parseFloat(total.getAttribute("value"));
+  var checkboxValue = parseFloat(chkID.getAttribute("value"));
   if (chkID.checked) {
-    var newTotal = parseFloat(total.getAttribute("value")) + parseFloat(chkID.getAttribute("value"));
+    var newTotal = currentTotal + checkboxValue;
     document.getElementById("total").setAttribute("value", newTotal);
   } else {
-    var newTotal = parseFloat(total.getAttribute("value")) - parseFloat(chkID.getAttribute("value"));
+    var newTotal = currentTotal - checkboxValue;
     document.getElementById("total").setAttribute("value", newTotal);
   }
   document.getElementById("total").textContent = "Checkout Job Posting $" + newTotal;
@@ -100,7 +102,11 @@ function updateTotal(chk) {
 }
 
 function checkEmailOrURL() {
-  if (document.forms["jobForm"]["appURL"].value != null && document.forms["jobForm"]["appURL"].value != "") {
+  var emailPassRegex = RegExp(/^\w+([\.-]?(?=(\w+))\1)*@\w+([\.-]?(?=(\w+))\1)*(\.\w{2,3})+$/).test(document.forms["jobForm"]["appEmail"].value);
+  var urlValue = document.forms["jobForm"]["appURL"].value;
+  var emailValue = document.forms["jobForm"]["appEmail"].value;
+
+  if (urlValue != null && urlValue != "") {
     appEmail.disabled = true;
     document.getElementById("EmailURLRequiredMessage").setAttribute("hidden", "");
     if (document.forms["jobForm"]["appURL"].value.includes("https://")) {
@@ -108,10 +114,10 @@ function checkEmailOrURL() {
     } else {
       document.getElementById("URLFormatMessage").removeAttribute("hidden");
     }
-  } else if (document.forms["jobForm"]["appEmail"].value != null && document.forms["jobForm"]["appEmail"].value != "") {
+  } else if (emailValue != null && emailValue != "") {
     appURL.disabled = true;
     document.getElementById("EmailURLRequiredMessage").setAttribute("hidden", "");
-    if (RegExp(/^\w+([\.-]?(?=(\w+))\1)*@\w+([\.-]?(?=(\w+))\1)*(\.\w{2,3})+$/).test(document.forms["jobForm"]["appEmail"].value)) {
+    if (emailPassRegex) {
       document.getElementById("EmailFormatMessage").setAttribute("hidden", "");
     } else {
       document.getElementById("EmailFormatMessage").removeAttribute("hidden");
@@ -128,7 +134,8 @@ function checkEmailOrURL() {
 
 function checkInputField(currentField) {
   var currentFieldMessage = currentField.id + "RequiredMessage";
-  if (document.forms["jobForm"][currentField.id].value != null && document.forms["jobForm"][currentField.id].value != "") {
+  var messageValue = document.forms["jobForm"][currentField.id].value;
+  if (messageValue != null && messageValue) {
     document.getElementById(currentFieldMessage).setAttribute("hidden", "");
   } else {
     document.getElementById(currentFieldMessage).removeAttribute("hidden");
@@ -137,8 +144,12 @@ function checkInputField(currentField) {
 }
 
 function checkEnableCheckoutButton() {
-  var salaryMinValue = document.forms["jobForm"][salaryRangeMin.id].value;
-  var salaryMaxValue = document.forms["jobForm"][salaryRangeMax.id].value;
+  var salaryMin = document.forms["jobForm"][salaryRangeMin.id].value;
+  var salaryMax = document.forms["jobForm"][salaryRangeMax.id].value;
+  var salaryMinInt = parseInt(salaryMin.replaceAll("$", "").replaceAll("k", ""));
+  var salaryMaxInt = parseInt(salaryMax.replaceAll("$", "").replaceAll("k", ""));
+  var emailPassRegex = RegExp(/^\w+([\.-]?(?=(\w+))\1)*@\w+([\.-]?(?=(\w+))\1)*(\.\w{2,3})+$/).test(document.forms["jobForm"]["appEmail"].value);
+
   if (
     companyName.checkValidity() &&
     positionName.checkValidity() &&
@@ -149,9 +160,9 @@ function checkEnableCheckoutButton() {
     (appEmail.checkValidity() || appURL.checkValidity()) &&
     salaryRangeMin.checkValidity() &&
     salaryRangeMax.checkValidity() &&
-    parseInt(salaryMinValue.replaceAll("$", "").replaceAll("k", "")) <= parseInt(salaryMaxValue.replaceAll("$", "").replaceAll("k", ""))
+    salaryMinInt <= salaryMaxInt
   ) {
-    if (appURL.disabled == true && RegExp(/^\w+([\.-]?(?=(\w+))\1)*@\w+([\.-]?(?=(\w+))\1)*(\.\w{2,3})+$/).test(document.forms["jobForm"]["appEmail"].value)) {
+    if (appURL.disabled == true && emailPassRegex) {
       checkoutButton.disabled = false;
     } else if (appEmail.disabled == true && document.forms["jobForm"]["appURL"].value.includes("https://")) {
       checkoutButton.disabled = false;
@@ -166,14 +177,18 @@ function checkEnableCheckoutButton() {
 function checkSalaryRange() {
   var currentFieldMessage = "salaryRangeRequiredMessage";
   var salarySwappedMessage = "salaryRangeSwappedMessage";
-  var salaryMinValue = document.forms["jobForm"][salaryRangeMin.id].value;
-  var salaryMaxValue = document.forms["jobForm"][salaryRangeMax.id].value;
-  if (salaryMinValue != null && salaryMinValue != "" && salaryMaxValue != null && salaryMaxValue != "") {
+  var salaryMin = document.forms["jobForm"][salaryRangeMin.id].value;
+  var salaryMax = document.forms["jobForm"][salaryRangeMax.id].value;
+  var salaryMinInt = parseInt(salaryMin.replaceAll("$", "").replaceAll("k", ""));
+  var salaryMaxInt = parseInt(salaryMax.replaceAll("$", "").replaceAll("k", ""));
+
+  if (salaryMin != null && salaryMin != "" && salaryMax != null && salaryMax != "") {
     document.getElementById(currentFieldMessage).setAttribute("hidden", "");
   } else {
     document.getElementById(currentFieldMessage).removeAttribute("hidden");
   }
-  if (parseInt(salaryMinValue.replaceAll("$", "").replaceAll("k", "")) > parseInt(salaryMaxValue.replaceAll("$", "").replaceAll("k", ""))) {
+
+  if (salaryMinInt > salaryMaxInt) {
     document.getElementById(salarySwappedMessage).removeAttribute("hidden");
   } else {
     document.getElementById(salarySwappedMessage).setAttribute("hidden", "");
