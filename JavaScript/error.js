@@ -6,7 +6,6 @@ $(function () {
 
 var loc = window.location.href;
 var dir = loc.substring(loc.lastIndexOf("?") + 1, loc.lastIndexOf("?") + 4);
-console.log(dir);
 if (dir.includes("400")) {
   $("#errorMessage").html('<h1 class="mt-3">400 Bad Request</h1><h3 class="mt-3">Warning: The client should not repeat this request without modification.</h3>').show();
 } else if (dir.includes("401")) {

@@ -1,15 +1,15 @@
-$(document).ready(function () {
-  $("#searchQuery").select2({
-    theme: "bootstrap-5",
-    maximumSelectionLength: 1,
-    placeholder: "Categories",
-    tags: true,
-    closeOnSelect: true,
-    allowClear: false,
-    width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
-    data: primaryTagsData,
-  });
-});
+// $(document).ready(function () {
+//   $("#searchQuery").select2({
+//     theme: "bootstrap-5",
+//     maximumSelectionLength: 1,
+//     placeholder: "Categories",
+//     tags: true,
+//     closeOnSelect: true,
+//     allowClear: false,
+//     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
+//     data: primaryTagsData,
+//   });
+// });
 
 $(function () {
   $("#navbar").load("./components/navbar.html");
@@ -40,3 +40,20 @@ function updateDescriptionButton(btn) {
     btnID.textContent = buttonText.replace("Hide", "Show");
   }
 }
+$(document).ready(function () {
+  var availableTags = [];
+  var tagsJSON = primaryTagsData.concat(positionTypesData).concat(keywordsData);
+
+  tagsJSON.forEach((element) => {
+    availableTags.push(element.text);
+  });
+
+  $("#searchQuery").autocomplete({
+    source: availableTags,
+  });
+});
+
+$(document).ready(function () {
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
+});

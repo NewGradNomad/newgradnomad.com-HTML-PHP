@@ -33,10 +33,6 @@ ErrorDocument 503 https://localhost/newgradnomad.com-html/error?503
 Header set Connection keep-alive
 AddType text/cache-manifest .manifest
 
-RewriteCond %{REQUEST_URI} !^/(wp-login.php|wp-admin/|wp-content/plugins/|wp-includes/).* [NC]
-RewriteCond %{THE_REQUEST} !^[A-Z]{3,9}\ [a-zA-Z0-9\.\+_/\-\?\=\&]+\ HTTP/ [NC]
-RewriteRule .? - [F,NS,L]
-
 IndexIgnore * 
 
 Options All -Indexes

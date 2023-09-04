@@ -5,11 +5,11 @@ require_once './components/prices.php';
 //get session data
 session_start();
 
-$searchReq = filter_input(INPUT_GET, 'searchQuery');
+$searchReq = filter_input(INPUT_GET, 'searchQuery', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 //prepare query based on input received
 if ($searchReq != NULL || $searchReq != FALSE) {
-  $query = $db->prepare("SELECT * FROM jobListings WHERE paymentStatus = 1 AND primaryTag like :search OR keywords like :search OR positionType like :search OR positionName like :search OR companyName like :search ORDER BY `jobListings`.`postedDate` DESC");
+  $query = $db->prepare("SELECT * FROM jobListings WHERE paymentStatus = 1 AND primaryTag like :search OR keywords like :search OR positionType like :search OR positionName like :search OR companyName like :search OR salaryRange like :search ORDER BY `jobListings`.`postedDate` DESC");
   $query->bindValue(':search', "%" . $searchReq . "%");
 } else {
   $query = $db->prepare("SELECT * FROM jobListings WHERE paymentStatus = 1 ORDER BY `jobListings`.`postedDate` DESC");
@@ -54,9 +54,12 @@ $sortedListings = array_merge($pinListings, $noPinListings)
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="./JavaScript/selectData.js"></script>
   <script src="./JavaScript/home.js"></script>
@@ -86,9 +89,8 @@ $sortedListings = array_merge($pinListings, $noPinListings)
     <label for="searchQuery" class="text-center mt-4 form-label" style="width: 100%;">
       <h4>Search Remote Jobs</h4>
     </label>
-    <div class="mt-2 d-flex align-items-center justify-content-center">
-      <Select id="searchQuery" name="searchQuery" class="form-select" style="width:300px;" multiple="single">
-      </select>
+    <div class="mt-2 d-flex align-items-center justify-content-center ui-widget">
+      <input type="search" class="form-control autocomplete" placeholder="Search..." id="searchQuery" name="searchQuery" style="width:300px;">
       <button type="submit" class="ms-4 orange-button btn btn-primary"><strong>Submit</strong></button>
     </div>
   </form>
@@ -161,10 +163,6 @@ $sortedListings = array_merge($pinListings, $noPinListings)
       <?php $listingID++; ?>
     <?php endforeach; ?>
   </div>
-  <script id="enableToolTips">
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-  </script>
 </body>
 
 <footer id="footer"></footer>
