@@ -149,6 +149,7 @@ function checkEnableCheckoutButton() {
   var salaryMinInt = parseInt(salaryMin.replaceAll("$", "").replaceAll("k", ""));
   var salaryMaxInt = parseInt(salaryMax.replaceAll("$", "").replaceAll("k", ""));
   var emailPassRegex = RegExp(/^\w+([\.-]?(?=(\w+))\1)*@\w+([\.-]?(?=(\w+))\1)*(\.\w{2,3})+$/).test(document.forms["jobForm"]["appEmail"].value);
+  var toolTip = document.getElementById("ToolTipCheckout");
 
   if (
     companyName.checkValidity() &&
@@ -164,13 +165,17 @@ function checkEnableCheckoutButton() {
   ) {
     if (appURL.disabled == true && emailPassRegex) {
       checkoutButton.disabled = false;
+      bootstrap.Tooltip.getInstance(toolTip).disable();
     } else if (appEmail.disabled == true && document.forms["jobForm"]["appURL"].value.includes("https://")) {
       checkoutButton.disabled = false;
+      bootstrap.Tooltip.getInstance(toolTip).disable();
     } else {
       checkoutButton.disabled = true;
+      bootstrap.Tooltip.getInstance(toolTip).enable();
     }
   } else {
     checkoutButton.disabled = true;
+    bootstrap.Tooltip.getInstance(toolTip).enable();
   }
 }
 
@@ -195,3 +200,8 @@ function checkSalaryRange() {
   }
   checkEnableCheckoutButton();
 }
+
+$(document).ready(function () {
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
+});
