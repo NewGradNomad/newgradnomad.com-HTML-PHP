@@ -188,7 +188,7 @@ session_start();
         </div>
         <label class="form-label my-0"><b>Job Description</b></label>
         <small class="form-text" id="jobDescRequiredMessage" style="color: red !important;">* Required</small>
-        <div class="mt-2">
+        <div class="mt-2 mb-5">
           <textarea required maxlength="1000" placeholder="" name="jobDesc" id="jobDesc" class="form-control" style="height: 150px;" onkeyup="checkInputField(this)"></textarea>
         </div>
 
@@ -197,10 +197,12 @@ session_start();
             <input value="<?php echo $standardListingPrice; ?>" required hidden="" onclick="return false;" name="totalCost" type="checkbox" id="totalCost" class="form-check-input" checked="" />
           </div>
         </div>
-        <button id="checkoutButton" type="submit" class="checkout-Button mt-4 mb-4 form-control btn btn-primary" disabled>
-          <b>
-            <div value="<?php echo $standardListingPrice; ?>" id="total">Checkout Job Posting $<?php echo $standardListingPrice; ?></div>
-          </b>
+        <span class="d-flex" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Please fill out the required fields and ensure they are formatted correctly." id="ToolTipCheckout">
+          <button id="checkoutButton" type="submit" class="checkout-Button mt-1 mb-4 form-control btn btn-primary" disabled>
+        </span>
+        <b>
+          <div value="<?php echo $standardListingPrice; ?>" id="total">Checkout Job Posting $<?php echo $standardListingPrice; ?></div>
+        </b>
         </button>
       </form>
     </div>
