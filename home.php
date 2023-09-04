@@ -91,7 +91,7 @@ $sortedListings = array_merge($pinListings, $noPinListings)
       <h4>Search Remote Jobs</h4>
     </label>
     <div class="mt-2 d-flex align-items-center justify-content-center ui-widget">
-      <input type="search" class="form-control autocomplete" placeholder="Search..." id="searchQuery" name="searchQuery" style="width:300px;">
+      <input type="search" class="form-control autocomplete" placeholder="Search..." id="searchQuery" name="searchQuery" style="width:222px;">
       <button type="submit" class="ms-4 orange-button btn btn-primary"><strong>Submit</strong></button>
     </div>
   </form>
