@@ -64,6 +64,10 @@ var primaryTagsData = [
 
 var keywordsData = [
   {
+    id: "",
+    text: "",
+  },
+  {
     id: "Developer",
     text: "Developer",
   },
