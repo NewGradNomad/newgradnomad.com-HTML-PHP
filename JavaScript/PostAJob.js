@@ -17,7 +17,8 @@ $(document).ready(function () {
     placeholder: "Select...",
     closeOnSelect: true,
     tags: true,
-    allowClear: false,
+    allowClear: true,
+    index: -1,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
     data: keywordsData,
   });
@@ -28,7 +29,8 @@ $(document).ready(function () {
     theme: "bootstrap-5",
     placeholder: "Position Type...",
     closeOnSelect: true,
-    allowClear: false,
+    allowClear: true,
+    index: -1,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
     data: positionTypesData,
   });
@@ -39,7 +41,8 @@ $(document).ready(function () {
     theme: "bootstrap-5",
     placeholder: "Select...",
     closeOnSelect: true,
-    allowClear: false,
+    allowClear: true,
+    index: -1,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
     data: primaryTagsData,
   });
@@ -50,7 +53,8 @@ $(document).ready(function () {
     theme: "bootstrap-5",
     placeholder: "Minimum per year",
     closeOnSelect: true,
-    allowClear: false,
+    allowClear: true,
+    index: -1,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
     data: salaryRangesData,
   });
@@ -61,7 +65,8 @@ $(document).ready(function () {
     theme: "bootstrap-5",
     placeholder: "Maximum per year",
     closeOnSelect: true,
-    allowClear: false,
+    allowClear: true,
+    index: -1,
     width: $(this).data("width") ? $(this).data("width") : $(this).hasClass("w-100") ? "100%" : "style",
     data: salaryRangesData,
   });
