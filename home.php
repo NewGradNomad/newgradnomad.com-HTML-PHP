@@ -169,9 +169,12 @@ $sortedListings = array_merge($pinListings, $noPinListings)
                 <a class="card-link ms-0 me-2"><button class="my-2 card-link orange-button btn btn-primary"><strong>
                       <?php echo $listing['primaryTag']; ?>
                     </strong></button></a>
-                <a class="card-link ms-0 me-2"><button class="my-2 card-link btn btn-primary salary-button"><strong>
+                <a class="card-link ms-0 me-2">
+                  <p class="my-2 card-link btn border border-dark bg-transparent salary-button" style="color:black">
+                    <strong>
                       <?php echo $listing['salaryRange']; ?>
-                    </strong></button></a>
+                    </strong></p>
+                </a>
               </div>
             </div>
             <div class="row">
