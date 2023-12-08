@@ -32,7 +32,7 @@ abstract class Webhook
         $jsonError = \json_last_error();
         if (null === $data && \JSON_ERROR_NONE !== $jsonError) {
             $msg = "Invalid payload: {$payload} "
-              . "(json_last_error() was {$jsonError})";
+                . "(json_last_error() was {$jsonError})";
 
             throw new Exception\UnexpectedValueException($msg);
         }
