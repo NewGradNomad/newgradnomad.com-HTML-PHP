@@ -146,7 +146,7 @@ $sortedListings = array_merge($pinListings, $noPinListings)
                   <div class="ms-2 form-check mt-3">
                     <input type="checkbox" id="<?php echo $listingID; ?>ApplyCheckbox" class="form-check-input" onclick="checkApplyStatus(this)" />
                     <label title="" for="<?php echo $listingID; ?>ApplyCheckbox" class="form-check-label">I have read and
-                      agree to the warnings and TOS.</label>
+                      agree to the <a class="link-dark" href="./pages/legal">warnings and TOS</a>.</label>
                   </div>
                 </div>
               </div>
