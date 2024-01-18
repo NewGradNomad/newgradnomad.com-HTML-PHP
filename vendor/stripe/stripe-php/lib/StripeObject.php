@@ -134,15 +134,15 @@ class StripeObject implements \ArrayAccess, \Countable, \JsonSerializable
         if (static::getPermanentAttributes()->includes($k)) {
             throw new Exception\InvalidArgumentException(
                 "Cannot set {$k} on this object. HINT: you can't set: " .
-                    \implode(', ', static::getPermanentAttributes()->toArray())
+                \implode(', ', static::getPermanentAttributes()->toArray())
             );
         }
 
         if ('' === $v) {
             throw new Exception\InvalidArgumentException(
                 'You cannot set \'' . $k . '\'to an empty string. '
-                    . 'We interpret empty strings as NULL in requests. '
-                    . 'You may set obj->' . $k . ' = NULL to delete the property'
+                . 'We interpret empty strings as NULL in requests. '
+                . 'You may set obj->' . $k . ' = NULL to delete the property'
             );
         }
 
@@ -179,11 +179,11 @@ class StripeObject implements \ArrayAccess, \Countable, \JsonSerializable
             $class = static::class;
             $attrs = \implode(', ', \array_keys($this->_values));
             $message = "Stripe Notice: Undefined property of {$class} instance: {$k}. "
-                . "HINT: The {$k} attribute was set in the past, however. "
-                . 'It was then wiped when refreshing the object '
-                . "with the result returned by Stripe's API, "
-                . 'probably as a result of a save(). The attributes currently '
-                . "available on this object are: {$attrs}";
+                    . "HINT: The {$k} attribute was set in the past, however. "
+                    . 'It was then wiped when refreshing the object '
+                    . "with the result returned by Stripe's API, "
+                    . 'probably as a result of a save(). The attributes currently '
+                    . "available on this object are: {$attrs}";
             Stripe::getLogger()->error($message);
 
             return $nullval;

@@ -5,10 +5,10 @@
 namespace Stripe;
 
 /**
- * You can add one or multiple tax IDs to a <a href="https://stripe.com/docs/api/customers">customer</a>.
- * A customer's tax IDs are displayed on invoices and credit notes issued for the customer.
+ * You can add one or multiple tax IDs to a <a href="https://stripe.com/docs/api/customers">customer</a> or account.
+ * Customer and account tax IDs get displayed on related invoices and credit notes.
  *
- * Related guide: <a href="https://stripe.com/docs/billing/taxes/tax-ids">Customer tax identification numbers</a>
+ * Related guides: <a href="https://stripe.com/docs/billing/taxes/tax-ids">Customer tax identification numbers</a>, <a href="https://stripe.com/docs/invoicing/connect#account-tax-ids">Account tax IDs</a>
  *
  * @property string $id Unique identifier for the object.
  * @property string $object String representing the object's type. Objects of the same type share the same value.
@@ -130,8 +130,8 @@ class TaxId extends ApiResource
     public static function retrieve($_id, $_opts = null)
     {
         $msg = 'Tax IDs cannot be retrieved without a customer ID. Retrieve ' .
-            "a tax ID using `Customer::retrieveTaxId('customer_id', " .
-            "'tax_id_id')`.";
+               "a tax ID using `Customer::retrieveTaxId('customer_id', " .
+               "'tax_id_id')`.";
 
         throw new Exception\BadMethodCallException($msg);
     }

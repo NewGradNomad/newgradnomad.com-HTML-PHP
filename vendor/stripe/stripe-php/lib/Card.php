@@ -32,12 +32,12 @@ namespace Stripe;
  * @property null|string $dynamic_last4 (For tokenized numbers only.) The last four digits of the device account number.
  * @property int $exp_month Two-digit number representing the card's expiration month.
  * @property int $exp_year Four-digit number representing the card's expiration year.
- * @property null|string $fingerprint <p>Uniquely identifies this particular card number. You can use this attribute to check whether two customers who’ve signed up with you are using the same card number, for example. For payment methods that tokenize card information (Apple Pay, Google Pay), the tokenized number might be provided instead of the underlying card number.</p><p><em>Starting May 1, 2021, card fingerprint in India for Connect will change to allow two fingerprints for the same card --- one for India and one for the rest of the world.</em></p>
+ * @property null|string $fingerprint <p>Uniquely identifies this particular card number. You can use this attribute to check whether two customers who’ve signed up with you are using the same card number, for example. For payment methods that tokenize card information (Apple Pay, Google Pay), the tokenized number might be provided instead of the underlying card number.</p><p><em>As of May 1, 2021, card fingerprint in India for Connect changed to allow two fingerprints for the same card---one for India and one for the rest of the world.</em></p>
  * @property string $funding Card funding type. Can be <code>credit</code>, <code>debit</code>, <code>prepaid</code>, or <code>unknown</code>.
  * @property string $last4 The last four digits of the card.
  * @property null|\Stripe\StripeObject $metadata Set of <a href="https://stripe.com/docs/api/metadata">key-value pairs</a> that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
  * @property null|string $name Cardholder name.
- * @property null|string $status For external accounts, possible values are <code>new</code> and <code>errored</code>. If a transfer fails, the status is set to <code>errored</code> and transfers are stopped until account details are updated.
+ * @property null|string $status For external accounts that are cards, possible values are <code>new</code> and <code>errored</code>. If a payout fails, the status is set to <code>errored</code> and <a href="https://stripe.com/docs/payouts#payout-schedule">scheduled payouts</a> are stopped until account details are updated.
  * @property null|string $tokenization_method If the card number is tokenized, this is the method that was used. Can be <code>android_pay</code> (includes Google Pay), <code>apple_pay</code>, <code>masterpass</code>, <code>visa_checkout</code>, or null.
  */
 class Card extends ApiResource
@@ -110,9 +110,9 @@ class Card extends ApiResource
     public static function retrieve($_id, $_opts = null)
     {
         $msg = 'Cards cannot be retrieved without a customer ID or an ' .
-            'account ID. Retrieve a card using ' .
-            "`Customer::retrieveSource('customer_id', 'card_id')` or " .
-            "`Account::retrieveExternalAccount('account_id', 'card_id')`.";
+               'account ID. Retrieve a card using ' .
+               "`Customer::retrieveSource('customer_id', 'card_id')` or " .
+               "`Account::retrieveExternalAccount('account_id', 'card_id')`.";
 
         throw new Exception\BadMethodCallException($msg);
     }
@@ -127,10 +127,10 @@ class Card extends ApiResource
     public static function update($_id, $_params = null, $_options = null)
     {
         $msg = 'Cards cannot be updated without a customer ID or an ' .
-            'account ID. Update a card using ' .
-            "`Customer::updateSource('customer_id', 'card_id', " .
-            '$updateParams)` or `Account::updateExternalAccount(' .
-            "'account_id', 'card_id', \$updateParams)`.";
+               'account ID. Update a card using ' .
+               "`Customer::updateSource('customer_id', 'card_id', " .
+               '$updateParams)` or `Account::updateExternalAccount(' .
+               "'account_id', 'card_id', \$updateParams)`.";
 
         throw new Exception\BadMethodCallException($msg);
     }

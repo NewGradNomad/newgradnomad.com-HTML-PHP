@@ -60,9 +60,9 @@ class Collection extends StripeObject implements \Countable, \IteratorAggregate
             return parent::offsetGet($k);
         }
         $msg = "You tried to access the {$k} index, but Collection " .
-            'types only support string keys. (HINT: List calls ' .
-            'return an object with a `data` (which is the data ' .
-            "array). You likely want to call ->data[{$k}])";
+                   'types only support string keys. (HINT: List calls ' .
+                   'return an object with a `data` (which is the data ' .
+                   "array). You likely want to call ->data[{$k}])";
 
         throw new Exception\InvalidArgumentException($msg);
     }
@@ -176,10 +176,8 @@ class Collection extends StripeObject implements \Countable, \IteratorAggregate
 
         while (true) {
             $filters = $this->filters ?: [];
-            if (
-                \array_key_exists('ending_before', $filters)
-                && !\array_key_exists('starting_after', $filters)
-            ) {
+            if (\array_key_exists('ending_before', $filters)
+                && !\array_key_exists('starting_after', $filters)) {
                 foreach ($page->getReverseIterator() as $item) {
                     yield $item;
                 }

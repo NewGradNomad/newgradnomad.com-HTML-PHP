@@ -42,9 +42,9 @@ require_once '/path/to/stripe-php/init.php';
 
 The bindings require the following extensions in order to work properly:
 
-- [`curl`](https://secure.php.net/manual/en/book.curl.php), although you can use your own non-cURL client if you prefer
-- [`json`](https://secure.php.net/manual/en/book.json.php)
-- [`mbstring`](https://secure.php.net/manual/en/book.mbstring.php) (Multibyte String)
+-   [`curl`](https://secure.php.net/manual/en/book.curl.php), although you can use your own non-cURL client if you prefer
+-   [`json`](https://secure.php.net/manual/en/book.json.php)
+-   [`mbstring`](https://secure.php.net/manual/en/book.mbstring.php) (Multibyte String)
 
 If you use Composer, these dependencies should be handled automatically. If you install manually, you'll want to make sure that these extensions are available.
 
@@ -190,10 +190,11 @@ an intermittent network problem:
 [Idempotency keys][idempotency-keys] are added to requests to guarantee that
 retries are safe.
 
-### Request latency telemetry
+### Telemetry
 
-By default, the library sends request latency telemetry to Stripe. These
-numbers help Stripe improve the overall latency of its API for all users.
+By default, the library sends telemetry to Stripe regarding request latency and feature usage. These
+numbers help Stripe improve the overall latency of its API for all users, and
+improve popular features.
 
 You can disable this behavior if you prefer:
 
@@ -206,6 +207,7 @@ You can disable this behavior if you prefer:
 Stripe has features in the beta phase that can be accessed via the beta version of this package.
 We would love for you to try these and share feedback with us before these features reach the stable phase.
 Use the `composer require` command with an exact version specified to install the beta version of the stripe-php pacakge.
+
 
 ```bash
 composer require stripe/stripe-php:v9.2.0-beta.1
