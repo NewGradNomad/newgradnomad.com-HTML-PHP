@@ -72,9 +72,9 @@ class SearchResult extends StripeObject implements \Countable, \IteratorAggregat
             return parent::offsetGet($k);
         }
         $msg = "You tried to access the {$k} index, but SearchResult " .
-                   'types only support string keys. (HINT: Search calls ' .
-                   'return an object with a `data` (which is the data ' .
-                   "array). You likely want to call ->data[{$k}])";
+            'types only support string keys. (HINT: Search calls ' .
+            'return an object with a `data` (which is the data ' .
+            "array). You likely want to call ->data[{$k}])";
 
         throw new Exception\InvalidArgumentException($msg);
     }
