@@ -116,7 +116,7 @@ class Source extends ApiResource
         if (!$id) {
             $class = static::class;
             $msg = "Could not determine which URL to request: {$class} instance "
-             . "has invalid ID: {$id}";
+                . "has invalid ID: {$id}";
 
             throw new Exception\UnexpectedValueException($msg, null);
         }
@@ -133,7 +133,7 @@ class Source extends ApiResource
             return $this;
         }
         $message = 'This source object does not appear to be currently attached '
-               . 'to a customer object.';
+            . 'to a customer object.';
 
         throw new Exception\UnexpectedValueException($message);
     }

@@ -1,4 +1,4 @@
-<hr>
+<hr />
 <div class="container">
   <div class="container text-center">
     <div class="row px-0">
@@ -39,13 +39,23 @@
         <a id="legalFooterLink" href="./pages/legal" class="links">
           <p><small>Legal</small></p>
         </a>
-        <br>
+        <br />
       </div>
     </div>
   </div>
 </div>
 <script>
-  var linkNames = ["FAQEmployersFooterLink", "PostAJobFooterLink", "aboutFooterLink", "FAQJobSeekersFooterLink", "eContactFooterLink", "sContactFooterLink", "ngnContactFooterLink", "legalFooterLink", "JobSeekersFooterLink"];
+  var linkNames = [
+    "FAQEmployersFooterLink",
+    "PostAJobFooterLink",
+    "aboutFooterLink",
+    "FAQJobSeekersFooterLink",
+    "eContactFooterLink",
+    "sContactFooterLink",
+    "ngnContactFooterLink",
+    "legalFooterLink",
+    "JobSeekersFooterLink",
+  ];
   var loc = window.location.pathname;
   var dir = loc.substring(0, loc.lastIndexOf("/"));
   if (dir.includes("pages")) {

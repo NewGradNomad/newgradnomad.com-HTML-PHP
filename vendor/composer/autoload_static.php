@@ -6,21 +6,21 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitf61634ebd722616ee009f1cc007266d9
 {
-    public static $prefixLengthsPsr4 = array (
-        'S' => 
-        array (
+    public static $prefixLengthsPsr4 = array(
+        'S' =>
+        array(
             'Stripe\\' => 7,
         ),
     );
 
-    public static $prefixDirsPsr4 = array (
-        'Stripe\\' => 
-        array (
+    public static $prefixDirsPsr4 = array(
+        'Stripe\\' =>
+        array(
             0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
     );
 
-    public static $classMap = array (
+    public static $classMap = array(
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
@@ -30,7 +30,6 @@ class ComposerStaticInitf61634ebd722616ee009f1cc007266d9
             $loader->prefixLengthsPsr4 = ComposerStaticInitf61634ebd722616ee009f1cc007266d9::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitf61634ebd722616ee009f1cc007266d9::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInitf61634ebd722616ee009f1cc007266d9::$classMap;
-
         }, null, ClassLoader::class);
     }
 }
