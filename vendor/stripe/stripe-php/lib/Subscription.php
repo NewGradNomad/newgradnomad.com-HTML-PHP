@@ -78,7 +78,7 @@ class Subscription extends ApiResource
 
     use ApiOperations\Delete {
         delete as protected _delete;
-      }
+    }
 
     public static function getSavedNestedResources()
     {

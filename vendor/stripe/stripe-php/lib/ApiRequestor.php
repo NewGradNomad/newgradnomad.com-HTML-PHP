@@ -165,7 +165,7 @@ class ApiRequestor
     {
         if (!\is_array($resp) || !isset($resp['error'])) {
             $msg = "Invalid response object from API: {$rbody} "
-              . "(HTTP response code was {$rcode})";
+                . "(HTTP response code was {$rcode})";
 
             throw new Exception\UnexpectedValueException($msg);
         }
@@ -366,9 +366,9 @@ class ApiRequestor
 
         if (!$myApiKey) {
             $msg = 'No API key provided.  (HINT: set your API key using '
-              . '"Stripe::setApiKey(<API-KEY>)".  You can generate API keys from '
-              . 'the Stripe web interface.  See https://stripe.com/api for '
-              . 'details, or email support@stripe.com if you have any questions.';
+                . '"Stripe::setApiKey(<API-KEY>)".  You can generate API keys from '
+                . 'the Stripe web interface.  See https://stripe.com/api for '
+                . 'details, or email support@stripe.com if you have any questions.';
 
             throw new Exception\AuthenticationException($msg);
         }
@@ -390,8 +390,8 @@ class ApiRequestor
             );
             if (\count($optionKeysInParams) > 0) {
                 $message = \sprintf('Options found in $params: %s. Options should '
-                  . 'be passed in their own array after $params. (HINT: pass an '
-                  . 'empty array to $params if you do not have any.)', \implode(', ', $optionKeysInParams));
+                    . 'be passed in their own array after $params. (HINT: pass an '
+                    . 'empty array to $params if you do not have any.)', \implode(', ', $optionKeysInParams));
                 \trigger_error($message, \E_USER_WARNING);
             }
         }
@@ -460,9 +460,11 @@ class ApiRequestor
             $hasFile
         );
 
-        if (isset($rheaders['request-id'])
-        && \is_string($rheaders['request-id'])
-        && '' !== $rheaders['request-id']) {
+        if (
+            isset($rheaders['request-id'])
+            && \is_string($rheaders['request-id'])
+            && '' !== $rheaders['request-id']
+        ) {
             self::$requestTelemetry = new RequestTelemetry(
                 $rheaders['request-id'],
                 Util\Util::currentTimeMillis() - $requestStartMs,
@@ -501,9 +503,11 @@ class ApiRequestor
             $readBodyChunkCallable
         );
 
-        if (isset($rheaders['request-id'])
-        && \is_string($rheaders['request-id'])
-        && '' !== $rheaders['request-id']) {
+        if (
+            isset($rheaders['request-id'])
+            && \is_string($rheaders['request-id'])
+            && '' !== $rheaders['request-id']
+        ) {
             self::$requestTelemetry = new RequestTelemetry(
                 $rheaders['request-id'],
                 Util\Util::currentTimeMillis() - $requestStartMs
@@ -555,7 +559,7 @@ class ApiRequestor
         $jsonError = \json_last_error();
         if (null === $resp && \JSON_ERROR_NONE !== $jsonError) {
             $msg = "Invalid response body from API: {$rbody} "
-              . "(HTTP response code was {$rcode}, json_last_error() was {$jsonError})";
+                . "(HTTP response code was {$rcode}, json_last_error() was {$jsonError})";
 
             throw new Exception\UnexpectedValueException($msg, $rcode);
         }

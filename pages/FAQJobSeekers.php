@@ -19,14 +19,14 @@
 <body>
     <div id="navbar"></div>
     <div class="container">
-        <h1 class="text-center mt-4">FAQ for Employers</h1>
+        <h1 class="text-center mt-4">FAQ for Job Seekers</h1>
         <div>
             <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">Q: Why should I trust NGN?</p>
-            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">A: We store no information other that was is entered in the job listing form and all payments are handled by stripe.</p>
+            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">A: You must pay to post a listing on NGN, reducing the chance of spam. Job posting are also checked daily to ensure there is no spam on the site.</p>
         </div>
         <div>
-            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">Q: How do potential applicants find NGN?</p>
-            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">A: NGN will show up in search results and be recommended to others by word of mouth.</p>
+            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">Q: Do I have to pay to use NGN?</p>
+            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">A: No it is completely free for Job Seekers.</p>
         </div>
     </div>
 

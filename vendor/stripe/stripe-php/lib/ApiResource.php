@@ -41,7 +41,8 @@ abstract class ApiResource extends StripeObject
         parent::__set($k, $v);
         $v = $this->{$k};
         if ((static::getSavedNestedResources()->includes($k))
-            && ($v instanceof ApiResource)) {
+            && ($v instanceof ApiResource)
+        ) {
             $v->saveWithParent = true;
         }
     }
@@ -102,7 +103,7 @@ abstract class ApiResource extends StripeObject
         if (null === $id) {
             $class = static::class;
             $message = 'Could not determine which URL to request: '
-               . "{$class} instance has invalid ID: {$id}";
+                . "{$class} instance has invalid ID: {$id}";
 
             throw new Exception\UnexpectedValueException($message);
         }
