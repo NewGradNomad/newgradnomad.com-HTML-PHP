@@ -118,6 +118,9 @@ if ($query->execute()) {
       'quantity' => 1,
     ]],
     'mode' => 'payment',
+    
+    // will need a better way for verifying a listing was successful
+    // very easy to bypass current implementation without paying
     'success_url' => $YOUR_DOMAIN . '/scripts/success?' . $listingNumber,
     'cancel_url' => $YOUR_DOMAIN . '/scripts/cancel?' . $listingNumber,
   ]);
