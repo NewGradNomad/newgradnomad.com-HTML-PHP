@@ -18,8 +18,10 @@
 
 <body>
   <div id="navbar"></div>
-  <div class="container">
-    <h1 class="text-center mt-4">Contact Us</h1>
+  <div class="container text-center">
+    <h1 class="mt-4">Contact Us</h1>
+    <hr>
+    <h5>Contact Email: <b><a class="link-dark" href="mailto:support@newgradnomad.com">support@newgradnomad.com</a></b></h5>
   </div>
 
 </body>

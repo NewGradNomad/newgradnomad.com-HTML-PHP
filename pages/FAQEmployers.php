@@ -20,7 +20,14 @@
     <div id="navbar"></div>
     <div class="container">
         <h1 class="text-center mt-4">FAQ for Employers</h1>
-        <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">Q: question 1</p>
+        <div>
+            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">Q: Why should I trust NGN?</p>
+            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">A: We store no information other that was is entered in the job listing form and all payments are handled by stripe.</p>
+        </div>
+        <div>
+            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">Q: How do potential applicants find NGN?</p>
+            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">A: NGN will show up in search results and be recommended to others by word of mouth.</p>
+        </div>
     </div>
 
 </body>

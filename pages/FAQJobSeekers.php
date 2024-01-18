@@ -20,7 +20,14 @@
     <div id="navbar"></div>
     <div class="container">
         <h1 class="text-center mt-4">FAQ for Job Seekers</h1>
-        <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">Q: question 1</p>
+        <div>
+            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">Q: Why should I trust NGN?</p>
+            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">A: You must pay to post a listing on NGN, reducing the chance of spam. Job posting are also checked daily to ensure there is no spam on the site.</p>
+        </div>
+        <div>
+            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">Q: Do I have to pay to use NGN?</p>
+            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">A: No it is completely free for Job Seekers.</p>
+        </div>
     </div>
 
 </body>
