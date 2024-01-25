@@ -19,13 +19,15 @@
 
 <body>
   <div id="navbar"></div>
-  <section id="success" class="hidden container text-center mt-3">
+  <h3 id="success" class="hidden container text-center mt-3">
     <p>
       We appreciate your business! A confirmation email will be sent to <span id="customer-email"></span>.
-
+    </p>
+    <p>
       If you have any questions, please email <a href="mailto:support@newgradnomad.com">support@newgradnomad.com</a>.
     </p>
-  </section>
+    <p>Please visit the home page to view your listing.</p>
+  </h3>
 </body>
 <footer id="footer"></footer>
 

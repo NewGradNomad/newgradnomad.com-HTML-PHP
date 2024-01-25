@@ -4,6 +4,9 @@ async function initialize() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const sessionId = urlParams.get("session_id");
+  if (sessionId == null) {
+    window.location.href = "./error";
+  }
   const response = await fetch("../scripts/handleSuccess.php", {
     headers: {
       Accept: "application/json",
@@ -15,7 +18,8 @@ async function initialize() {
   const session = await response.json();
 
   if (session.status == "open") {
-    //window.replace("./handleCheckout.php");
+    // not sure what this does
+    window.replace("../scripts/handleCheckout.php");
   } else if (session.status == "complete") {
     document.getElementById("success").classList.remove("hidden");
     document.getElementById("customer-email").textContent = session.customer_email;
