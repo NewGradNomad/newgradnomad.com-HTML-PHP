@@ -20,3 +20,8 @@ async function initialize() {
   // Mount Checkout
   checkout.mount("#checkout");
 }
+
+$(function () {
+  $("#navbar").load("../components/navbar.html");
+  $("#footer").load("../components/footer.html");
+});

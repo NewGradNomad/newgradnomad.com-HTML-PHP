@@ -1,10 +1,5 @@
 initialize();
 
-function initialize() {
-  $("#navbar").load("../components/navbar.html");
-  $("#footer").load("../components/footer.html");
-}
-
 async function initialize() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -20,9 +15,14 @@ async function initialize() {
   const session = await response.json();
 
   if (session.status == "open") {
-    //window.replace('./handleCheckout.php')
+    //window.replace("./handleCheckout.php");
   } else if (session.status == "complete") {
     document.getElementById("success").classList.remove("hidden");
     document.getElementById("customer-email").textContent = session.customer_email;
   }
 }
+
+$(function () {
+  $("#navbar").load("../components/navbar.html");
+  $("#footer").load("../components/footer.html");
+});
