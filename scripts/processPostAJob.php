@@ -99,34 +99,12 @@ $query->bindParam(':paymentStatus', $paymentStatus);
 //checks if insert was successful
 if ($query->execute()) {
   $_SESSION['addedToDataBase'] = true;
-  \Stripe\Stripe::setApiKey($stripeSecretKey);
+  $stripe = new \Stripe\StripeClient($stripeSecretKey);
   header('Content-Type: application/json');
   $price = $calculatedTotal * 100;
-
-  $YOUR_DOMAIN = $domain;
-
-  $checkout_session = \Stripe\Checkout\Session::create([
-    'line_items' => [[
-      'price_data' => [
-        'currency' => 'usd',
-        'product_data' => [
-          'name' => 'Job Listing',
-          'description' => 'Listing ID: ' . $listingNumber,
-        ],
-        'unit_amount' => intval($price),
-      ],
-      'quantity' => 1,
-    ]],
-    'mode' => 'payment',
-    
-    // will need a better way for verifying a listing was successful
-    // very easy to bypass current implementation without paying
-    'success_url' => $YOUR_DOMAIN . '/scripts/success?' . $listingNumber,
-    'cancel_url' => $YOUR_DOMAIN . '/scripts/cancel?' . $listingNumber,
-  ]);
-
-  header("HTTP/1.1 303 See Other");
-  header("Location: " . $checkout_session->url);
+  $_SESSION['orderTotal'] = $price;
+  $_SESSION['listingNumber'] = $listingNumber;
+  header('Location: ../pages/checkout');
 } else {
   $_SESSION['listingError'] = true;
   header('Location: ../pages/PostAJob');
