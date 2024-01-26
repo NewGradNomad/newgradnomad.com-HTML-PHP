@@ -87,5 +87,4 @@ $paymentStatus = 1;
 $_SESSION['orderTotal'] = $price;
 $_SESSION['listingNumber'] = $listingNumber;
 $_SESSION['listingData'] = array($listingNumber, $companyName, $positionName, $positionType, $primaryTag, $allKeywords, $support, $pin, $appURL, $appEmail, $combinedSalaryRange, $jobDesc, $date, $paymentStatus);
-echo $_SESSION['listingData'][0];
 header('Location: ../pages/checkout');

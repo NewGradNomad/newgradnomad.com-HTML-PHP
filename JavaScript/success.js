@@ -7,7 +7,7 @@ async function initialize() {
   if (sessionId == null) {
     window.location.href = "./error";
   }
-  const response = await fetch("../scripts/handleSuccess.php", {
+  const response = await fetch("../scripts/checkStatus.php", {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
