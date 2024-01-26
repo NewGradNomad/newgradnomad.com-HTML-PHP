@@ -78,59 +78,13 @@ $allKeywords = '';
 for ($i = 0; $i < sizeof($keywords); $i++) {
   $allKeywords .= $keywords[$i] . ";";
 }
-//prepares insert statement
-$query = $db->prepare("INSERT INTO jobListings VALUES (:listingNumber, :companyName, :positionName, :positionType, :primaryTag, :keywords, :support, :pin, :appURL, :appEmail, :combinedSalaryRange, :jobDesc, :date, :paymentStatus)");
-$query->bindParam(':listingNumber', $listingNumber);
-$query->bindParam(':companyName', $companyName);
-$query->bindParam(':positionName', $positionName);
-$query->bindParam(':positionType', $positionType);
-$query->bindParam(':primaryTag', $primaryTag);
-$query->bindParam(':keywords', $allKeywords);
-$query->bindParam(':support', $support);
-$query->bindParam(':pin', $pin);
-$query->bindParam(':appURL', $appURL);
-$query->bindParam(':appEmail', $appEmail);
-$query->bindParam(':combinedSalaryRange', $combinedSalaryRange);
-$query->bindParam(':jobDesc', $jobDesc);
-$query->bindParam(':date', $date);
-$paymentStatus = 0;
-$query->bindParam(':paymentStatus', $paymentStatus);
 
 //checks if insert was successful
-if ($query->execute()) {
-  $_SESSION['addedToDataBase'] = true;
-  \Stripe\Stripe::setApiKey($stripeSecretKey);
-  header('Content-Type: application/json');
-  $price = $calculatedTotal * 100;
-
-  $YOUR_DOMAIN = $domain;
-
-  $checkout_session = \Stripe\Checkout\Session::create([
-    'line_items' => [[
-      'price_data' => [
-        'currency' => 'usd',
-        'product_data' => [
-          'name' => 'Job Listing',
-          'description' => 'Listing ID: ' . $listingNumber,
-        ],
-        'unit_amount' => intval($price),
-      ],
-      'quantity' => 1,
-    ]],
-    'mode' => 'payment',
-    
-    // will need a better way for verifying a listing was successful
-    // very easy to bypass current implementation without paying
-    'success_url' => $YOUR_DOMAIN . '/scripts/success?' . $listingNumber,
-    'cancel_url' => $YOUR_DOMAIN . '/scripts/cancel?' . $listingNumber,
-  ]);
-
-  header("HTTP/1.1 303 See Other");
-  header("Location: " . $checkout_session->url);
-} else {
-  $_SESSION['listingError'] = true;
-  header('Location: ../pages/PostAJob');
-}
-//closes database connection
-$db = null;
-exit();
+$stripe = new \Stripe\StripeClient($stripeSecretKey);
+header('Content-Type: application/json');
+$price = $calculatedTotal * 100;
+$paymentStatus = 1;
+$_SESSION['orderTotal'] = $price;
+$_SESSION['listingNumber'] = $listingNumber;
+$_SESSION['listingData'] = array($listingNumber, $companyName, $positionName, $positionType, $primaryTag, $allKeywords, $support, $pin, $appURL, $appEmail, $combinedSalaryRange, $jobDesc, $date, $paymentStatus);
+header('Location: ../pages/checkout');
