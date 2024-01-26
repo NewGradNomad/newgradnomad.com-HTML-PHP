@@ -33,7 +33,14 @@ try {
     $query->bindParam(':jobDesc', $_SESSION['listingData'][11]);
     $query->bindParam(':date', $_SESSION['listingData'][12]);
     $query->bindParam(':paymentStatus', $_SESSION['listingData'][13]);
-    $query->execute();
+    if ($query->execute()) {
+      $_SESSION['listingSuccess'] = true;
+    } else {
+      $_SESSION['contactSupport'] = true;
+      $_SESSION['listingID'] = $_SESSION['listingNumber'];
+      header('Location: ../pages/PostAJob');
+      exit();
+    }
   }
   //closes database connection
   $db = null;
