@@ -17,19 +17,30 @@ try {
 
   $session = $stripe->checkout->sessions->retrieve($jsonObj->session_id);
 
-
-  $query = $db->prepare("UPDATE jobListings SET paymentStatus = 1 WHERE listingID = :listingID");
-  $query->bindParam(':listingID', $_SESSION['listingNumber']);
-  if ($query->execute()) {
-    $_SESSION['listingSuccess'] = true;
-  } else {
-    $_SESSION['contactSupport'] = true;
-    $_SESSION['listingID'] = $_SESSION['listingNumber'];
+  if (!empty($_SESSION['listingData'])) {
+    $query = $db->prepare("INSERT INTO jobListings VALUES (:listingNumber, :companyName, :positionName, :positionType, :primaryTag, :keywords, :support, :pin, :appURL, :appEmail, :combinedSalaryRange, :jobDesc, :date, :paymentStatus)");
+    $query->bindParam(':listingNumber', $_SESSION['listingData'][0]);
+    $query->bindParam(':companyName', $_SESSION['listingData'][1]);
+    $query->bindParam(':positionName', $_SESSION['listingData'][2]);
+    $query->bindParam(':positionType', $_SESSION['listingData'][3]);
+    $query->bindParam(':primaryTag', $_SESSION['listingData'][4]);
+    $query->bindParam(':keywords', $_SESSION['listingData'][5]);
+    $query->bindParam(':support', $_SESSION['listingData'][6]);
+    $query->bindParam(':pin', $_SESSION['listingData'][7]);
+    $query->bindParam(':appURL', $_SESSION['listingData'][8]);
+    $query->bindParam(':appEmail', $_SESSION['listingData'][9]);
+    $query->bindParam(':combinedSalaryRange', $_SESSION['listingData'][10]);
+    $query->bindParam(':jobDesc', $_SESSION['listingData'][11]);
+    $query->bindParam(':date', $_SESSION['listingData'][12]);
+    $query->bindParam(':paymentStatus', $_SESSION['listingData'][13]);
+    $query->execute();
   }
   //closes database connection
   $db = null;
+  $query = null;
   $_SESSION['listingNumber'] = null;
   $_SESSION['orderTotal'] = null;
+  $_SESSION['listingData'] = null;
   //exit();
 
 

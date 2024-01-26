@@ -78,37 +78,14 @@ $allKeywords = '';
 for ($i = 0; $i < sizeof($keywords); $i++) {
   $allKeywords .= $keywords[$i] . ";";
 }
-//prepares insert statement
-$query = $db->prepare("INSERT INTO jobListings VALUES (:listingNumber, :companyName, :positionName, :positionType, :primaryTag, :keywords, :support, :pin, :appURL, :appEmail, :combinedSalaryRange, :jobDesc, :date, :paymentStatus)");
-$query->bindParam(':listingNumber', $listingNumber);
-$query->bindParam(':companyName', $companyName);
-$query->bindParam(':positionName', $positionName);
-$query->bindParam(':positionType', $positionType);
-$query->bindParam(':primaryTag', $primaryTag);
-$query->bindParam(':keywords', $allKeywords);
-$query->bindParam(':support', $support);
-$query->bindParam(':pin', $pin);
-$query->bindParam(':appURL', $appURL);
-$query->bindParam(':appEmail', $appEmail);
-$query->bindParam(':combinedSalaryRange', $combinedSalaryRange);
-$query->bindParam(':jobDesc', $jobDesc);
-$query->bindParam(':date', $date);
-$paymentStatus = 0;
-$query->bindParam(':paymentStatus', $paymentStatus);
 
 //checks if insert was successful
-if ($query->execute()) {
-  $_SESSION['addedToDataBase'] = true;
-  $stripe = new \Stripe\StripeClient($stripeSecretKey);
-  header('Content-Type: application/json');
-  $price = $calculatedTotal * 100;
-  $_SESSION['orderTotal'] = $price;
-  $_SESSION['listingNumber'] = $listingNumber;
-  header('Location: ../pages/checkout');
-} else {
-  $_SESSION['listingError'] = true;
-  header('Location: ../pages/PostAJob');
-}
-//closes database connection
-$db = null;
-exit();
+$stripe = new \Stripe\StripeClient($stripeSecretKey);
+header('Content-Type: application/json');
+$price = $calculatedTotal * 100;
+$paymentStatus = 1;
+$_SESSION['orderTotal'] = $price;
+$_SESSION['listingNumber'] = $listingNumber;
+$_SESSION['listingData'] = array($listingNumber, $companyName, $positionName, $positionType, $primaryTag, $allKeywords, $support, $pin, $appURL, $appEmail, $combinedSalaryRange, $jobDesc, $date, $paymentStatus);
+echo $_SESSION['listingData'][0];
+header('Location: ../pages/checkout');
