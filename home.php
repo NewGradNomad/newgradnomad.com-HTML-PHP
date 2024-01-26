@@ -107,7 +107,9 @@ $sortedListings = array_merge($pinListings, $noPinListings)
     <?php foreach ($sortedListings as $listing) : ?>
       <?php
       $tags = explode(";", $listing['keywords']);
-      $daysSincePost = ceil((strtotime($date) - strtotime($listing['postedDate'])) / $secondsPerDay);
+      $daysSincePost = (strtotime($date) - strtotime($listing['postedDate'])) / $secondsPerDay;
+      if ($daysSincePost < 1) $daysSincePost = '<' . ceil($daysSincePost);
+      else $daysSincePost = ceil($daysSincePost);
       ?>
       <div class="my-4 card">
         <div class="card-body">
