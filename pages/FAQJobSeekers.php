@@ -26,7 +26,7 @@
         </div>
         <div>
             <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">Q: Do I have to pay to use NGN?</p>
-            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">A: No it is completely free for Job Seekers.</p>
+            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">A: No, it is completely free for Job Seekers.</p>
         </div>
     </div>
 

@@ -22,7 +22,7 @@
         <h1 class="text-center mt-4">FAQ for Employers</h1>
         <div>
             <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">Q: Why should I trust NGN?</p>
-            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">A: We store no information other that was is entered in the job listing form and all payments are handled by stripe.</p>
+            <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">A: We store no information other than what is entered in the job listing form and all payments are handled by Stripe.</p>
         </div>
         <div>
             <p class="p-font text-center mt-2 mr-4 ml-4" id="p-font">Q: How do potential applicants find NGN?</p>
