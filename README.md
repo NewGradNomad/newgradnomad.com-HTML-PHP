@@ -1,6 +1,4 @@
-# [newgradnomad.com](https://newgradnomad.com/)
-
-# [Temp Testing](https://ngn.000.pe/)
+# [NewGradNomad (Temp Hosting)](https://ngn.000.pe/)
 
 ![ngn](https://github.com/NewGradNomad/newgradnomad.com-HTML/actions/workflows/main.yml/badge.svg)
 ![ngn](https://github.com/NewGradNomad/newgradnomad.com-HTML/actions/workflows/codespell.yml/badge.svg)
